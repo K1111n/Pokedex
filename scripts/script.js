@@ -9,9 +9,22 @@ function searchForPokemonWhenThreeCharactersEntered() {
 function searchForPokemon() {}
 
 async function fetchPokemon() {
+  let pokemonArray = [];
   let response = await fetch(
     "https://pokeapi.co/api/v2/pokemon?limit=20&offset=0"
   );
-  let responseAsJson = await response.json();
+  responseAsJson = await response.json();
   console.log(responseAsJson);
+  pokemonArray.push(responseAsJson);
+  console.log(pokemonArray[0].results);
+  for (i = 1; i < pokemonArray[0].results.length; i++) {
+    let pokemonSection = document.getElementById("pokemonSection");
+    pokemonSection.innerHTML += /*html*/ `
+        <div class="pokemonDiv">
+            <p>${pokemonArray[0].results[i].name}</p>
+        </div>
+    `;
+  }
 }
+
+function renderPokemon() {}

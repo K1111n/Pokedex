@@ -21,10 +21,16 @@ async function fetchPokemon() {
     let pokemonSection = document.getElementById("pokemonSection");
     pokemonSection.innerHTML += /*html*/ `
         <div class="pokemonDiv">
+            <p>#${i}</p>
             <p>${pokemonArray[0].results[i].name}</p>
         </div>
     `;
   }
+  pokemonSection.innerHTML += /*html*/ `
+    <div>
+        <button class="loadButton">Load more Pokemon</button>
+    </div>
+  `;
 }
 
 function renderPokemon() {}

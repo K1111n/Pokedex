@@ -49,6 +49,12 @@ main {
     overflow-y: auto;
 }
 
+#pokemonSection {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
 .pokemonDiv {
     border-radius:25px;
     background-color: #2f728d;
@@ -56,9 +62,21 @@ main {
     text-align: center;
     width: 30%;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     gap:5px;
+}
+
+.loadButton {
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #68a1b3;
+    padding: 10px;
+    font-weight: bold;
+}
+
+.loadButton:hover {
+    background-color: #27444d;
 }
 
 footer {

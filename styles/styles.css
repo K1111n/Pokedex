@@ -35,6 +35,10 @@ header p {
     padding: 1px;
 }
 
+body {
+    margin: 0;
+}
+
 footer {
     height: 150px;
     width: 100%;
@@ -42,6 +46,7 @@ footer {
     display: flex;
     flex-direction: row;
     justify-content: center; 
+    align-items: center;
     gap: 30px;
     font-size: 2em;
 }

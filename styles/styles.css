@@ -1,0 +1,46 @@
+html {
+    margin: 0;
+    background-color: #082129;
+}
+
+header {
+    height: 150px;
+    width: 100%;
+    background-color: #082129;
+    display: flex;
+    justify-content: space-around;
+    color: #2f728d;
+}
+
+header svg {
+    width: 40px;
+    height: 40px;
+}
+
+#leftHeader {
+    display: flex;
+    align-items: center;
+}
+
+#rightHeader {
+    display: flex;
+    align-items: center;
+}
+
+header p {
+    font-size: 2em;
+    padding: 1px;
+}
+
+footer {
+    height: 150px;
+    width: 100%;
+    background-color: #082129;
+}
+
+main {
+    width: 100%;
+    height: 100%;
+    background-color: #05171e;
+    flex-wrap: wrap;
+}

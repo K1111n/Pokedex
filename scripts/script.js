@@ -35,7 +35,7 @@ function capitalize(s) {
 
 async function fetchPokemonNames() {
   let responsePokemonNames = await fetch(
-    "https://pokeapi.co/api/v2/pokemon?limit=9&offset=0"
+    "https://pokeapi.co/api/v2/pokemon?limit=40&offset=0"
   );
   let responsePokemonNamesAsJson = await responsePokemonNames.json();
   for (k = 0; k < responsePokemonNamesAsJson.results.length; k++) {    

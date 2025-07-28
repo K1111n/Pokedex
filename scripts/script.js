@@ -13,23 +13,18 @@ let pokemonNamesArray = [];
 let pokemonImgsArray = [];
 let pokemonTypesArray = [];
 
-async function fetchPokemon() {
-  fetchPokemonNames();
-  pokemonNamesArray = fetchPokemonNames();
-  for (i = 1; i < pokemonNamesArray.length; i++) {
-    let j = i - 1;
-    fetchPokemonImgs(i);
-    fetchPokemonIDs(i);    
-
-    let responsePokemonTypes = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}/`);
-    let responsePokemonTypesAsJson = await responsePokemonTypes.json();
-    console.log(responsePokemonTypesAsJson.types[0].type.name);
-    if (responsePokemonTypesAsJson.types.length == 2) {
-      console.log(responsePokemonTypesAsJson.types[1].type.name)
-    }
-
+async function renderPokemon() {
+    await fetchPokemonNames();
+    let j = 0;
+  for (i = 0; i < pokemonNamesArray.length; i++) {    
+    j++;
+    await fetchPokemonImgs(j);
+    await fetchPokemonIDs(j);    
+    await fetchPokemonTypes(j,i);    
     let pokemonSection = document.getElementById("pokemonSection");
-    pokemonSection.innerHTML += pokeDivTemplate(i,j,responsePokemonTypesAsJson);
+    pokemonSection.innerHTML +=  await pokeDivTemplate(i);
+    let pokeDiv = document.getElementById(`pokemonDiv${i}`);
+    pokeDiv.innerHTML += await pokemonTypesTemplate(j,i);
   }
   pokemonSection.innerHTML += loadButtonTemplate();
 }
@@ -40,38 +35,52 @@ async function fetchPokemonNames() {
   );
   let responsePokemonNamesAsJson = await responsePokemonNames.json();
   pokemonNamesArray = responsePokemonNamesAsJson.results;
-  console.log(pokemonNamesArray);
   return pokemonNamesArray;
 }
 
-async function fetchPokemonImgs(i) {
-  let responsePokemonImgs = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}/`);
+async function fetchPokemonImgs(j) {
+  let responsePokemonImgs = await fetch(`https://pokeapi.co/api/v2/pokemon/${j}/`);
   let responsePokemonImgsAsJson = await responsePokemonImgs.json();
-  pokemonImgsArray.push(responsePokemonImgsAsJson);  
+  pokemonImgsArray.push(responsePokemonImgsAsJson.sprites.other['official-artwork'].front_default); 
   return pokemonImgsArray;
 }
 
-async function fetchPokemonIDs(i) {
-  let responsePokemonIDs = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}/`);
+async function fetchPokemonIDs(j) {
+  let responsePokemonIDs = await fetch(`https://pokeapi.co/api/v2/pokemon/${j}/`);
   let responsePokemonIDsAsJson = await responsePokemonIDs.json();
-  pokemonIDsArray.push(responsePokemonIDsAsJson);
+  pokemonIDsArray.push(responsePokemonIDsAsJson.id);
   return pokemonIDsArray;
 }
 
-async function fetchPokemonTypes(i) {
+async function fetchPokemonTypes(j,i) {  
+    let responsePokemonTypes = await fetch(`https://pokeapi.co/api/v2/pokemon/${j}/`);
+    if (!responsePokemonTypes.ok) throw new Error(`Types fetch failed for ID ${j}`);
+    let responsePokemonTypesAsJson = await responsePokemonTypes.json();
+    pokemonTypesArray = responsePokemonTypesAsJson;
+    return pokemonTypesArray;
 }
 
-function pokeDivTemplate(i,j,responsePokemonTypesAsJson) {
-  pokemonNamesArray = fetchPokemonNames();
-  pokemonImgsArray = fetchPokemonImgs(i);
+ async function pokeDivTemplate(i) {
   return /*html*/ `
-        <div class="pokemonDiv">
-            <p>#${pokemonImgsArray[j].id}</p>
+        <div class="pokemonDiv" id="pokemonDiv${i}">
+            <p>${pokemonIDsArray[i]}</p>
             <p>${pokemonNamesArray[i].name}</p>
-            <img src="${pokemonImgsArray[j].sprites.other['official-artwork'].front_default}" alt="pokemon${i}">
-            <p>${responsePokemonTypesAsJson.types[0].type.name}</p>
+            <img src="${pokemonImgsArray[i]}" alt="pokemon${i}">
         </div>
     `;
+}
+
+async function pokemonTypesTemplate(j,i) {
+  await fetchPokemonTypes(j);
+  if (pokemonTypesArray.types.length == 2) {
+    return /*html*/ `
+      <p>${pokemonTypesArray.types[0].type.name}</p>
+      <p>${pokemonTypesArray.types[1].type.name}</p>
+      `
+  } else {
+    return /*html*/ `
+      <p>${pokemonTypesArray.types[0].type.name}</p>
+      `}
 }
 
 function loadButtonTemplate() {

@@ -63,8 +63,8 @@ async function fetchPokemonTypes(j,i) {
  async function pokeDivTemplate(i) {
   return /*html*/ `
         <div class="pokemonDiv" id="pokemonDiv${i}">
-            <p>${pokemonIDsArray[i]}</p>
-            <p>${pokemonNamesArray[i].name}</p>
+            <p>#${pokemonIDsArray[i]} ${pokemonNamesArray[i].name}</p>
+            <br>
             <img src="${pokemonImgsArray[i]}" alt="pokemon${i}">
         </div>
     `;
@@ -74,8 +74,7 @@ async function pokemonTypesTemplate(j,i) {
   await fetchPokemonTypes(j);
   if (pokemonTypesArray.types.length == 2) {
     return /*html*/ `
-      <p>${pokemonTypesArray.types[0].type.name}</p>
-      <p>${pokemonTypesArray.types[1].type.name}</p>
+      <p>${pokemonTypesArray.types[0].type.name} ${pokemonTypesArray.types[1].type.name}</p>
       `
   } else {
     return /*html*/ `

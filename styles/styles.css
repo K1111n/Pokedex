@@ -57,6 +57,7 @@ main img {
 
 #pokemonSection {
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
     margin: 10px;
     gap: 10px;
@@ -67,7 +68,7 @@ main img {
     background-color: #2f728d;
     color: white;
     text-align: center;
-    width: 30%;
+    width: 300px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;

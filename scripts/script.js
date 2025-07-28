@@ -29,12 +29,20 @@ async function renderPokemon() {
   pokemonSection.innerHTML += loadButtonTemplate();
 }
 
+function capitalize(s) {
+  return String(s[0]).toUpperCase() + String(s).slice(1);
+}
+
 async function fetchPokemonNames() {
   let responsePokemonNames = await fetch(
     "https://pokeapi.co/api/v2/pokemon?limit=40&offset=0"
   );
   let responsePokemonNamesAsJson = await responsePokemonNames.json();
-  pokemonNamesArray = responsePokemonNamesAsJson.results;
+  for (k = 0; k < responsePokemonNamesAsJson.results.length; k++) {    
+    let pushThisPokemonName = capitalize(responsePokemonNamesAsJson.results[k].name);
+    pokemonNamesArray.push(pushThisPokemonName);
+  }
+  console.log(pokemonNamesArray);
   return pokemonNamesArray;
 }
 
@@ -62,7 +70,7 @@ async function fetchPokemonTypes(j,i) {
  async function pokeDivTemplate(i) {
   return /*html*/ `
         <div class="pokemonDiv" id="pokemonDiv${i}">
-            <p>#${pokemonIDsArray[i]} ${pokemonNamesArray[i].name}</p>
+            <p>#${pokemonIDsArray[i]} ${pokemonNamesArray[i]}</p>
             <br>
             <img src="${pokemonImgsArray[i]}" alt="pokemon${i}">
         </div>

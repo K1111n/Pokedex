@@ -80,7 +80,7 @@ async function fetchPokemonTypes(j) {
  async function pokeDivTemplate(i) {
   return /*html*/ `
         <div class="pokemonDiv" id="pokemonDiv${i}">
-            <p>#${pokemonIDsArray[i]} ${pokemonNamesArray[i]}</p>
+            <h3>#${pokemonIDsArray[i]} ${pokemonNamesArray[i]}</h3>
             <br>
             <img src="${pokemonImgsArray[i]}" alt="pokemon${i}">
         </div>

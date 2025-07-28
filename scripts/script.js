@@ -89,7 +89,6 @@ async function fetchPokemonNames() {
     let pushThisPokemonName = capitalize(responsePokemonNamesAsJson.results[k].name);
     pokemons.pokemonNamesArray.push(pushThisPokemonName);
   }
-  console.log(pokemons.pokemonNamesArray);
   return pokemons.pokemonNamesArray;
 }
 
@@ -113,7 +112,6 @@ async function fetchPokemonTypes(j) {
     if (responsePokemonTypesAsJson.types.length == 1) {
       let pushThisType = capitalize(responsePokemonTypesAsJson.types[0].type.name);
       pokemons.pokemonTypesArray = pushThisType;
-      console.log(pokemons.pokemonTypesArray);
       return pokemons.pokemonTypesArray;
     } else {
       let firstType = capitalize(responsePokemonTypesAsJson.types[0].type.name);
@@ -127,7 +125,6 @@ async function fetchPokemonTypes(j) {
 function checkIfInputIsAtleastThreeCharactersLong() {
   let input = document.getElementById("site-search");
   if (input.value.length >= 3) {
-    console.log(input.value.length);
     searchForPokemon(input);
   }
 }
@@ -135,7 +132,6 @@ function checkIfInputIsAtleastThreeCharactersLong() {
 function searchForPokemon(input) {
   let searchTerm = capitalize(input.value);
   let foundPokemon = pokemons.pokemonNamesArray.filter((name) => {return name.includes(searchTerm)});
-  console.log(foundPokemon);
 }
 
  async function pokeDivTemplate(i) {

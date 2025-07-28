@@ -1,13 +1,3 @@
-function searchForPokemonWhenThreeCharactersEntered() {
-  if (input.value.length < 3) {
-    return;
-  } else {
-    searchForPokemon();
-  }
-}
-
-function searchForPokemon() {}
-
 let pokemonIDsArray = [];
 let pokemonNamesArray = [];
 let pokemonImgsArray = [];
@@ -76,9 +66,21 @@ function capitalize(s) {
   return String(s[0]).toUpperCase() + String(s).slice(1);
 }
 
+let l = 0;
+
+function loadMorePokemon() {
+  l = l + 20;
+  document.getElementById("pokemonSection").innerHTML = "";
+  pokemonIDsArray = [];
+  pokemonNamesArray = [];
+  pokemonImgsArray = [];
+  pokemonTypesArray = [];
+  renderPokemon();
+}
+
 async function fetchPokemonNames() {
   let responsePokemonNames = await fetch(
-    "https://pokeapi.co/api/v2/pokemon?limit=40&offset=0"
+    `https://pokeapi.co/api/v2/pokemon?limit=${20+l}&offset=0`
   );
   let responsePokemonNamesAsJson = await responsePokemonNames.json();
   for (k = 0; k < responsePokemonNamesAsJson.results.length; k++) {    
@@ -120,6 +122,22 @@ async function fetchPokemonTypes(j) {
     }
 }
 
+function checkIfInputIsAtleastThreeCharactersLong() {
+  if (input.value.length < 3) {
+    return;
+  } else {
+    searchForPokemon();
+  }
+}
+
+function searchForPokemon() {
+  pokemonNamesArray.filter(input);
+}
+
+function checkName(pokemonName) {
+
+}
+
  async function pokeDivTemplate(i) {
   return /*html*/ `
         <div class="pokemonDiv" id="pokemonDiv${i}">
@@ -146,7 +164,7 @@ async function pokemonTypesTemplate(j) {
 function loadButtonTemplate() {
   return /*html*/ `
     <div>
-        <button class="loadButton">Load more Pokemon</button>
+        <button class="loadButton" onclick="loadMorePokemon()">Load more Pokemon</button>
     </div>
   `;
 }

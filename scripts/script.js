@@ -20,11 +20,11 @@ async function renderPokemon() {
     j++;
     await fetchPokemonImgs(j);
     await fetchPokemonIDs(j);    
-    await fetchPokemonTypes(j,i);    
+    await fetchPokemonTypes(j);    
     let pokemonSection = document.getElementById("pokemonSection");
     pokemonSection.innerHTML +=  await pokeDivTemplate(i);
     let pokeDiv = document.getElementById(`pokemonDiv${i}`);
-    pokeDiv.innerHTML += await pokemonTypesTemplate(j,i);
+    pokeDiv.innerHTML += await pokemonTypesTemplate(j);
   }
   pokemonSection.innerHTML += loadButtonTemplate();
 }
@@ -35,7 +35,7 @@ function capitalize(s) {
 
 async function fetchPokemonNames() {
   let responsePokemonNames = await fetch(
-    "https://pokeapi.co/api/v2/pokemon?limit=40&offset=0"
+    "https://pokeapi.co/api/v2/pokemon?limit=9&offset=0"
   );
   let responsePokemonNamesAsJson = await responsePokemonNames.json();
   for (k = 0; k < responsePokemonNamesAsJson.results.length; k++) {    
@@ -60,11 +60,21 @@ async function fetchPokemonIDs(j) {
   return pokemonIDsArray;
 }
 
-async function fetchPokemonTypes(j,i) {  
+async function fetchPokemonTypes(j) {  
     let responsePokemonTypes = await fetch(`https://pokeapi.co/api/v2/pokemon/${j}/`);
     let responsePokemonTypesAsJson = await responsePokemonTypes.json();
-    pokemonTypesArray = responsePokemonTypesAsJson;
-    return pokemonTypesArray;
+    if (responsePokemonTypesAsJson.types.length == 1) {
+      let pushThisType = capitalize(responsePokemonTypesAsJson.types[0].type.name);
+      pokemonTypesArray = pushThisType;
+      console.log(pokemonTypesArray);
+      return pokemonTypesArray;
+    } else {
+      let firstType = capitalize(responsePokemonTypesAsJson.types[0].type.name);
+      let secondType = capitalize(responsePokemonTypesAsJson.types[1].type.name);
+      let pushThisTwoTypes = [firstType, secondType]
+      pokemonTypesArray = pushThisTwoTypes;      
+      return pokemonTypesArray;
+    }
 }
 
  async function pokeDivTemplate(i) {
@@ -77,15 +87,16 @@ async function fetchPokemonTypes(j,i) {
     `;
 }
 
-async function pokemonTypesTemplate(j,i) {
+async function pokemonTypesTemplate(j) {
   await fetchPokemonTypes(j);
-  if (pokemonTypesArray.types.length == 2) {
+  if (pokemonTypesArray.length == 2) {
     return /*html*/ `
-      <p>${pokemonTypesArray.types[0].type.name} ${pokemonTypesArray.types[1].type.name}</p>
+      <img src="https://play.pokemonshowdown.com/sprites/types/${pokemonTypesArray[0]}.png" alt="${pokemonTypesArray[0]}" class="typeImgs">
+      <img src="https://play.pokemonshowdown.com/sprites/types/${pokemonTypesArray[1]}.png" alt="${pokemonTypesArray[1]}" class="typeImgs">
       `
   } else {
     return /*html*/ `
-      <p>${pokemonTypesArray.types[0].type.name}</p>
+      <img src="https://play.pokemonshowdown.com/sprites/types/${pokemonTypesArray}.png" alt="${pokemonTypesArray}" class="typeImgs">
       `}
 }
 

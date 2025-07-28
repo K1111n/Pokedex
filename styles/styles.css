@@ -69,6 +69,7 @@ main img {
     color: white;
     text-align: center;
     width: 300px;
+    height: 350px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -79,6 +80,11 @@ main img {
 .pokemonDiv:hover {
     background-color: gold;
     cursor: pointer;
+}
+
+.typeImgs {
+    height: 30px;
+    width: auto;
 }
 
 .loadButton {

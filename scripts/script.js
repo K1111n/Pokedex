@@ -1,12 +1,14 @@
-let pokemonIDsArray = [];
-let pokemonNamesArray = [];
-let pokemonImgsArray = [];
-let pokemonTypesArray = [];
+let pokemons = {
+  'pokemonIDsArray' : [],
+  'pokemonNamesArray' : [],
+  'pokemonImgsArray' : [],
+  'pokemonTypesArray' : [],
+}
 
 async function renderPokemon() {
     await fetchPokemonNames();
     let j = 0;
-  for (i = 0; i < pokemonNamesArray.length; i++) {    
+  for (i = 0; i < pokemons.pokemonNamesArray.length; i++) {    
     j++;
     await fetchPokemonImgs(j);
     await fetchPokemonIDs(j);    
@@ -21,8 +23,8 @@ async function renderPokemon() {
 }
 
 function changeBackgroundColorToTypeColor(i) {
-  let firstTypeWhenThereAreTwoTypes = `${pokemonTypesArray[0]}`;
-  let firstTypeWhenThereIsOneType = `${pokemonTypesArray}`;
+  let firstTypeWhenThereAreTwoTypes = `${pokemons.pokemonTypesArray[0]}`;
+  let firstTypeWhenThereIsOneType = `${pokemons.pokemonTypesArray}`;
   if (firstTypeWhenThereAreTwoTypes == "Fire" || firstTypeWhenThereIsOneType == "Fire") {
     document.getElementById(`pokemonDiv${i}`).style.backgroundColor = "red";
   } else if (firstTypeWhenThereAreTwoTypes == "Normal" || firstTypeWhenThereIsOneType == "Normal") {
@@ -71,10 +73,10 @@ let l = 0;
 function loadMorePokemon() {
   l = l + 20;
   document.getElementById("pokemonSection").innerHTML = "";
-  pokemonIDsArray = [];
-  pokemonNamesArray = [];
-  pokemonImgsArray = [];
-  pokemonTypesArray = [];
+  pokemons.pokemonIDsArray = [];
+  pokemons.pokemonNamesArray = [];
+  pokemons.pokemonImgsArray = [];
+  pokemons.pokemonTypesArray = [];
   renderPokemon();
 }
 
@@ -85,24 +87,24 @@ async function fetchPokemonNames() {
   let responsePokemonNamesAsJson = await responsePokemonNames.json();
   for (k = 0; k < responsePokemonNamesAsJson.results.length; k++) {    
     let pushThisPokemonName = capitalize(responsePokemonNamesAsJson.results[k].name);
-    pokemonNamesArray.push(pushThisPokemonName);
+    pokemons.pokemonNamesArray.push(pushThisPokemonName);
   }
-  console.log(pokemonNamesArray);
-  return pokemonNamesArray;
+  console.log(pokemons.pokemonNamesArray);
+  return pokemons.pokemonNamesArray;
 }
 
 async function fetchPokemonImgs(j) {
   let responsePokemonImgs = await fetch(`https://pokeapi.co/api/v2/pokemon/${j}/`);
   let responsePokemonImgsAsJson = await responsePokemonImgs.json();
-  pokemonImgsArray.push(responsePokemonImgsAsJson.sprites.other['official-artwork'].front_default); 
-  return pokemonImgsArray;
+  pokemons.pokemonImgsArray.push(responsePokemonImgsAsJson.sprites.other['official-artwork'].front_default); 
+  return pokemons.pokemonImgsArray;
 }
 
 async function fetchPokemonIDs(j) {
   let responsePokemonIDs = await fetch(`https://pokeapi.co/api/v2/pokemon/${j}/`);
   let responsePokemonIDsAsJson = await responsePokemonIDs.json();
-  pokemonIDsArray.push(responsePokemonIDsAsJson.id);
-  return pokemonIDsArray;
+  pokemons.pokemonIDsArray.push(responsePokemonIDsAsJson.id);
+  return pokemons.pokemonIDsArray;
 }
 
 async function fetchPokemonTypes(j) {  
@@ -110,54 +112,52 @@ async function fetchPokemonTypes(j) {
     let responsePokemonTypesAsJson = await responsePokemonTypes.json();
     if (responsePokemonTypesAsJson.types.length == 1) {
       let pushThisType = capitalize(responsePokemonTypesAsJson.types[0].type.name);
-      pokemonTypesArray = pushThisType;
-      console.log(pokemonTypesArray);
-      return pokemonTypesArray;
+      pokemons.pokemonTypesArray = pushThisType;
+      console.log(pokemons.pokemonTypesArray);
+      return pokemons.pokemonTypesArray;
     } else {
       let firstType = capitalize(responsePokemonTypesAsJson.types[0].type.name);
       let secondType = capitalize(responsePokemonTypesAsJson.types[1].type.name);
       let pushThisTwoTypes = [firstType, secondType]
-      pokemonTypesArray = pushThisTwoTypes;      
-      return pokemonTypesArray;
+      pokemons.pokemonTypesArray = pushThisTwoTypes;      
+      return pokemons.pokemonTypesArray;
     }
 }
 
 function checkIfInputIsAtleastThreeCharactersLong() {
-  if (input.value.length < 3) {
-    return;
-  } else {
-    searchForPokemon();
+  let input = document.getElementById("site-search");
+  if (input.value.length >= 3) {
+    console.log(input.value.length);
+    searchForPokemon(input);
   }
 }
 
-function searchForPokemon() {
-  pokemonNamesArray.filter(input);
-}
-
-function checkName(pokemonName) {
-
+function searchForPokemon(input) {
+  let searchTerm = capitalize(input.value);
+  let foundPokemon = pokemons.pokemonNamesArray.filter((name) => {return name.includes(searchTerm)});
+  console.log(foundPokemon);
 }
 
  async function pokeDivTemplate(i) {
   return /*html*/ `
         <div class="pokemonDiv" id="pokemonDiv${i}">
-            <h3>#${pokemonIDsArray[i]} ${pokemonNamesArray[i]}</h3>
+            <h3>#${pokemons.pokemonIDsArray[i]} ${pokemons.pokemonNamesArray[i]}</h3>
             <br>
-            <img src="${pokemonImgsArray[i]}" alt="pokemon${i}">
+            <img src="${pokemons.pokemonImgsArray[i]}" alt="pokemon${i}">
         </div>
     `;
 }
 
 async function pokemonTypesTemplate(j) {
   await fetchPokemonTypes(j);
-  if (pokemonTypesArray.length == 2) {
+  if (pokemons.pokemonTypesArray.length == 2) {
     return /*html*/ `
-      <img src="https://play.pokemonshowdown.com/sprites/types/${pokemonTypesArray[0]}.png" alt="${pokemonTypesArray[0]}" class="typeImgs">
-      <img src="https://play.pokemonshowdown.com/sprites/types/${pokemonTypesArray[1]}.png" alt="${pokemonTypesArray[1]}" class="typeImgs">
+      <img src="https://play.pokemonshowdown.com/sprites/types/${pokemons.pokemonTypesArray[0]}.png" alt="${pokemons.pokemonTypesArray[0]}" class="typeImgs">
+      <img src="https://play.pokemonshowdown.com/sprites/types/${pokemons.pokemonTypesArray[1]}.png" alt="${pokemons.pokemonTypesArray[1]}" class="typeImgs">
       `
   } else {
     return /*html*/ `
-      <img src="https://play.pokemonshowdown.com/sprites/types/${pokemonTypesArray}.png" alt="${pokemonTypesArray}" class="typeImgs">
+      <img src="https://play.pokemonshowdown.com/sprites/types/${pokemons.pokemonTypesArray}.png" alt="${pokemons.pokemonTypesArray}" class="typeImgs">
       `}
 }
 

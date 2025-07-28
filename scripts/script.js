@@ -54,7 +54,6 @@ async function fetchPokemonIDs(j) {
 
 async function fetchPokemonTypes(j,i) {  
     let responsePokemonTypes = await fetch(`https://pokeapi.co/api/v2/pokemon/${j}/`);
-    if (!responsePokemonTypes.ok) throw new Error(`Types fetch failed for ID ${j}`);
     let responsePokemonTypesAsJson = await responsePokemonTypes.json();
     pokemonTypesArray = responsePokemonTypesAsJson;
     return pokemonTypesArray;

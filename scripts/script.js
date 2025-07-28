@@ -31,7 +31,7 @@ async function renderPokemon() {
 
 async function fetchPokemonNames() {
   let responsePokemonNames = await fetch(
-    "https://pokeapi.co/api/v2/pokemon?limit=20&offset=0"
+    "https://pokeapi.co/api/v2/pokemon?limit=40&offset=0"
   );
   let responsePokemonNamesAsJson = await responsePokemonNames.json();
   pokemonNamesArray = responsePokemonNamesAsJson.results;

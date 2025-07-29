@@ -114,3 +114,15 @@ footer {
     display: flex;
     flex-direction: row;
 }
+
+@media (max-width: 700px) {
+    .pokemonDiv {
+        width: 45%;
+    }
+}
+
+@media (max-width: 500px) {
+    .pokemonDiv {
+        width: 100%;
+    }
+}

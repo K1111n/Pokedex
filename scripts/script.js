@@ -155,15 +155,40 @@ async function fetchPokemonHPAttackDefense(j) {
       hp:responseHPAttackDefenseAsJson.stats[0].base_stat,
        attack: responseHPAttackDefenseAsJson.stats[1].base_stat,
         defense: responseHPAttackDefenseAsJson.stats[2].base_stat});
-    console.log(pokemons.pokemonHPAttackDefenseArray);
 }
 
-function renderThisPokemoninOverlay(i) {
+function renderThisPokemonInOverlay(i) {
   let overlay = document.getElementById("overlay");
   overlay.style.display = "flex";
   overlay.innerHTML = overlayTemplate(i);
-  console.log(overlayTemplate(i));
-  console.log(overlay);
+}
+
+function renderNextPokemonInOverlay(i) {
+  let lastIndex = pokemons.pokemonNamesArray.length - 1;
+  if (i != lastIndex) {
+    i++;
+    let overlay = document.getElementById("overlay");
+    overlay.style.display = "flex";
+    overlay.innerHTML = overlayTemplate(i);
+  }
+}
+
+function renderBeforePokemonInOverlay(i) {
+  if (i != 0) {
+    i--;
+    let overlay = document.getElementById("overlay");
+    overlay.style.display = "flex";
+    overlay.innerHTML = overlayTemplate(i);
+  }
+}
+
+function closeOverlay() {  
+  let overlay = document.getElementById("overlay");
+  overlay.style.display = "none";
+}
+
+function dontcloseOverlay(event) {  
+  event.stopPropagation();
 }
 
 function checkIfInputIsAtleastThreeCharactersLong() {

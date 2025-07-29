@@ -268,8 +268,8 @@ footer {
     position: fixed;
     top: 0;
     left: 0;
-    height: 100%;
-    width: 100%;
+    height: 100vh;
+    width: 100vw;
     background-color: rgba(0, 0, 0, 0.7);
     display: none;
     justify-content: center;
@@ -280,4 +280,29 @@ footer {
 
 #overlay:hover {
     opacity: 1;
+}
+
+/*Arrow Section*/
+
+.arrow-img {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    cursor: pointer;
+    z-index: 10;
+    transition: transform 0.2s;
+}
+
+.arrow-img:hover {
+    transform: translateY(-50%) scale(1.1);
+}
+
+.arrow-img:first-of-type {
+    left: 16px;
+}
+
+.arrow-img:last-of-type {
+    right: 16px;
 }

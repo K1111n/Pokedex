@@ -1,6 +1,6 @@
-async function pokeDivTemplate(i) {
+function pokeDivTemplate(i) {
   return /*html*/ `
-        <div class="pokemonDiv" id="pokemonDiv${i}">
+        <div class="pokemonDiv" id="pokemonDiv${i}" onclick="renderThisPokemoninOverlay()">
             <h3>#${pokemons.pokemonIDsArray[i]} ${pokemons.pokemonNamesArray[i]}</h3>
             <br>
             <img src="${pokemons.pokemonImgsArray[i]}" alt="pokemon${i}">
@@ -9,8 +9,7 @@ async function pokeDivTemplate(i) {
     `;
 }
 
-async function pokemonTypesTemplate(j) {
-  await fetchPokemonTypes(j);
+function pokemonTypesTemplate() {
   if (pokemons.pokemonTypesArray.length == 2) {
     return /*html*/ `
       <img src="https://play.pokemonshowdown.com/sprites/types/${pokemons.pokemonTypesArray[0]}.png" alt="${pokemons.pokemonTypesArray[0]}" class="typeImgs">
@@ -25,5 +24,13 @@ async function pokemonTypesTemplate(j) {
 function loadButtonTemplate() {
   return /*html*/ `    
         <button class="loadButton" onclick="loadMorePokemon()">Load more Pokemon</button>
+  `;
+}
+
+function overlayTemplate(i) {
+  return /*html*/ `
+      <h3>#${pokemons.pokemonIDsArray[i]} ${pokemons.pokemonNamesArray[i]}</h3>
+      <br>
+      <img src="${pokemons.pokemonImgsArray[i]}" alt="pokemon${i}">
   `;
 }

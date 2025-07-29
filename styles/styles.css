@@ -200,7 +200,7 @@ main img {
 }
 
 .pokemonDiv:hover {
-    filter: saturate(1.7);
+    filter: brightness(110%);
     cursor: pointer;
 }
 
@@ -260,4 +260,29 @@ footer {
     #pokemonSection {
         flex-direction: column;
     }
+}
+
+/*Overlay Section*/
+
+.container {
+    width: auto;
+}
+
+.overlay {
+    position: relative;
+    width: 50%;
+    height: 500px;
+    background: rgba(0, 0, 0, 0.5);
+    color: #f1f1f1;
+    width: 100%;
+    transition: .5s ease;
+    opacity: 0;
+    color: white;
+    font-size: 20px;
+    padding: 20px;
+    text-align: center;
+}
+
+.container:hover .overlay {
+    opacity: 1;
 }

@@ -15,10 +15,10 @@ async function renderPokemon() {
     await fetchPokemonIDs(j);    
     await fetchPokemonTypes(j);    
     let pokemonSection = document.getElementById("pokemonSection");
-    pokemonSection.innerHTML +=  await pokeDivTemplate(i);
+    pokemonSection.innerHTML += pokeDivTemplate(i);
     let pokeDiv = document.getElementById(`typeRow${i}`);
     changeBackgroundColorToTypeColor(i);
-    pokeDiv.innerHTML += await pokemonTypesTemplate(j);
+    pokeDiv.innerHTML += pokemonTypesTemplate();
   }
   let loadButtonSection = document.getElementById("loadButtonDiv");
   loadButtonSection.innerHTML += loadButtonTemplate();
@@ -144,6 +144,11 @@ async function fetchPokemonTypes(j) {
       pokemons.pokemonTypesArray = pushThisTwoTypes;      
       return pokemons.pokemonTypesArray;
     }
+}
+
+function renderThisPokemoninOverlay(i) {
+  let overlay = document.getElementById("overlay");
+  overlay.innerHTML = overlayTemplate(i);
 }
 
 function checkIfInputIsAtleastThreeCharactersLong() {

@@ -188,7 +188,7 @@ main img {
 }
 
 .pokemonDiv:hover {
-    filter: saturate(1.5);
+    filter: saturate(1.7);
     cursor: pointer;
 }
 

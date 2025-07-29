@@ -1,6 +1,6 @@
 function pokeDivTemplate(i) {
   return /*html*/ `
-        <div class="pokemonDiv" id="pokemonDiv${i}" onclick="renderThisPokemoninOverlay()">
+        <div class="pokemonDiv" id="pokemonDiv${i}" onclick="renderThisPokemoninOverlay(${i})">
             <h3>#${pokemons.pokemonIDsArray[i]} ${pokemons.pokemonNamesArray[i]}</h3>
             <br>
             <img src="${pokemons.pokemonImgsArray[i]}" alt="pokemon${i}">
@@ -29,8 +29,10 @@ function loadButtonTemplate() {
 
 function overlayTemplate(i) {
   return /*html*/ `
+  <div class="pokemonDiv">
       <h3>#${pokemons.pokemonIDsArray[i]} ${pokemons.pokemonNamesArray[i]}</h3>
       <br>
       <img src="${pokemons.pokemonImgsArray[i]}" alt="pokemon${i}">
+  </div>
   `;
 }

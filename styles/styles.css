@@ -61,9 +61,8 @@ main {
 }
 
 main img {
-    width: 110px;
-    height: 110px;
-    margin-top: -20px;
+    width: 200px;
+    height: 200px;
 }
 
 .d_none {
@@ -187,6 +186,7 @@ main img {
 }
 
 .pokemonDiv {
+    background-color: #4fa1c0;
     border-radius: 25px;
     color: white;
     text-align: center;
@@ -194,13 +194,13 @@ main img {
     height: 300px;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
-    gap: 5px;
+    padding: 10px;
 }
 
 .pokemonDiv:hover {
-    filter: brightness(110%);
+    filter: brightness(120%);
     cursor: pointer;
 }
 
@@ -264,25 +264,20 @@ footer {
 
 /*Overlay Section*/
 
-.container {
-    width: auto;
-}
-
-.overlay {
-    position: relative;
-    width: 50%;
-    height: 500px;
-    background: rgba(0, 0, 0, 0.5);
-    color: #f1f1f1;
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
     width: 100%;
-    transition: .5s ease;
-    opacity: 0;
-    color: white;
-    font-size: 20px;
-    padding: 20px;
-    text-align: center;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 10;
 }
 
-.container:hover .overlay {
+#overlay:hover {
     opacity: 1;
 }

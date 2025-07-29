@@ -148,7 +148,10 @@ async function fetchPokemonTypes(j) {
 
 function renderThisPokemoninOverlay(i) {
   let overlay = document.getElementById("overlay");
+  overlay.style.display = "flex";
   overlay.innerHTML = overlayTemplate(i);
+  console.log(overlayTemplate(i));
+  console.log(overlay);
 }
 
 function checkIfInputIsAtleastThreeCharactersLong() {

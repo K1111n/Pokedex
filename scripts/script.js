@@ -19,8 +19,8 @@ async function renderPokemon() {
     changeBackgroundColorToTypeColor(i);
     pokeDiv.innerHTML += await pokemonTypesTemplate(j);
   }
-  let mainSection = document.getElementById("main");
-  mainSection.innerHTML += loadButtonTemplate();
+  let loadButtonSection = document.getElementById("loadButtonDiv");
+  loadButtonSection.innerHTML += loadButtonTemplate();
 }
 
 function changeBackgroundColorToTypeColor(i) {

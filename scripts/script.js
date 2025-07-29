@@ -126,15 +126,26 @@ function checkIfInputIsAtleastThreeCharactersLong() {
   let input = document.getElementById("site-search");
   if (input.value.length >= 3) {
     searchForPokemon(input);
+   } else if (input.value.length < 3) {
+     for (i = 0; i < pokemons.pokemonNamesArray.length; i++) {   
+        let pokeDiv = document.getElementById(`pokemonDiv${i}`);
+        pokeDiv.style.display = "flex";
+      }
   }
 }
 
 function searchForPokemon(input) {
   let searchTerm = capitalize(input.value);
   let foundPokemon = pokemons.pokemonNamesArray.filter((name) => {return name.includes(searchTerm)});
+  for (i = 0; i < pokemons.pokemonNamesArray.length; i++) {   
+    if (!foundPokemon.includes(pokemons.pokemonNamesArray[i])) {
+      let pokeDiv = document.getElementById(`pokemonDiv${i}`);
+      pokeDiv.style.display = "none";
+    }
+  }
 }
 
- async function pokeDivTemplate(i) {
+async function pokeDivTemplate(i) {
   return /*html*/ `
         <div class="pokemonDiv" id="pokemonDiv${i}">
             <h3>#${pokemons.pokemonIDsArray[i]} ${pokemons.pokemonNamesArray[i]}</h3>

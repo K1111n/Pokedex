@@ -24,6 +24,10 @@ header svg {
     gap: 5px;
 }
 
+input {
+    padding: 10px;
+}
+
 a {
     text-decoration: none;
     font-size: 3em;
@@ -252,13 +256,18 @@ footer {
     }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 550px) {
+    #leftHeader {
+        display: none;
+    }
+
     .pokemonDiv {
-        width: 100%;
+        width: 70%;
     }
 
     #pokemonSection {
         flex-direction: column;
+        align-items: center;
     }
 }
 

@@ -6,8 +6,9 @@ let pokemons = {
 }
 
 async function renderPokemon() {
-    await fetchPokemonNames();
-    let j = 0;
+  showLoadingScreen()
+  await fetchPokemonNames();
+  let j = 0;
   for (i = 0; i < pokemons.pokemonNamesArray.length; i++) {    
     j++;
     await fetchPokemonImgs(j);
@@ -21,6 +22,7 @@ async function renderPokemon() {
   }
   let loadButtonSection = document.getElementById("loadButtonDiv");
   loadButtonSection.innerHTML += loadButtonTemplate();
+  hideLoadingScreen();
 }
 
 function changeBackgroundColorToTypeColor(i) {
@@ -69,10 +71,30 @@ function capitalize(s) {
   return String(s[0]).toUpperCase() + String(s).slice(1);
 }
 
+function showLoadingScreen() {
+  let loadingSection = document.getElementById("loadingSection");
+  loadingSection.classList.remove("d_none");
+  loadingSection.classList.add("showOnCentreOfThePage");
+  let pokemonSection = document.getElementById("pokemonSection");
+  pokemonSection.style.display = "none";
+  let loadButtonSection = document.getElementById("loadButtonDiv");
+  loadButtonSection.style.display = "none";
+}
+
+function hideLoadingScreen() {
+  let loadingSection = document.getElementById("loadingSection");
+  loadingSection.classList.add("d_none");
+  loadingSection.classList.remove("showOnCentreOfThePage");
+  let pokemonSection = document.getElementById("pokemonSection");
+  pokemonSection.style.display = "flex";
+  let loadButtonSection = document.getElementById("loadButtonDiv");
+  loadButtonSection.style.display = "flex";
+}
+
 let l = 0;
 
 function loadMorePokemon() {
-  l = l + 20;
+  l = l + 40;
   document.getElementById("pokemonSection").innerHTML = "";
   document.getElementById("loadButtonDiv").innerHTML = "";
   pokemons.pokemonIDsArray = [];
@@ -84,7 +106,7 @@ function loadMorePokemon() {
 
 async function fetchPokemonNames() {
   let responsePokemonNames = await fetch(
-    `https://pokeapi.co/api/v2/pokemon?limit=${20+l}&offset=0`
+    `https://pokeapi.co/api/v2/pokemon?limit=${40+l}&offset=0`
   );
   let responsePokemonNamesAsJson = await responsePokemonNames.json();
   for (k = 0; k < responsePokemonNamesAsJson.results.length; k++) {    

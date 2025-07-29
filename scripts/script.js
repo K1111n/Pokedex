@@ -19,7 +19,8 @@ async function renderPokemon() {
     changeBackgroundColorToTypeColor(i);
     pokeDiv.innerHTML += await pokemonTypesTemplate(j);
   }
-  pokemonSection.innerHTML += loadButtonTemplate();
+  let mainSection = document.getElementById("main");
+  mainSection.innerHTML += loadButtonTemplate();
 }
 
 function changeBackgroundColorToTypeColor(i) {
@@ -73,6 +74,7 @@ let l = 0;
 function loadMorePokemon() {
   l = l + 20;
   document.getElementById("pokemonSection").innerHTML = "";
+  document.getElementById("loadButtonDiv").innerHTML = "";
   pokemons.pokemonIDsArray = [];
   pokemons.pokemonNamesArray = [];
   pokemons.pokemonImgsArray = [];
@@ -170,7 +172,8 @@ async function pokemonTypesTemplate(j) {
 
 function loadButtonTemplate() {
   return /*html*/ `
-    <div>
+    <br>
+    <div id="loadButtonDiv">
         <button class="loadButton" onclick="loadMorePokemon()">Load more Pokemon</button>
     </div>
   `;

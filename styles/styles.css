@@ -45,7 +45,6 @@ main {
     background-color: #05171e;
     flex-wrap: wrap;
     display: flex;
-    flex-direction: column;
     overflow-y: auto;
 }
 
@@ -56,6 +55,7 @@ main img {
 }
 
 #pokemonSection {
+    width: 100%;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -77,13 +77,21 @@ main img {
 }
 
 .pokemonDiv:hover {
-    background-color: gold;
+    filter: saturate(1.5);
     cursor: pointer;
 }
 
 .typeImgs {
     height: 30px;
     width: auto;
+}
+
+#loadButtonDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 10px;
 }
 
 .loadButton {
@@ -95,7 +103,7 @@ main img {
 }
 
 .loadButton:hover {
-    background-color: #546d75;
+    background-color: gold;
 }
 
 footer {
@@ -124,5 +132,9 @@ footer {
 @media (max-width: 500px) {
     .pokemonDiv {
         width: 100%;
+    }
+
+    #pokemonSection {
+        flex-direction: column;
     }
 }

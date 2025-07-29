@@ -24,6 +24,18 @@ header svg {
     gap: 5px;
 }
 
+a {
+    text-decoration: none;
+    font-size: 3em;
+    font-weight: bold;
+    cursor: pointer;
+    color: #2f728d;
+}
+
+a:hover {
+    filter: saturate(2);
+}
+
 #rightHeader {
     display: flex;
     align-items: center;

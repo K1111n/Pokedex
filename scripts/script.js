@@ -16,7 +16,7 @@ async function renderPokemon() {
     await fetchPokemonTypes(j);    
     let pokemonSection = document.getElementById("pokemonSection");
     pokemonSection.innerHTML +=  await pokeDivTemplate(i);
-    let pokeDiv = document.getElementById(`pokemonDiv${i}`);
+    let pokeDiv = document.getElementById(`typeRow${i}`);
     changeBackgroundColorToTypeColor(i);
     pokeDiv.innerHTML += await pokemonTypesTemplate(j);
   }

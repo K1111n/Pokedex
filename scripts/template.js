@@ -4,6 +4,7 @@ async function pokeDivTemplate(i) {
             <h3>#${pokemons.pokemonIDsArray[i]} ${pokemons.pokemonNamesArray[i]}</h3>
             <br>
             <img src="${pokemons.pokemonImgsArray[i]}" alt="pokemon${i}">
+            <div id="typeRow${i}"></div>
         </div>
     `;
 }

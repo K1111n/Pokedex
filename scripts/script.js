@@ -171,10 +171,7 @@ async function pokemonTypesTemplate(j) {
 }
 
 function loadButtonTemplate() {
-  return /*html*/ `
-    <br>
-    <div id="loadButtonDiv">
+  return /*html*/ `    
         <button class="loadButton" onclick="loadMorePokemon()">Load more Pokemon</button>
-    </div>
   `;
 }

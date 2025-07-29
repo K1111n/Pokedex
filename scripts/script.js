@@ -6,11 +6,10 @@ let pokemons = {
   'pokemonHPAttackDefenseArray' : [],
 }
 
-let j = 0;
-
 async function renderPokemon() {
   showLoadingScreen()
   await fetchPokemonNames();
+  let j = 0;
   for (i = 0; i < pokemons.pokemonNamesArray.length; i++) {    
     j++;
     await fetchPokemonImgs(j);

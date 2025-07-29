@@ -3,6 +3,8 @@ html {
     font-family: Arial, Helvetica, sans-serif;
     background-color: #082129;
     color: #2f728d;
+    display: flex;
+    justify-content: center;
 }
 
 header {
@@ -11,6 +13,7 @@ header {
     background-color: #082129;
     display: flex;
     justify-content: space-around;
+    max-width: 1920px;
 }
 
 header svg {
@@ -53,6 +56,12 @@ header p {
 
 body {
     margin: 0;
+    max-width: 1920px;
+    max-height: 1600px;
+    min-width: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 main {
@@ -247,6 +256,7 @@ footer {
     align-items: center;
     gap: 30px;
     font-size: 2em;
+    max-width: 1920px;
 }
 
 #pokedexInFooter {

@@ -73,6 +73,10 @@ main img {
     display: none;
 }
 
+.hideScrollbar {
+    overflow-y: hidden;
+}
+
 .showOnCentreOfThePage {
     display: flex;
     justify-content: center;

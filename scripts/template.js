@@ -33,6 +33,9 @@ function overlayTemplate(i) {
       <h3>#${pokemons.pokemonIDsArray[i]} ${pokemons.pokemonNamesArray[i]}</h3>
       <br>
       <img src="${pokemons.pokemonImgsArray[i]}" alt="pokemon${i}">
+      <p>HP: ${pokemons.pokemonHPAttackDefenseArray[i].hp} 
+        Attack: ${pokemons.pokemonHPAttackDefenseArray[i].attack} 
+        Defense: ${pokemons.pokemonHPAttackDefenseArray[i].defense}</p>
   </div>
   `;
 }

@@ -3,6 +3,7 @@ let pokemons = {
   'pokemonNamesArray' : [],
   'pokemonImgsArray' : [],
   'pokemonTypesArray' : [],
+  'pokemonHPAttackDefenseArray' : [],
 }
 
 async function renderPokemon() {
@@ -13,7 +14,8 @@ async function renderPokemon() {
     j++;
     await fetchPokemonImgs(j);
     await fetchPokemonIDs(j);    
-    await fetchPokemonTypes(j);    
+    await fetchPokemonTypes(j);  
+    await fetchPokemonHPAttackDefense(j);  
     let pokemonSection = document.getElementById("pokemonSection");
     pokemonSection.innerHTML += pokeDivTemplate(i);
     let pokeDiv = document.getElementById(`typeRow${i}`);
@@ -144,6 +146,16 @@ async function fetchPokemonTypes(j) {
       pokemons.pokemonTypesArray = pushThisTwoTypes;      
       return pokemons.pokemonTypesArray;
     }
+}
+
+async function fetchPokemonHPAttackDefense(j) {
+    let responseHPAttackDefense = await fetch(`https://pokeapi.co/api/v2/pokemon/${j}/`);
+    let responseHPAttackDefenseAsJson = await responseHPAttackDefense.json();
+    pokemons.pokemonHPAttackDefenseArray.push({
+      hp:responseHPAttackDefenseAsJson.stats[0].base_stat,
+       attack: responseHPAttackDefenseAsJson.stats[1].base_stat,
+        defense: responseHPAttackDefenseAsJson.stats[2].base_stat});
+    console.log(pokemons.pokemonHPAttackDefenseArray);
 }
 
 function renderThisPokemoninOverlay(i) {

@@ -5,6 +5,7 @@ let pokemons = {
   'pokemonTypesArray' : [],
   'pokemonHPAttackDefenseArray' : [],
 }
+
 let l = 0;
 
 async function renderPokemon() {
@@ -248,6 +249,7 @@ function checkIfInputIsAtleastThreeCharactersLong() {
         let pokeDiv = document.getElementById(`pokemonDiv${i}`);
         pokeDiv.style.display = "flex";
       }
+    document.getElementById("loadButtonDiv").style.display = "flex";
   }
 }
 
@@ -259,5 +261,8 @@ function searchForPokemon(input) {
       let pokeDiv = document.getElementById(`pokemonDiv${i}`);
       pokeDiv.style.display = "none";
     }
+  }
+  if (foundPokemon) {
+    document.getElementById("loadButtonDiv").style.display = "none";
   }
 }

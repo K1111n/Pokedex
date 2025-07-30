@@ -293,6 +293,10 @@ footer {
         flex-direction: column;
     }
 
+    .typeImgs {
+        scale: 0.7;
+    }
+
 }
 
 @media (min-width: 550px) {

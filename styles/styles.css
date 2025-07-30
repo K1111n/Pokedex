@@ -209,12 +209,24 @@ main img {
 }
 
 .pokemonDiv {
-    background-color: #4fa1c0;
     border-radius: 25px;
     color: white;
     text-align: center;
     width: 300px;
     height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.pokemonOverlay {
+    border-radius: 25px;
+    color: white;
+    text-align: center;
+    width: 300px;
+    height: 500px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -336,24 +348,12 @@ footer {
 /*Arrow Section*/
 
 .arrow-img {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
     width: 48px;
     height: 48px;
     cursor: pointer;
     z-index: 10;
-    transition: transform 0.2s;
 }
 
 .arrow-img:hover {
-    transform: translateY(-50%) scale(1.1);
-}
-
-.arrow-img:first-of-type {
-    left: 16px;
-}
-
-.arrow-img:last-of-type {
-    right: 16px;
+    filter: saturate(2)
 }

@@ -56,26 +56,52 @@ function foundPokeDivTemplate(m) {
 
 function overlayTemplate(i) {
   return /*html*/ `
-  <div class="pokemonDiv" id="pokemonOverlay${i}">
+  <div class="pokemonOverlay" id="pokemonOverlay${i}">
       <h3>#${pokemons.pokemonIDsArray[i]} ${pokemons.pokemonNamesArray[i]}</h3>
       <br>
       <img src="${pokemons.pokemonImgsArray[i]}" alt="pokemon${i}">
       <p>HP: ${pokemons.pokemonHPAttackDefenseArray[i].hp} 
         Attack: ${pokemons.pokemonHPAttackDefenseArray[i].attack} 
         Defense: ${pokemons.pokemonHPAttackDefenseArray[i].defense}</p>
-  </div>
-  <div class="buttons">
-    <img src="data:image/svg+xml;utf8,
-    <svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 24 24'>
-      <circle cx='12' cy='12' r='12' fill='rgba(8,33,41,0.7)'/>
-      <polyline points='14 6 8 12 14 18' fill='none' stroke='%234fa1c0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/>
-    </svg>" alt="Pfeil links" class="arrow-img" onclick="renderBeforePokemonInOverlay(${i}); dontcloseOverlay(event);">
+        <div class="buttons">
+          <img src="data:image/svg+xml;utf8,
+            <svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 24 24'>
+              <circle cx='12' cy='12' r='12' fill='rgba(8,33,41,0.7)'/>
+              <polyline points='14 6 8 12 14 18' fill='none' stroke='%234fa1c0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/>
+            </svg>" alt="Pfeil links" class="arrow-img" onclick="renderBeforePokemonInOverlay(${i}); dontcloseOverlay(event);">
 
-    <img src="data:image/svg+xml;utf8,
-    <svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 24 24'>
-      <circle cx='12' cy='12' r='12' fill='rgba(8,33,41,0.7)'/>
-      <polyline points='10 6 16 12 10 18' fill='none' stroke='%234fa1c0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/>
-    </svg>" alt="Pfeil rechts" class="arrow-img" onclick="renderNextPokemonInOverlay(${i}); dontcloseOverlay(event);">
+          <img src="data:image/svg+xml;utf8,
+            <svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 24 24'>
+              <circle cx='12' cy='12' r='12' fill='rgba(8,33,41,0.7)'/>
+              <polyline points='10 6 16 12 10 18' fill='none' stroke='%234fa1c0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/>
+            </svg>" alt="Pfeil rechts" class="arrow-img" onclick="renderNextPokemonInOverlay(${i}); dontcloseOverlay(event);">
+        </div>
   </div>
   `;
 }
+
+// function overlayTemplateForFoundPokemon(m) {
+//   return /*html*/ `
+//   <div class="pokemonOverlay" id="pokemonOverlay${m}">
+//       <h3>#${foundPokemonsArray[m].id} ${foundPokemonsArray[m].name}</h3>
+//       <br>
+//       <img src="${foundPokemonsArray[m].imgSrc}" alt="pokemon${m}">
+//       <p>HP: ${foundPokemonsArray[m].hp} 
+//         Attack: ${foundPokemonsArray[m].attack} 
+//         Defense: ${foundPokemonsArray[m].defense}</p>
+//         <div class="buttons">
+//           <img src="data:image/svg+xml;utf8,
+//             <svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 24 24'>
+//               <circle cx='12' cy='12' r='12' fill='rgba(8,33,41,0.7)'/>
+//               <polyline points='14 6 8 12 14 18' fill='none' stroke='%234fa1c0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/>
+//             </svg>" alt="Pfeil links" class="arrow-img" onclick="renderBeforePokemonInOverlay(${m}); dontcloseOverlay(event);">
+
+//           <img src="data:image/svg+xml;utf8,
+//             <svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 24 24'>
+//               <circle cx='12' cy='12' r='12' fill='rgba(8,33,41,0.7)'/>
+//               <polyline points='10 6 16 12 10 18' fill='none' stroke='%234fa1c0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/>
+//             </svg>" alt="Pfeil rechts" class="arrow-img" onclick="renderNextPokemonInOverlay(${m}); dontcloseOverlay(event);">
+//         </div>
+//   </div>
+//   `;
+// }

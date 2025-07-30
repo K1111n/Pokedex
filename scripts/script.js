@@ -261,6 +261,8 @@ function renderThisPokemonInOverlay(i) {
   changeBackgroundColorOfOverlayToTypeColor(i);
 }
 
+
+
 function renderNextPokemonInOverlay(i) {
   let lastIndex = pokemons.pokemonNamesArray.length - 1;
   let overlay = document.getElementById("overlay");
@@ -320,6 +322,9 @@ function searchForPokemon(input) {
         imgSrc: `${pokemons.pokemonImgsArray[i]}`,
         firstTypeImgSrc: `${pokemons.pokemonTypesArray[i][0]}`,
         secondTypeImgSrc: `${pokemons.pokemonTypesArray[i][1]}`,
+        hp: pokemons.pokemonHPAttackDefenseArray[i].hp,
+        attack: `${pokemons.pokemonHPAttackDefenseArray[i]}.attack`,
+        defense: `${pokemons.pokemonHPAttackDefenseArray[i]}.defense`,
         });
       } else {
         foundPokemonsArray.push({
@@ -328,6 +333,9 @@ function searchForPokemon(input) {
         imgSrc: `${pokemons.pokemonImgsArray[i]}`,
         firstTypeImgSrc: `${pokemons.pokemonTypesArray[i]}`,
         secondTypeImgSrc: null,
+        hp: pokemons.pokemonHPAttackDefenseArray[i].hp,
+        attack: `${pokemons.pokemonHPAttackDefenseArray[i]}.attack`,
+        defense: `${pokemons.pokemonHPAttackDefenseArray[i]}.defense`,
         });
       }
     }

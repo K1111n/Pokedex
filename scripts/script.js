@@ -104,7 +104,7 @@ function loadMorePokemon() {
 
 async function fetchPokemonNames() {
   let responsePokemonNames = await fetch(
-    `https://pokeapi.co/api/v2/pokemon?limit=${20+l}&offset=${l}`
+    `https://pokeapi.co/api/v2/pokemon?limit=${20}&offset=${l}`
   );
   let responsePokemonNamesAsJson = await responsePokemonNames.json();
   for (k = 0; k < responsePokemonNamesAsJson.results.length; k++) {    

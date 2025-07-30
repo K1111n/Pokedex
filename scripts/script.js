@@ -162,21 +162,28 @@ function renderThisPokemonInOverlay(i) {
 
 function renderNextPokemonInOverlay(i) {
   let lastIndex = pokemons.pokemonNamesArray.length - 1;
+    let overlay = document.getElementById("overlay");
   if (i != lastIndex) {
     i++;
-    let overlay = document.getElementById("overlay");
     overlay.style.display = "flex";
     overlay.innerHTML = overlayTemplate(i);
+  } else {
+    i = 0;
   }
+  overlay.style.display = "flex";
+  overlay.innerHTML = overlayTemplate(i);
 }
 
 function renderBeforePokemonInOverlay(i) {
+  let lastIndex = pokemons.pokemonNamesArray.length - 1;
+  let overlay = document.getElementById("overlay");
   if (i != 0) {
     i--;
-    let overlay = document.getElementById("overlay");
-    overlay.style.display = "flex";
-    overlay.innerHTML = overlayTemplate(i);
+  } else {
+    i = lastIndex;
   }
+  overlay.style.display = "flex";
+  overlay.innerHTML = overlayTemplate(i);
 }
 
 function closeOverlay() {  

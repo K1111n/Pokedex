@@ -8,6 +8,8 @@ let pokemons = {
 
 let l = 0;
 
+let foundPokemonsArray = [];
+
 async function renderPokemon() {
   showLoadingScreen()
   await fetchPokemonNames();
@@ -256,13 +258,40 @@ function checkIfInputIsAtleastThreeCharactersLong() {
 function searchForPokemon(input) {
   let searchTerm = capitalize(input.value);
   let foundPokemon = pokemons.pokemonNamesArray.filter((name) => {return name.includes(searchTerm)});
+  foundPokemonsArray = [];
   for (i = 0; i < pokemons.pokemonNamesArray.length; i++) {   
-    if (!foundPokemon.includes(pokemons.pokemonNamesArray[i])) {
-      let pokeDiv = document.getElementById(`pokemonDiv${i}`);
-      pokeDiv.style.display = "none";
+    if (foundPokemon.includes(pokemons.pokemonNamesArray[i])) {
+      if (pokemons.pokemonTypesArray[i].length == 2) {
+      foundPokemonsArray.push({
+        id:`${pokemons.pokemonIDsArray[i]}`,
+        name: `${pokemons.pokemonNamesArray[i]}`,
+        imgSrc: `${pokemons.pokemonImgsArray[i]}`,
+        firstTypeImgSrc: `${pokemons.pokemonTypesArray[i][0]}`,
+        secondTypeImgSrc: `${pokemons.pokemonTypesArray[i][1]}`,
+        });
+      } else {
+        foundPokemonsArray.push({
+        id:`${pokemons.pokemonIDsArray[i]}`,
+        name: `${pokemons.pokemonNamesArray[i]}`,
+        imgSrc: `${pokemons.pokemonImgsArray[i]}`,
+        firstTypeImgSrc: `${pokemons.pokemonTypesArray[i]}`,
+        secondTypeImgSrc: null,
+        });
+      }
     }
   }
   if (foundPokemon) {
     document.getElementById("loadButtonDiv").style.display = "none";
+    renderFoundPokemons();
+  } else {
+    document.getElementById("loadButtonDiv").style.display = "flex";
+  }
+}
+
+function renderFoundPokemons() {
+  let foundPokemonSection = document.getElementById("pokemonSection");
+  foundPokemonSection.innerHTML = "";
+  for (m = 0; m < foundPokemonsArray.length; m++) {
+    foundPokemonSection.innerHTML += foundPokeDivTemplate(m);
   }
 }

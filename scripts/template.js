@@ -27,6 +27,33 @@ function loadButtonTemplate() {
   `;
 }
 
+function foundPokeDivTemplate(m) {
+  if (foundPokemonsArray[m].secondTypeImgSrc == null) {
+  return /*html*/ `
+    <div class="pokemonDiv">
+            <h3>#${foundPokemonsArray[m].id} ${foundPokemonsArray[m].name}</h3>
+            <br>
+            <img src="${foundPokemonsArray[m].imgSrc}" alt="pokemon${m}">
+            <div class="typeRow">
+              <img src="https://play.pokemonshowdown.com/sprites/types/${foundPokemonsArray[m].firstTypeImgSrc}.png" alt="${foundPokemonsArray[m].firstTypeImgSrc}" class="typeImgs">
+            </div>
+    </div>    
+  `
+  } else {
+    return /*html*/ `
+    <div class="pokemonDiv">
+            <h3>#${foundPokemonsArray[m].id} ${foundPokemonsArray[m].name}</h3>
+            <br>
+            <img src="${foundPokemonsArray[m].imgSrc}" alt="pokemon${m}">
+            <div class="typeRow">
+              <img src="https://play.pokemonshowdown.com/sprites/types/${foundPokemonsArray[m].firstTypeImgSrc}.png" alt="${foundPokemonsArray[m].firstTypeImgSrc}" class="typeImgs">
+              <img src="https://play.pokemonshowdown.com/sprites/types/${foundPokemonsArray[m].secondTypeImgSrc}.png" alt="${foundPokemonsArray[m].secondTypeImgSrc}" class="typeImgs">
+            </div>
+    </div>  
+    `
+  };
+}
+
 function overlayTemplate(i) {
   return /*html*/ `
   <div class="pokemonDiv" id="pokemonOverlay${i}">

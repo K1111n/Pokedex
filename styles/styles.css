@@ -8,7 +8,7 @@ html {
 }
 
 header {
-    height: 120px;
+    height: 170px;
     width: 100%;
     background-color: #082129;
     display: flex;
@@ -276,6 +276,19 @@ footer {
         flex-direction: column;
         align-items: center;
     }
+
+    #rightHeader {
+        flex-direction: column;
+    }
+
+    header {
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    #leftHeader {
+        scale: 0.7;
+    }
 }
 
 @media (max-width: 550px) {
@@ -289,10 +302,6 @@ footer {
         align-items: center;
     }
 
-    header {
-        flex-direction: column;
-    }
-
     .typeImgs {
         scale: 0.7;
     }
@@ -301,13 +310,7 @@ footer {
 
 @media (min-width: 550px) {
 
-    #searchButton {
-        display: none;
-    }
-
-    #rightHeader {
-        flex-direction: column;
-    }
+    #rightHeader {}
 }
 
 /*Overlay Section*/

@@ -165,8 +165,6 @@ function renderNextPokemonInOverlay(i) {
     let overlay = document.getElementById("overlay");
   if (i != lastIndex) {
     i++;
-    overlay.style.display = "flex";
-    overlay.innerHTML = overlayTemplate(i);
   } else {
     i = 0;
   }

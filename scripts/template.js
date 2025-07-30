@@ -30,7 +30,7 @@ function loadButtonTemplate() {
 function foundPokeDivTemplate(m) {
   if (foundPokemonsArray[m].secondTypeImgSrc == null) {
   return /*html*/ `
-    <div class="pokemonDiv">
+    <div class="pokemonDiv" id="foundPokemonDiv${m}">
             <h3>#${foundPokemonsArray[m].id} ${foundPokemonsArray[m].name}</h3>
             <br>
             <img src="${foundPokemonsArray[m].imgSrc}" alt="pokemon${m}">
@@ -41,7 +41,7 @@ function foundPokeDivTemplate(m) {
   `
   } else {
     return /*html*/ `
-    <div class="pokemonDiv">
+    <div class="pokemonDiv" id="foundPokemonDiv${m}">
             <h3>#${foundPokemonsArray[m].id} ${foundPokemonsArray[m].name}</h3>
             <br>
             <img src="${foundPokemonsArray[m].imgSrc}" alt="pokemon${m}">

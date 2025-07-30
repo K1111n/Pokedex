@@ -5,6 +5,7 @@ let pokemons = {
   'pokemonTypesArray' : [],
   'pokemonHPAttackDefenseArray' : [],
 }
+let l = 0;
 
 async function renderPokemon() {
   showLoadingScreen()
@@ -93,22 +94,17 @@ function hideLoadingScreen() {
   loadButtonSection.style.display = "flex";
 }
 
-let l = 0;
-
 function loadMorePokemon() {
-  l = l + 40;
+  l = l + 20;
   document.getElementById("pokemonSection").innerHTML = "";
   document.getElementById("loadButtonDiv").innerHTML = "";
-  pokemons.pokemonIDsArray = [];
-  pokemons.pokemonNamesArray = [];
-  pokemons.pokemonImgsArray = [];
   pokemons.pokemonTypesArray = [];
   renderPokemon();
 }
 
 async function fetchPokemonNames() {
   let responsePokemonNames = await fetch(
-    `https://pokeapi.co/api/v2/pokemon?limit=${40+l}&offset=0`
+    `https://pokeapi.co/api/v2/pokemon?limit=${20+l}&offset=${l}`
   );
   let responsePokemonNamesAsJson = await responsePokemonNames.json();
   for (k = 0; k < responsePokemonNamesAsJson.results.length; k++) {    
@@ -119,14 +115,14 @@ async function fetchPokemonNames() {
 }
 
 async function fetchPokemonImgs(j) {
-  let responsePokemonImgs = await fetch(`https://pokeapi.co/api/v2/pokemon/${j}/`);
+  let responsePokemonImgs = await fetch(`https://pokeapi.co/api/v2/pokemon/${j+l}/`);
   let responsePokemonImgsAsJson = await responsePokemonImgs.json();
   pokemons.pokemonImgsArray.push(responsePokemonImgsAsJson.sprites.other['official-artwork'].front_default); 
   return pokemons.pokemonImgsArray;
 }
 
 async function fetchPokemonIDs(j) {
-  let responsePokemonIDs = await fetch(`https://pokeapi.co/api/v2/pokemon/${j}/`);
+  let responsePokemonIDs = await fetch(`https://pokeapi.co/api/v2/pokemon/${j+l}/`);
   let responsePokemonIDsAsJson = await responsePokemonIDs.json();
   pokemons.pokemonIDsArray.push(responsePokemonIDsAsJson.id);
   return pokemons.pokemonIDsArray;
@@ -149,7 +145,7 @@ async function fetchPokemonTypes(j) {
 }
 
 async function fetchPokemonHPAttackDefense(j) {
-    let responseHPAttackDefense = await fetch(`https://pokeapi.co/api/v2/pokemon/${j}/`);
+    let responseHPAttackDefense = await fetch(`https://pokeapi.co/api/v2/pokemon/${j+l}/`);
     let responseHPAttackDefenseAsJson = await responseHPAttackDefense.json();
     pokemons.pokemonHPAttackDefenseArray.push({
       hp:responseHPAttackDefenseAsJson.stats[0].base_stat,

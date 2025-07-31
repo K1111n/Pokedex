@@ -1,11 +1,29 @@
+/**
+ * Array to push all fetched Informations to
+ */
 let pokemons = []
 
+/**
+ * Variable to later increase the last number in the API Link
+ */
 let l = 0;
 
+/**
+ * Array to push all found Pokemons to
+ */
 let foundPokemonsArray = [];
 
+async function fetchingProcess() {
+ showLoadingScreen()
+  let j = 0;
+  for (i = 0; i < 20; i++) {    
+    j++;
+    await fetchAPI(j);  
+  }
+}
+
 async function renderPokemon() {
-  showLoadingScreen()
+  showLoadingScreen();
   let j = 0;
   for (i = 0; i < 20; i++) {    
     j++;
@@ -237,19 +255,18 @@ async function fetchAPI(j) {
   let pokemonName = capitalize(responseAsJson.forms[0].name);
   let firstTypeValue = capitalize(responseAsJson.types[0].type.name);
   if (responseAsJson.types.length == 1) {
-  let secondTypeValue = null;
   pokemons.push({
     name: pokemonName,
     pokemonImg: responseAsJson.sprites.other['official-artwork'].front_default,
     id: responseAsJson.id,
     firstType: firstTypeValue, 
-    secondType: secondTypeValue,
+    secondType: null,
     hp:responseAsJson.stats[0].base_stat,
     attack: responseAsJson.stats[1].base_stat,
     defense: responseAsJson.stats[2].base_stat
   }); } else {
-    let secondTypeValue = capitalize(responseAsJson.types[1].type.name);
-    pokemons.push({
+  let secondTypeValue = capitalize(responseAsJson.types[1].type.name);
+  pokemons.push({
     name: pokemonName,
     pokemonImg: responseAsJson.sprites.other['official-artwork'].front_default,
     id: responseAsJson.id,

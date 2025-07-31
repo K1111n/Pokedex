@@ -14,17 +14,20 @@ async function renderPokemon() {
   showLoadingScreen()
   await fetchPokemonNames();
   let j = 0;
-  for (i = 0; i < pokemons.pokemonNamesArray.length; i++) {    
+  for (i = 0; i < 20; i++) {    
     j++;
     await fetchPokemonImgs(j);
     await fetchPokemonIDs(j);    
     await fetchPokemonTypes(j);  
     await fetchPokemonHPAttackDefense(j);  
+  }
+  console.log(pokemons.pokemonTypesArray);
+  for (i = 0; i < pokemons.pokemonNamesArray.length; i++) {
     let pokemonSection = document.getElementById("pokemonSection");
     pokemonSection.innerHTML += pokeDivTemplate(i);
     let pokeDiv = document.getElementById(`typeRow${i}`);
-    changeBackgroundColorToTypeColor(i);
     pokeDiv.innerHTML += pokemonTypesTemplate(i);
+    changeBackgroundColorToTypeColor(i);
   }
   let loadButtonSection = document.getElementById("loadButtonDiv");
   loadButtonSection.innerHTML += loadButtonTemplate();
@@ -45,85 +48,83 @@ function onlyRenderPokemon() {
 }
 
 function changeBackgroundColorToTypeColor(i) {
-  let firstTypeWhenThereAreTwoTypes = `${pokemons.pokemonTypesArray[i][0]}`;
-  let firstTypeWhenThereIsOneType = `${pokemons.pokemonTypesArray[i]}`;
-  if (firstTypeWhenThereAreTwoTypes == "Fire" || firstTypeWhenThereIsOneType == "Fire") {
+  let firstType = `${pokemons.pokemonTypesArray[i].firstTypeImgSrc}`;
+  if (firstType == "Fire") {
     document.getElementById(`pokemonDiv${i}`).style.backgroundColor = "red";
-  } else if (firstTypeWhenThereAreTwoTypes == "Normal" || firstTypeWhenThereIsOneType == "Normal") {
+  } else if (firstType == "Normal") {
     document.getElementById(`pokemonDiv${i}`).style.backgroundColor = "grey";
-  } else if (firstTypeWhenThereAreTwoTypes == "Water" || firstTypeWhenThereIsOneType == "Water") {
+  } else if (firstType == "Water") {
     document.getElementById(`pokemonDiv${i}`).style.backgroundColor = "blue";
-  } else if (firstTypeWhenThereAreTwoTypes == "Electric" || firstTypeWhenThereIsOneType == "Electric") {
+  } else if (firstType == "Electric") {
     document.getElementById(`pokemonDiv${i}`).style.backgroundColor = "#D1C000";
-  } else if (firstTypeWhenThereAreTwoTypes == "Grass" || firstTypeWhenThereIsOneType == "Grass") {
+  } else if (firstType == "Grass") {
     document.getElementById(`pokemonDiv${i}`).style.backgroundColor = "green";
-  } else if (firstTypeWhenThereAreTwoTypes == "Ice" || firstTypeWhenThereIsOneType == "Ice") {
+  } else if (firstType == "Ice") {
     document.getElementById(`pokemonDiv${i}`).style.backgroundColor = "aqua";
-  } else if (firstTypeWhenThereAreTwoTypes == "Fighting" || firstTypeWhenThereIsOneType == "Fighting") {
+  } else if (firstType == "Fighting") {
     document.getElementById(`pokemonDiv${i}`).style.backgroundColor = "darkred";
-  } else if (firstTypeWhenThereAreTwoTypes == "Poison" || firstTypeWhenThereIsOneType == "Poison") {
+  } else if (firstType == "Poison") {
     document.getElementById(`pokemonDiv${i}`).style.backgroundColor = "purple";
-  } else if (firstTypeWhenThereAreTwoTypes == "Ground" || firstTypeWhenThereIsOneType == "Ground") {
+  } else if (firstType == "Ground") {
     document.getElementById(`pokemonDiv${i}`).style.backgroundColor = "brown";
-  } else if (firstTypeWhenThereAreTwoTypes == "Flying" || firstTypeWhenThereIsOneType == "Flying") {
+  } else if (firstType == "Flying") {
     document.getElementById(`pokemonDiv${i}`).style.backgroundColor = "#00BFFF";
-  } else if (firstTypeWhenThereAreTwoTypes == "Psychic" || firstTypeWhenThereIsOneType == "Psychic") {
+  } else if (firstType == "Psychic") {
     document.getElementById(`pokemonDiv${i}`).style.backgroundColor = "#FF1493";
-  } else if (firstTypeWhenThereAreTwoTypes == "Bug" || firstTypeWhenThereIsOneType == "Bug") {
+  } else if (firstType == "Bug") {
     document.getElementById(`pokemonDiv${i}`).style.backgroundColor = "#808000";
-  } else if (firstTypeWhenThereAreTwoTypes == "Rock" || firstTypeWhenThereIsOneType == "Rock") {
+  } else if (firstType == "Rock") {
     document.getElementById(`pokemonDiv${i}`).style.backgroundColor = "#696969";
-  } else if (firstTypeWhenThereAreTwoTypes == "Ghost" || firstTypeWhenThereIsOneType == "Ghost") {
+  } else if (firstType == "Ghost") {
     document.getElementById(`pokemonDiv${i}`).style.backgroundColor = "#F8F8FF";
-  } else if (firstTypeWhenThereAreTwoTypes == "Dragon" || firstTypeWhenThereIsOneType == "Dragon") {
+  } else if (firstType == "Dragon") {
     document.getElementById(`pokemonDiv${i}`).style.backgroundColor = "#00BFFF";
-  } else if (firstTypeWhenThereAreTwoTypes == "Dark" || firstTypeWhenThereIsOneType == "Dark") {
+  } else if (firstType == "Dark") {
     document.getElementById(`pokemonDiv${i}`).style.backgroundColor = "black";
-  } else if (firstTypeWhenThereAreTwoTypes == "Steel" || firstTypeWhenThereIsOneType == "Steel") {
+  } else if (firstType == "Steel") {
     document.getElementById(`pokemonDiv${i}`).style.backgroundColor = "#B0C4DE";
-  } else if (firstTypeWhenThereAreTwoTypes == "Fairy" || firstTypeWhenThereIsOneType == "Fairy") {
+  } else if (firstType == "Fairy") {
     document.getElementById(`pokemonDiv${i}`).style.backgroundColor = "#FF00FF";
   }
 }
 
 function changeBackgroundColorOfOverlayToTypeColor(i) {
-  let firstTypeWhenThereAreTwoTypes = `${pokemons.pokemonTypesArray[i][0]}`;
-  let firstTypeWhenThereIsOneType = `${pokemons.pokemonTypesArray[i]}`;
-  if (firstTypeWhenThereAreTwoTypes == "Fire" || firstTypeWhenThereIsOneType == "Fire") {
+  let firstType = `${pokemons.pokemonTypesArray[i].firstTypeImgSrc}`;
+  if (firstType == "Fire") {
     document.getElementById(`pokemonOverlay${i}`).style.backgroundColor = "red";
-  } else if (firstTypeWhenThereAreTwoTypes == "Normal" || firstTypeWhenThereIsOneType == "Normal") {
+  } else if (firstType == "Normal") {
     document.getElementById(`pokemonOverlay${i}`).style.backgroundColor = "grey";
-  } else if (firstTypeWhenThereAreTwoTypes == "Water" || firstTypeWhenThereIsOneType == "Water") {
+  } else if (firstType == "Water") {
     document.getElementById(`pokemonOverlay${i}`).style.backgroundColor = "blue";
-  } else if (firstTypeWhenThereAreTwoTypes == "Electric" || firstTypeWhenThereIsOneType == "Electric") {
+  } else if (firstType == "Electric") {
     document.getElementById(`pokemonOverlay${i}`).style.backgroundColor = "#D1C000";
-  } else if (firstTypeWhenThereAreTwoTypes == "Grass" || firstTypeWhenThereIsOneType == "Grass") {
+  } else if (firstType == "Grass") {
     document.getElementById(`pokemonOverlay${i}`).style.backgroundColor = "green";
-  } else if (firstTypeWhenThereAreTwoTypes == "Ice" || firstTypeWhenThereIsOneType == "Ice") {
+  } else if (firstType == "Ice") {
     document.getElementById(`pokemonOverlay${i}`).style.backgroundColor = "aqua";
-  } else if (firstTypeWhenThereAreTwoTypes == "Fighting" || firstTypeWhenThereIsOneType == "Fighting") {
+  } else if (firstType == "Fighting") {
     document.getElementById(`pokemonOverlay${i}`).style.backgroundColor = "darkred";
-  } else if (firstTypeWhenThereAreTwoTypes == "Poison" || firstTypeWhenThereIsOneType == "Poison") {
+  } else if (firstType == "Poison") {
     document.getElementById(`pokemonOverlay${i}`).style.backgroundColor = "purple";
-  } else if (firstTypeWhenThereAreTwoTypes == "Ground" || firstTypeWhenThereIsOneType == "Ground") {
+  } else if (firstType == "Ground") {
     document.getElementById(`pokemonOverlay${i}`).style.backgroundColor = "brown";
-  } else if (firstTypeWhenThereAreTwoTypes == "Flying" || firstTypeWhenThereIsOneType == "Flying") {
+  } else if (firstType == "Flying") {
     document.getElementById(`pokemonOverlay${i}`).style.backgroundColor = "#00BFFF";
-  } else if (firstTypeWhenThereAreTwoTypes == "Psychic" || firstTypeWhenThereIsOneType == "Psychic") {
+  } else if (firstType == "Psychic") {
     document.getElementById(`pokemonOverlay${i}`).style.backgroundColor = "#FF1493";
-  } else if (firstTypeWhenThereAreTwoTypes == "Bug" || firstTypeWhenThereIsOneType == "Bug") {
+  } else if (firstType == "Bug") {
     document.getElementById(`pokemonOverlay${i}`).style.backgroundColor = "#808000";
-  } else if (firstTypeWhenThereAreTwoTypes == "Rock" || firstTypeWhenThereIsOneType == "Rock") {
+  } else if (firstType == "Rock") {
     document.getElementById(`pokemonOverlay${i}`).style.backgroundColor = "#696969";
-  } else if (firstTypeWhenThereAreTwoTypes == "Ghost" || firstTypeWhenThereIsOneType == "Ghost") {
+  } else if (firstType == "Ghost") {
     document.getElementById(`pokemonOverlay${i}`).style.backgroundColor = "#F8F8FF";
-  } else if (firstTypeWhenThereAreTwoTypes == "Dragon" || firstTypeWhenThereIsOneType == "Dragon") {
+  } else if (firstType == "Dragon") {
     document.getElementById(`pokemonOverlay${i}`).style.backgroundColor = "#00BFFF";
-  } else if (firstTypeWhenThereAreTwoTypes == "Dark" || firstTypeWhenThereIsOneType == "Dark") {
+  } else if (firstType == "Dark") {
     document.getElementById(`pokemonOverlay${i}`).style.backgroundColor = "black";
-  } else if (firstTypeWhenThereAreTwoTypes == "Steel" || firstTypeWhenThereIsOneType == "Steel") {
+  } else if (firstType == "Steel") {
     document.getElementById(`pokemonOverlay${i}`).style.backgroundColor = "#B0C4DE";
-  } else if (firstTypeWhenThereAreTwoTypes == "Fairy" || firstTypeWhenThereIsOneType == "Fairy") {
+  } else if (firstType == "Fairy") {
     document.getElementById(`pokemonOverlay${i}`).style.backgroundColor = "#FF00FF";
   }
 }
@@ -273,13 +274,12 @@ async function fetchPokemonTypes(j) {
     let responsePokemonTypesAsJson = await responsePokemonTypes.json();
     if (responsePokemonTypesAsJson.types.length == 1) {
       let pushThisType = capitalize(responsePokemonTypesAsJson.types[0].type.name);
-      pokemons.pokemonTypesArray.push(pushThisType);
+      pokemons.pokemonTypesArray.push({firstTypeImgSrc: pushThisType, secondTypeImgSrc: null,});
       return pokemons.pokemonTypesArray;
     } else {
       let firstType = capitalize(responsePokemonTypesAsJson.types[0].type.name);
       let secondType = capitalize(responsePokemonTypesAsJson.types[1].type.name);
-      let pushThisTwoTypes = [firstType, secondType]
-      pokemons.pokemonTypesArray.push(pushThisTwoTypes);      
+      pokemons.pokemonTypesArray.push({firstTypeImgSrc: firstType, secondTypeImgSrc: secondType,});      
       return pokemons.pokemonTypesArray;
     }
 }
@@ -392,8 +392,8 @@ function searchForPokemon(input) {
         id:`${pokemons.pokemonIDsArray[i]}`,
         name: `${pokemons.pokemonNamesArray[i]}`,
         imgSrc: `${pokemons.pokemonImgsArray[i]}`,
-        firstTypeImgSrc: `${pokemons.pokemonTypesArray[i][0]}`,
-        secondTypeImgSrc: `${pokemons.pokemonTypesArray[i][1]}`,
+        firstTypeImgSrc: `${pokemons.pokemonTypesArray[i].firstTypeImgSrc}`,
+        secondTypeImgSrc: `${pokemons.pokemonTypesArray[i].secondTypeImgSrc}`,
         hp: pokemons.pokemonHPAttackDefenseArray[i].hp,
         attack: pokemons.pokemonHPAttackDefenseArray[i].attack,
         defense: pokemons.pokemonHPAttackDefenseArray[i].defense,
@@ -403,7 +403,7 @@ function searchForPokemon(input) {
         id:`${pokemons.pokemonIDsArray[i]}`,
         name: `${pokemons.pokemonNamesArray[i]}`,
         imgSrc: `${pokemons.pokemonImgsArray[i]}`,
-        firstTypeImgSrc: `${pokemons.pokemonTypesArray[i]}`,
+        firstTypeImgSrc: `${pokemons.pokemonTypesArray[i].firstTypeImgSrc}`,
         secondTypeImgSrc: null,
         hp: pokemons.pokemonHPAttackDefenseArray[i].hp,
         attack: pokemons.pokemonHPAttackDefenseArray[i].attack,

@@ -10,14 +10,14 @@ function pokeDivTemplate(i) {
 }
 
 function pokemonTypesTemplate(i) {
-  if (pokemons.pokemonTypesArray[i].length == 2) {
+  if (pokemons.pokemonTypesArray[i].secondTypeImgSrc != null) {
     return /*html*/ `
-      <img src="https://play.pokemonshowdown.com/sprites/types/${pokemons.pokemonTypesArray[i][0]}.png" alt="${pokemons.pokemonTypesArray[0]}" class="typeImgs">
-      <img src="https://play.pokemonshowdown.com/sprites/types/${pokemons.pokemonTypesArray[i][1]}.png" alt="${pokemons.pokemonTypesArray[1]}" class="typeImgs">
+      <img src="https://play.pokemonshowdown.com/sprites/types/${pokemons.pokemonTypesArray[i].firstTypeImgSrc}.png" alt="${pokemons.pokemonTypesArray[i].firstTypeImgSrc}" class="typeImgs">
+      <img src="https://play.pokemonshowdown.com/sprites/types/${pokemons.pokemonTypesArray[i].secondTypeImgSrc}.png" alt="${pokemons.pokemonTypesArray[i].secondTypeImgSrc}" class="typeImgs">
       `
   } else {
     return /*html*/ `
-      <img src="https://play.pokemonshowdown.com/sprites/types/${pokemons.pokemonTypesArray[i]}.png" alt="${pokemons.pokemonTypesArray}" class="typeImgs">
+      <img src="https://play.pokemonshowdown.com/sprites/types/${pokemons.pokemonTypesArray[i].firstTypeImgSrc}.png" alt="${pokemons.pokemonTypesArray[i].firstTypeImgSrc}" class="typeImgs">
       `}
 }
 

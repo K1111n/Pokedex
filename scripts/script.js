@@ -281,68 +281,65 @@ async function fetchAPI(j) {
 }
 
 function renderThisPokemonInOverlay(i) {
-  let overlay = document.getElementById("overlay");
-  overlay.style.display = "flex";
-  overlay.innerHTML = overlayTemplate(i);
   document.documentElement.classList.add("hideScrollbar");
-  changeBackgroundColorOfOverlayToTypeColor(i);
+  showOverlay(i);
 }
 
 function renderThisFoundPokemonInOverlay(i) {
-  let overlay = document.getElementById("overlay");
-  overlay.style.display = "flex";
-  overlay.innerHTML = overlayTemplateForFoundPokemon(i);
   document.documentElement.classList.add("hideScrollbar");
-  changeBackgroundColorOfOverlayToTypeColorFromFoundPokemon(i);
+  showOverlayForFoundPokemon(i);
 }
 
 function renderNextPokemonInOverlay(i) {
   let lastIndex = pokemons.length - 1;
-  let overlay = document.getElementById("overlay");
   if (i != lastIndex) {
     i++;
   } else {
     i = 0;
   }
-  overlay.style.display = "flex";
-  overlay.innerHTML = overlayTemplate(i);
-  changeBackgroundColorOfOverlayToTypeColor(i);
+  showOverlay(i);
 }
 
 function renderNextFoundPokemonInOverlay(i) {
   let lastIndex = foundPokemonsArray.length - 1;
-  let overlay = document.getElementById("overlay");
   if (i != lastIndex) {
     i++;
   } else {
     i = 0;
   }
-  overlay.style.display = "flex";
-  overlay.innerHTML = overlayTemplateForFoundPokemon(i);
-  changeBackgroundColorOfOverlayToTypeColorFromFoundPokemon(i);
+  showOverlayForFoundPokemon(i);
 }
 
 function renderBeforePokemonInOverlay(i) {
   let lastIndex = pokemons.length - 1;
-  let overlay = document.getElementById("overlay");
   if (i != 0) {
     i--;
   } else {
     i = lastIndex;
   }
+  showOverlay(i);
+}
+
+function renderBeforeFoundPokemonInOverlay(i) {
+  let lastIndex = foundPokemonsArray.length - 1;
+  if (i != 0) {
+    i--;
+  } else {
+    i = lastIndex;
+  }
+  showOverlayForFoundPokemon(i);
+}
+
+
+function showOverlay(i) {
+  let overlay = document.getElementById("overlay");
   overlay.style.display = "flex";
   overlay.innerHTML = overlayTemplate(i);
   changeBackgroundColorOfOverlayToTypeColor(i);
 }
 
-function renderBeforeFoundPokemonInOverlay(i) {
-  let lastIndex = foundPokemonsArray.length - 1;
+function showOverlayForFoundPokemon(i) {
   let overlay = document.getElementById("overlay");
-  if (i != 0) {
-    i--;
-  } else {
-    i = lastIndex;
-  }
   overlay.style.display = "flex";
   overlay.innerHTML = overlayTemplateForFoundPokemon(i);
   changeBackgroundColorOfOverlayToTypeColorFromFoundPokemon(i);

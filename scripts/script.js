@@ -1,10 +1,4 @@
-let pokemons = {
-  'pokemonIDsArray' : [],
-  'pokemonNamesArray' : [],
-  'pokemonImgsArray' : [],
-  'pokemonTypesArray' : [],
-  'pokemonHPAttackDefenseArray' : [],
-}
+let pokemons = []
 
 let l = 0;
 
@@ -12,17 +6,12 @@ let foundPokemonsArray = [];
 
 async function renderPokemon() {
   showLoadingScreen()
-  await fetchPokemonNames();
   let j = 0;
   for (i = 0; i < 20; i++) {    
     j++;
-    await fetchPokemonImgs(j);
-    await fetchPokemonIDs(j);    
-    await fetchPokemonTypes(j);  
-    await fetchPokemonHPAttackDefense(j);  
+    await fetchAPI(j);  
   }
-  console.log(pokemons.pokemonTypesArray);
-  for (i = 0; i < pokemons.pokemonNamesArray.length; i++) {
+  for (i = 0; i < pokemons.length; i++) {
     let pokemonSection = document.getElementById("pokemonSection");
     pokemonSection.innerHTML += pokeDivTemplate(i);
     let pokeDiv = document.getElementById(`typeRow${i}`);
@@ -38,7 +27,7 @@ function onlyRenderPokemon() {
   let j = 0;
   let pokemonSection = document.getElementById("pokemonSection");
   pokemonSection.innerHTML = "";
-  for (i = 0; i < pokemons.pokemonNamesArray.length; i++) {  
+  for (i = 0; i < pokemons.length; i++) {  
     j++;
     pokemonSection.innerHTML += pokeDivTemplate(i);
     let pokeDiv = document.getElementById(`typeRow${i}`);
@@ -48,7 +37,7 @@ function onlyRenderPokemon() {
 }
 
 function changeBackgroundColorToTypeColor(i) {
-  let firstType = `${pokemons.pokemonTypesArray[i].firstTypeImgSrc}`;
+  let firstType = `${pokemons[i].firstType}`;
   if (firstType == "Fire") {
     document.getElementById(`pokemonDiv${i}`).style.backgroundColor = "red";
   } else if (firstType == "Normal") {
@@ -89,7 +78,7 @@ function changeBackgroundColorToTypeColor(i) {
 }
 
 function changeBackgroundColorOfOverlayToTypeColor(i) {
-  let firstType = `${pokemons.pokemonTypesArray[i].firstTypeImgSrc}`;
+  let firstType = `${pokemons[i].firstType}`;
   if (firstType == "Fire") {
     document.getElementById(`pokemonOverlay${i}`).style.backgroundColor = "red";
   } else if (firstType == "Normal") {
@@ -242,54 +231,36 @@ function loadMorePokemon() {
   renderPokemon();
 }
 
-async function fetchPokemonNames() {
-  let responsePokemonNames = await fetch(
-    `https://pokeapi.co/api/v2/pokemon?limit=${20}&offset=${l}`
-  );
-  let responsePokemonNamesAsJson = await responsePokemonNames.json();
-  for (k = 0; k < responsePokemonNamesAsJson.results.length; k++) {    
-    let pushThisPokemonName = capitalize(responsePokemonNamesAsJson.results[k].name);
-    pokemons.pokemonNamesArray.push(pushThisPokemonName);
+async function fetchAPI(j) {
+  let response = await fetch(`https://pokeapi.co/api/v2/pokemon/${j+l}/`);
+  let responseAsJson = await response.json();
+  let pokemonName = capitalize(responseAsJson.forms[0].name);
+  let firstTypeValue = capitalize(responseAsJson.types[0].type.name);
+  if (responseAsJson.types.length == 1) {
+  let secondTypeValue = null;
+  pokemons.push({
+    name: pokemonName,
+    pokemonImg: responseAsJson.sprites.other['official-artwork'].front_default,
+    id: responseAsJson.id,
+    firstType: firstTypeValue, 
+    secondType: secondTypeValue,
+    hp:responseAsJson.stats[0].base_stat,
+    attack: responseAsJson.stats[1].base_stat,
+    defense: responseAsJson.stats[2].base_stat
+  }); } else {
+    let secondTypeValue = capitalize(responseAsJson.types[1].type.name);
+    pokemons.push({
+    name: pokemonName,
+    pokemonImg: responseAsJson.sprites.other['official-artwork'].front_default,
+    id: responseAsJson.id,
+    firstType: firstTypeValue, 
+    secondType: secondTypeValue,
+    hp:responseAsJson.stats[0].base_stat,
+    attack: responseAsJson.stats[1].base_stat,
+    defense: responseAsJson.stats[2].base_stat
+  });
   }
-  return pokemons.pokemonNamesArray;
-}
-
-async function fetchPokemonImgs(j) {
-  let responsePokemonImgs = await fetch(`https://pokeapi.co/api/v2/pokemon/${j+l}/`);
-  let responsePokemonImgsAsJson = await responsePokemonImgs.json();
-  pokemons.pokemonImgsArray.push(responsePokemonImgsAsJson.sprites.other['official-artwork'].front_default); 
-  return pokemons.pokemonImgsArray;
-}
-
-async function fetchPokemonIDs(j) {
-  let responsePokemonIDs = await fetch(`https://pokeapi.co/api/v2/pokemon/${j+l}/`);
-  let responsePokemonIDsAsJson = await responsePokemonIDs.json();
-  pokemons.pokemonIDsArray.push(responsePokemonIDsAsJson.id);
-  return pokemons.pokemonIDsArray;
-}
-
-async function fetchPokemonTypes(j) {  
-    let responsePokemonTypes = await fetch(`https://pokeapi.co/api/v2/pokemon/${j+l}/`);
-    let responsePokemonTypesAsJson = await responsePokemonTypes.json();
-    if (responsePokemonTypesAsJson.types.length == 1) {
-      let pushThisType = capitalize(responsePokemonTypesAsJson.types[0].type.name);
-      pokemons.pokemonTypesArray.push({firstTypeImgSrc: pushThisType, secondTypeImgSrc: null,});
-      return pokemons.pokemonTypesArray;
-    } else {
-      let firstType = capitalize(responsePokemonTypesAsJson.types[0].type.name);
-      let secondType = capitalize(responsePokemonTypesAsJson.types[1].type.name);
-      pokemons.pokemonTypesArray.push({firstTypeImgSrc: firstType, secondTypeImgSrc: secondType,});      
-      return pokemons.pokemonTypesArray;
-    }
-}
-
-async function fetchPokemonHPAttackDefense(j) {
-    let responseHPAttackDefense = await fetch(`https://pokeapi.co/api/v2/pokemon/${j+l}/`);
-    let responseHPAttackDefenseAsJson = await responseHPAttackDefense.json();
-    pokemons.pokemonHPAttackDefenseArray.push({
-      hp:responseHPAttackDefenseAsJson.stats[0].base_stat,
-       attack: responseHPAttackDefenseAsJson.stats[1].base_stat,
-        defense: responseHPAttackDefenseAsJson.stats[2].base_stat});
+  return pokemons;
 }
 
 function renderThisPokemonInOverlay(i) {
@@ -309,7 +280,7 @@ function renderThisFoundPokemonInOverlay(i) {
 }
 
 function renderNextPokemonInOverlay(i) {
-  let lastIndex = pokemons.pokemonNamesArray.length - 1;
+  let lastIndex = pokemons.length - 1;
   let overlay = document.getElementById("overlay");
   if (i != lastIndex) {
     i++;
@@ -335,7 +306,7 @@ function renderNextFoundPokemonInOverlay(i) {
 }
 
 function renderBeforePokemonInOverlay(i) {
-  let lastIndex = pokemons.pokemonNamesArray.length - 1;
+  let lastIndex = pokemons.length - 1;
   let overlay = document.getElementById("overlay");
   if (i != 0) {
     i--;
@@ -382,31 +353,33 @@ function checkIfInputIsAtleastThreeCharactersLong() {
 
 function searchForPokemon(input) {
   let searchTerm = capitalize(input.value);
-  let foundPokemon = pokemons.pokemonNamesArray.filter((name) => {return name.includes(searchTerm)});
+  let foundPokemon = pokemons.filter((pokemon) =>
+  pokemon.name.toLowerCase().includes(searchTerm.toLowerCase()));
+  console.log(foundPokemon[0].name);
   foundPokemonsArray = [];
-  for (i = 0; i < pokemons.pokemonNamesArray.length; i++) {   
-    if (foundPokemon.includes(pokemons.pokemonNamesArray[i])) {
-      if (pokemons.pokemonTypesArray[i].length == 2) {
+  for (i = 0; i < pokemons.length; i++) {   
+    if (foundPokemon.some(p => p.name === pokemons[i].name)) {
+      if (pokemons[i].secondType != null) {
       foundPokemonsArray.push({
-        id:`${pokemons.pokemonIDsArray[i]}`,
-        name: `${pokemons.pokemonNamesArray[i]}`,
-        imgSrc: `${pokemons.pokemonImgsArray[i]}`,
-        firstTypeImgSrc: `${pokemons.pokemonTypesArray[i].firstTypeImgSrc}`,
-        secondTypeImgSrc: `${pokemons.pokemonTypesArray[i].secondTypeImgSrc}`,
-        hp: pokemons.pokemonHPAttackDefenseArray[i].hp,
-        attack: pokemons.pokemonHPAttackDefenseArray[i].attack,
-        defense: pokemons.pokemonHPAttackDefenseArray[i].defense,
+        id:`${pokemons[i].id}`,
+        name: `${pokemons[i].name}`,
+        imgSrc: `${pokemons[i].pokemonImg}`,
+        firstTypeImgSrc: `${pokemons[i].firstType}`,
+        secondTypeImgSrc: `${pokemons[i].secondType}`,
+        hp: pokemons[i].hp,
+        attack: pokemons[i].attack,
+        defense: pokemons[i].defense,
         });
       } else {
         foundPokemonsArray.push({
-        id:`${pokemons.pokemonIDsArray[i]}`,
-        name: `${pokemons.pokemonNamesArray[i]}`,
-        imgSrc: `${pokemons.pokemonImgsArray[i]}`,
-        firstTypeImgSrc: `${pokemons.pokemonTypesArray[i].firstTypeImgSrc}`,
+        id:`${pokemons[i].id}`,
+        name: `${pokemons[i].name}`,
+        imgSrc: `${pokemons[i].pokemonImg}`,
+        firstTypeImgSrc: `${pokemons[i].firstType}`,
         secondTypeImgSrc: null,
-        hp: pokemons.pokemonHPAttackDefenseArray[i].hp,
-        attack: pokemons.pokemonHPAttackDefenseArray[i].attack,
-        defense: pokemons.pokemonHPAttackDefenseArray[i].defense,
+        hp: pokemons[i].hp,
+        attack: pokemons[i].attack,
+        defense: pokemons[i].defense,
         });
       }
     }

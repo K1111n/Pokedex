@@ -1,23 +1,23 @@
 function pokeDivTemplate(i) {
   return /*html*/ `
         <div class="pokemonDiv" id="pokemonDiv${i}" onclick="renderThisPokemonInOverlay(${i}); dontcloseOverlay(event);">
-            <h3>#${pokemons.pokemonIDsArray[i]} ${pokemons.pokemonNamesArray[i]}</h3>
+            <h3>#${pokemons[i].id} ${pokemons[i].name}</h3>
             <br>
-            <img src="${pokemons.pokemonImgsArray[i]}" alt="pokemon${i}">
+            <img src="${pokemons[i].pokemonImg}" alt="pokemon${i}">
             <div id="typeRow${i}"></div>
         </div>
     `;
 }
 
 function pokemonTypesTemplate(i) {
-  if (pokemons.pokemonTypesArray[i].secondTypeImgSrc != null) {
+  if (pokemons[i].secondType != null) {
     return /*html*/ `
-      <img src="https://play.pokemonshowdown.com/sprites/types/${pokemons.pokemonTypesArray[i].firstTypeImgSrc}.png" alt="${pokemons.pokemonTypesArray[i].firstTypeImgSrc}" class="typeImgs">
-      <img src="https://play.pokemonshowdown.com/sprites/types/${pokemons.pokemonTypesArray[i].secondTypeImgSrc}.png" alt="${pokemons.pokemonTypesArray[i].secondTypeImgSrc}" class="typeImgs">
+      <img src="https://play.pokemonshowdown.com/sprites/types/${pokemons[i].firstType}.png" alt="${pokemons[i].firstType}" class="typeImgs">
+      <img src="https://play.pokemonshowdown.com/sprites/types/${pokemons[i].secondType}.png" alt="${pokemons[i].secondType}" class="typeImgs">
       `
   } else {
     return /*html*/ `
-      <img src="https://play.pokemonshowdown.com/sprites/types/${pokemons.pokemonTypesArray[i].firstTypeImgSrc}.png" alt="${pokemons.pokemonTypesArray[i].firstTypeImgSrc}" class="typeImgs">
+      <img src="https://play.pokemonshowdown.com/sprites/types/${pokemons[i].firstType}.png" alt="${pokemons[i].firstType}" class="typeImgs">
       `}
 }
 
@@ -41,7 +41,7 @@ function foundPokeDivTemplate(i) {
   `
   } else {
     return /*html*/ `
-    <div class="pokemonDiv" id="foundPokemonDiv${i}">
+    <div class="pokemonDiv" id="foundPokemonDiv${i}" onclick="renderThisFoundPokemonInOverlay(${i}); dontcloseOverlay(event);">
             <h3>#${foundPokemonsArray[i].id} ${foundPokemonsArray[i].name}</h3>
             <br>
             <img src="${foundPokemonsArray[i].imgSrc}" alt="pokemon${i}">
@@ -57,12 +57,12 @@ function foundPokeDivTemplate(i) {
 function overlayTemplate(i) {
   return /*html*/ `
   <div class="pokemonOverlay" id="pokemonOverlay${i}">
-      <h3>#${pokemons.pokemonIDsArray[i]} ${pokemons.pokemonNamesArray[i]}</h3>
+      <h3>#${pokemons[i].id} ${pokemons[i].name}</h3>
       <br>
-      <img src="${pokemons.pokemonImgsArray[i]}" alt="pokemon${i}">
-      <p>HP: ${pokemons.pokemonHPAttackDefenseArray[i].hp} 
-        Attack: ${pokemons.pokemonHPAttackDefenseArray[i].attack} 
-        Defense: ${pokemons.pokemonHPAttackDefenseArray[i].defense}</p>
+      <img src="${pokemons[i].pokemonImg}" alt="pokemon${i}">
+      <p>HP: ${pokemons[i].hp} 
+        Attack: ${pokemons[i].attack} 
+        Defense: ${pokemons[i].defense}</p>
         <div class="buttons">
           <img src="data:image/svg+xml;utf8,
             <svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 24 24'>

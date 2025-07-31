@@ -253,7 +253,6 @@ async function fetchAPI(j) {
   if (responseAsJson.abilities.length == 2) {
     secondAbilityValue = responseAsJson.abilities[1].ability.name
   }
-  console.log(responseAsJson);
   pokemons.push({
     name: pokemonName,
     pokemonImg: responseAsJson.sprites.other['official-artwork'].front_default,
@@ -272,7 +271,6 @@ async function fetchAPI(j) {
     firstMove: responseAsJson.moves[0].move.name,
     secondMove: responseAsJson.moves[1].move.name,
   });
-  console.log(pokemons);
   return pokemons;
 }
 
@@ -364,35 +362,38 @@ function searchForPokemon(input) {
   let searchTerm = capitalize(input.value);
   let foundPokemon = pokemons.filter((pokemon) =>
   pokemon.name.toLowerCase().includes(searchTerm.toLowerCase()));
-  console.log(foundPokemon[0].name);
   foundPokemonsArray = [];
+  let secondTypeImgSrcValue = null;
+  let secondAbilityValue = null;
   for (i = 0; i < pokemons.length; i++) {   
     if (foundPokemon.some(p => p.name === pokemons[i].name)) {
       if (pokemons[i].secondType != null) {
+      secondTypeImgSrcValue = pokemons[i].secondType;      
+      } 
+      if (pokemons.secondAbility != null) {
+        secondAbilityValue = pokemons.secondAbility;
+      }
       foundPokemonsArray.push({
         id:`${pokemons[i].id}`,
         name: `${pokemons[i].name}`,
         imgSrc: `${pokemons[i].pokemonImg}`,
         firstTypeImgSrc: `${pokemons[i].firstType}`,
-        secondTypeImgSrc: `${pokemons[i].secondType}`,
+        secondTypeImgSrc: secondTypeImgSrcValue,
         hp: pokemons[i].hp,
         attack: pokemons[i].attack,
         defense: pokemons[i].defense,
-        });
-      } else {
-        foundPokemonsArray.push({
-        id:`${pokemons[i].id}`,
-        name: `${pokemons[i].name}`,
-        imgSrc: `${pokemons[i].pokemonImg}`,
-        firstTypeImgSrc: `${pokemons[i].firstType}`,
-        secondTypeImgSrc: null,
-        hp: pokemons[i].hp,
-        attack: pokemons[i].attack,
-        defense: pokemons[i].defense,
+        sp_attack: pokemons[i].sp_attack,
+        sp_defense: pokemons[i].sp_defense,
+        speed: pokemons[i].speed,
+        firstAbility: pokemons[i].firstAbility,
+        secondAbility: secondAbilityValue,
+        weight: pokemons[i].weight,
+        firstMove: pokemons[i].firstMove,
+        secondMove: pokemons[i].secondMove,
         });
       }
-    }
   }
+  console.log(foundPokemon);
   if (foundPokemon) {
     document.getElementById("loadButtonDiv").style.display = "none";
     renderFoundPokemons(foundPokemonsArray);

@@ -396,7 +396,11 @@ function renderFoundPokemons(foundPokemonsArray) {
   let foundPokemonSection = document.getElementById("pokemonSection");
   foundPokemonSection.innerHTML = "";
   for (i = 0; i < foundPokemonsArray.length; i++) {
-    foundPokemonSection.innerHTML += foundPokeDivTemplate(i);
+    if (foundPokemonsArray[i].secondTypeImgSrc == null) {
+    foundPokemonSection.innerHTML += foundPokeDivTemplateForOneType(i);
+    } else {
+    foundPokemonSection.innerHTML += foundPokeDivTemplateForTwoTypes(i);
+    }
     changeBackgroundColorToTypeColorFromFoundPokemon(i);
   }
 }

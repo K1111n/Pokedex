@@ -27,8 +27,7 @@ function loadButtonTemplate() {
   `;
 }
 
-function foundPokeDivTemplate(i) {
-  if (foundPokemonsArray[i].secondTypeImgSrc == null) {
+function foundPokeDivTemplateForOneType(i) {
   return /*html*/ `
     <div class="pokemonDiv" id="foundPokemonDiv${i}" onclick="renderThisFoundPokemonInOverlay(${i}); dontcloseOverlay(event);">
             <h3>#${foundPokemonsArray[i].id} ${foundPokemonsArray[i].name}</h3>
@@ -38,8 +37,10 @@ function foundPokeDivTemplate(i) {
               <img src="https://play.pokemonshowdown.com/sprites/types/${foundPokemonsArray[i].firstTypeImgSrc}.png" alt="${foundPokemonsArray[i].firstTypeImgSrc}" class="typeImgs">
             </div>
     </div>    
-  `
-  } else {
+  `;
+}
+
+function foundPokeDivTemplateForTwoTypes(i) {
     return /*html*/ `
     <div class="pokemonDiv" id="foundPokemonDiv${i}" onclick="renderThisFoundPokemonInOverlay(${i}); dontcloseOverlay(event);">
             <h3>#${foundPokemonsArray[i].id} ${foundPokemonsArray[i].name}</h3>
@@ -51,7 +52,6 @@ function foundPokeDivTemplate(i) {
             </div>
     </div>  
     `
-  };
 }
 
 function overlayTemplate(i) {

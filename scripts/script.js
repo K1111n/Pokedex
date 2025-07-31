@@ -13,15 +13,6 @@ let l = 0;
  */
 let foundPokemonsArray = [];
 
-async function fetchingProcess() {
- showLoadingScreen()
-  let j = 0;
-  for (i = 0; i < 20; i++) {    
-    j++;
-    await fetchAPI(j);  
-  }
-}
-
 async function renderPokemon() {
   showLoadingScreen();
   let j = 0;
@@ -329,7 +320,6 @@ function renderBeforeFoundPokemonInOverlay(i) {
   }
   showOverlayForFoundPokemon(i);
 }
-
 
 function showOverlay(i) {
   let overlay = document.getElementById("overlay");

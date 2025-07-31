@@ -239,7 +239,6 @@ function loadMorePokemon() {
   l = l + 20;
   document.getElementById("pokemonSection").innerHTML = "";
   document.getElementById("loadButtonDiv").innerHTML = "";
-  pokemons.pokemonTypesArray = [];
   renderPokemon();
 }
 
@@ -270,7 +269,7 @@ async function fetchPokemonIDs(j) {
 }
 
 async function fetchPokemonTypes(j) {  
-    let responsePokemonTypes = await fetch(`https://pokeapi.co/api/v2/pokemon/${j}/`);
+    let responsePokemonTypes = await fetch(`https://pokeapi.co/api/v2/pokemon/${j+l}/`);
     let responsePokemonTypesAsJson = await responsePokemonTypes.json();
     if (responsePokemonTypesAsJson.types.length == 1) {
       let pushThisType = capitalize(responsePokemonTypesAsJson.types[0].type.name);

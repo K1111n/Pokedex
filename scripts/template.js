@@ -108,8 +108,23 @@ function overlayTemplateForFoundPokemon(i) {
       <br>
       <img src="${foundPokemonsArray[i].imgSrc}" alt="pokemon${i}">
       <p>HP: ${foundPokemonsArray[i].hp} 
+        <br>
         ATT: ${foundPokemonsArray[i].attack} 
-        DEF: ${foundPokemonsArray[i].defense}</p>
+        <br>
+        DEF: ${foundPokemonsArray[i].defense}
+        <br>
+        SP-ATT: ${foundPokemonsArray[i].sp_attack} 
+        <br>
+        SP-DEF: ${foundPokemonsArray[i].sp_defense}
+        <br>
+        SPEED: ${foundPokemonsArray[i].speed}
+        <br>
+        Abilities: ${foundPokemonsArray[i].firstAbility},${foundPokemonsArray[i].secondAbility}
+        <br>
+        Weight: ${foundPokemonsArray[i].weight}
+        <br>
+        Moves: ${foundPokemonsArray[i].firstMove},${foundPokemonsArray[i].secondMove}
+      </p>
         <div class="buttons">
           <img src="data:image/svg+xml;utf8,
             <svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 24 24'>

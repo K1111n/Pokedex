@@ -223,13 +223,13 @@ main img {
 
 .pokemonOverlay {
     border-radius: 25px;
-    color: white;
+    color: black;
     text-align: center;
     width: 300px;
     height: 500px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     padding: 10px;
 }
@@ -356,4 +356,13 @@ footer {
 
 .arrow-img:hover {
     filter: saturate(2)
+}
+
+/*Pokemon Card*/
+
+.firstRowInCard {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
 }

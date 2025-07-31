@@ -57,13 +57,34 @@ function foundPokeDivTemplateForTwoTypes(i) {
 function overlayTemplate(i) {
   return /*html*/ `
   <div class="pokemonOverlay" id="pokemonOverlay${i}">
-      <h3>#${pokemons[i].id} ${pokemons[i].name}</h3>
+      <div class="firstRowInCard">
+        <div>
+          <h2>${pokemons[i].name}</h2>
+        </div>
+        <div style="display:flex; gap:5px; align-items:center">
+          <p style="font-size:16px">HP:</p><h2> ${pokemons[i].hp}</h2>
+        </div>
+      </div>
       <br>
       <img src="${pokemons[i].pokemonImg}" alt="pokemon${i}">
-      <p>HP: ${pokemons[i].hp} 
-        Attack: ${pokemons[i].attack} 
-        Defense: ${pokemons[i].defense}</p>
-        <div class="buttons">
+      <p>
+        ATT: ${pokemons[i].attack} 
+        <br>
+        DEF: ${pokemons[i].defense}
+        <br>
+        SP-ATT: ${pokemons[i].sp_attack} 
+        <br>
+        SP-DEF: ${pokemons[i].sp_defense}
+        <br>
+        SPEED: ${pokemons[i].speed}
+        <br>
+        Abilities: ${pokemons[i].firstAbility},${pokemons[i].secondAbility}
+        <br>
+        Weight: ${pokemons[i].weight}
+        <br>
+        Moves: ${pokemons[i].firstMove},${pokemons[i].secondMove}
+      </p>
+      <div class="buttons">
           <img src="data:image/svg+xml;utf8,
             <svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 24 24'>
               <circle cx='12' cy='12' r='12' fill='rgba(8,33,41,0.7)'/>
@@ -75,7 +96,7 @@ function overlayTemplate(i) {
               <circle cx='12' cy='12' r='12' fill='rgba(8,33,41,0.7)'/>
               <polyline points='10 6 16 12 10 18' fill='none' stroke='%234fa1c0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/>
             </svg>" alt="Pfeil rechts" class="arrow-img" onclick="renderNextPokemonInOverlay(${i}); dontcloseOverlay(event);">
-        </div>
+      </div>
   </div>
   `;
 }
@@ -87,8 +108,8 @@ function overlayTemplateForFoundPokemon(i) {
       <br>
       <img src="${foundPokemonsArray[i].imgSrc}" alt="pokemon${i}">
       <p>HP: ${foundPokemonsArray[i].hp} 
-        Attack: ${foundPokemonsArray[i].attack} 
-        Defense: ${foundPokemonsArray[i].defense}</p>
+        ATT: ${foundPokemonsArray[i].attack} 
+        DEF: ${foundPokemonsArray[i].defense}</p>
         <div class="buttons">
           <img src="data:image/svg+xml;utf8,
             <svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 24 24'>

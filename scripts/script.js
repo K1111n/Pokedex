@@ -245,18 +245,15 @@ async function fetchAPI(j) {
   let responseAsJson = await response.json();
   let pokemonName = capitalize(responseAsJson.forms[0].name);
   let firstTypeValue = capitalize(responseAsJson.types[0].type.name);
-  if (responseAsJson.types.length == 1) {
-  pokemons.push({
-    name: pokemonName,
-    pokemonImg: responseAsJson.sprites.other['official-artwork'].front_default,
-    id: responseAsJson.id,
-    firstType: firstTypeValue, 
-    secondType: null,
-    hp:responseAsJson.stats[0].base_stat,
-    attack: responseAsJson.stats[1].base_stat,
-    defense: responseAsJson.stats[2].base_stat
-  }); } else {
-  let secondTypeValue = capitalize(responseAsJson.types[1].type.name);
+  let secondTypeValue = null; 
+  let secondAbilityValue = null;
+  if (responseAsJson.types.length == 2) {
+    secondTypeValue = capitalize(responseAsJson.types[1].type.name);
+  } 
+  if (responseAsJson.abilities.length == 2) {
+    secondAbilityValue = responseAsJson.abilities[1].ability.name
+  }
+  console.log(responseAsJson);
   pokemons.push({
     name: pokemonName,
     pokemonImg: responseAsJson.sprites.other['official-artwork'].front_default,
@@ -265,9 +262,17 @@ async function fetchAPI(j) {
     secondType: secondTypeValue,
     hp:responseAsJson.stats[0].base_stat,
     attack: responseAsJson.stats[1].base_stat,
-    defense: responseAsJson.stats[2].base_stat
+    defense: responseAsJson.stats[2].base_stat,
+    sp_attack: responseAsJson.stats[3].base_stat,
+    sp_defense: responseAsJson.stats[4].base_stat,
+    speed: responseAsJson.stats[5].base_stat,
+    firstAbility: responseAsJson.abilities[0].ability.name,
+    secondAbility: secondAbilityValue,
+    weight: responseAsJson.weight,
+    firstMove: responseAsJson.moves[0].move.name,
+    secondMove: responseAsJson.moves[1].move.name,
   });
-  }
+  console.log(pokemons);
   return pokemons;
 }
 

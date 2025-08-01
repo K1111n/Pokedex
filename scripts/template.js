@@ -135,7 +135,7 @@ function overlayTemplate(i,j,k) {
 function overlayTemplateForFoundPokemon(i,j,k) {
   return /*html*/ `
   <div class="pokemonOverlay" id="pokemonOverlay${i}">
-      <div style="width: 100%;">
+      <div style="width: 100%; display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
       <div class="firstRowInCard">
         <div>
           <h2>${foundPokemonsArray[i].name}</h2>
@@ -148,10 +148,10 @@ function overlayTemplateForFoundPokemon(i,j,k) {
         <img src="${foundPokemonsArray[j].imgSrc}" alt="pokemon${j}" class="evolvePokemonImg" id="evolveFrom" onclick="renderBeforeFoundPokemonInOverlay(${i}); dontcloseOverlay(event);">
         <img src="${foundPokemonsArray[i].imgSrc}" alt="pokemon${i}">
         <img src="${foundPokemonsArray[k].imgSrc}" alt="pokemon${k}" class="evolvePokemonImg" id="evolveTo" onclick="renderNextFoundPokemonInOverlay(${i}); dontcloseOverlay(event);">      
-      <nav class="navBar" style="display:none;">
+    </div>   
+        <nav class="navBar" style="display:none;">
         <p onclick="about(event)">About</p><p onclick="baseStats(event)">Base Stats</p><p onclick="moves(event)">Moves</p>
-      </nav>
-    </div> 
+      </nav>    
       <div id="baseStats">
           <div class="showProgressBars">
             <div><p>ATTACK: ${foundPokemonsArray[i].attack}</p></div>

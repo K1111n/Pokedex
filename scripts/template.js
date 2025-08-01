@@ -57,6 +57,7 @@ function foundPokeDivTemplateForTwoTypes(i) {
 function overlayTemplate(i) {
   return /*html*/ `
   <div class="pokemonOverlay" id="pokemonOverlay${i}">
+     <div style="width: 100%;">
       <div class="firstRowInCard">
         <div>
           <h2>${pokemons[i].name}</h2>
@@ -65,25 +66,30 @@ function overlayTemplate(i) {
           <p style="font-size:16px">HP:</p><h2> ${pokemons[i].hp}</h2>
         </div>
       </div>
-      <br>
       <img src="${pokemons[i].pokemonImg}" alt="pokemon${i}">
-      <p>
-        ATT: ${pokemons[i].attack} 
-        <br>
-        DEF: ${pokemons[i].defense}
-        <br>
-        SP-ATT: ${pokemons[i].sp_attack} 
-        <br>
-        SP-DEF: ${pokemons[i].sp_defense}
-        <br>
-        SPEED: ${pokemons[i].speed}
-        <br>
-        Abilities: ${pokemons[i].firstAbility},${pokemons[i].secondAbility}
-        <br>
+      <nav class="navBar">
+        <p onclick="about(event)">About</p><p onclick="baseStats(event)">Base Stats</p><p onclick="moves(event)">Moves</p>
+      </nav>
+    </div> 
+      <div id="baseStats">
+        <p>ATT: ${pokemons[i].attack}</p>
+        
+        <p>DEF: ${pokemons[i].defense}</p>
+        
+        <p>SP-ATT: ${pokemons[i].sp_attack}</p>
+        
+        <p>SP-DEF: ${pokemons[i].sp_defense}</p>
+        
+        <p>SPEED: ${pokemons[i].speed}</p>
+      </div>
+      <div id="about" style="display:none;">
         Weight: ${pokemons[i].weight}
+      </div>
+      <div id="moves" style="display:none;">
+        <p>Abilities: <br>${pokemons[i].firstAbility},${pokemons[i].secondAbility}</p>
         <br>
-        Moves: ${pokemons[i].firstMove},${pokemons[i].secondMove}
-      </p>
+        <p>Moves: <br>${pokemons[i].firstMove},${pokemons[i].secondMove}</p>
+      </div>
       <div class="buttons">
           <img src="data:image/svg+xml;utf8,
             <svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 24 24'>

@@ -318,6 +318,9 @@ footer {
         scale: 0.7;
     }
 
+    .pokemonOverlay {
+        width: 280px;
+    }
 }
 
 @media (min-width: 550px) {
@@ -344,6 +347,20 @@ footer {
 #overlay:hover {
     opacity: 1;
 }
+
+.navBar {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.navBar p:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+#baseStats {}
 
 /*Arrow Section*/
 

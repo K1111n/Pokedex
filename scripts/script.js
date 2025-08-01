@@ -13,6 +13,9 @@ let l = 0;
  */
 let foundPokemonsArray = [];
 
+/**
+ * To set the Background Color there is a color set to each type of a Pokemon
+ */
  const typeBackgroundColors = {
     Fire: "red",
     Normal: "grey",
@@ -34,6 +37,10 @@ let foundPokemonsArray = [];
     Fairy: "#FF00FF"
   };
 
+  /**
+   * shows Loading Animation, fetches 20 Times, renders all already fetched and newly fetched Pokemon,
+   * changes the Background Color, renders Button for loading more Pokemon, hides Loading Animation
+   */
 async function renderPokemon() {
   showLoadingScreen();
   let j = 0;
@@ -53,6 +60,9 @@ async function renderPokemon() {
   hideLoadingScreen();
 }
 
+/**
+ * renders all Pokemon
+ */
 function onlyRenderPokemon() {
   let j = 0;
   let pokemonSection = document.getElementById("pokemonSection");
@@ -66,13 +76,22 @@ function onlyRenderPokemon() {
   }
 }
 
+/**
+ * Change Background Color to their First Type
+ * @param {number} i - Index of Pokemon in pokemonsArray
+ */
 function changeBackgroundColorToTypeColor(i) {
-  let firstType = `${pokemons[i].firstType}`;let backgroundColor = typeBackgroundColors[firstType];
+  let firstType = `${pokemons[i].firstType}`;
+  let backgroundColor = typeBackgroundColors[firstType];
   if(backgroundColor) {
     document.getElementById(`pokemonDiv${i}`).style.backgroundColor = backgroundColor;
   }
 }
 
+/**
+ * Change Background Color, to their First, Type in Ovelay
+ * @param {number} i - Index of Pokemon in pokemonsArray
+ */
 function changeBackgroundColorOfOverlayToTypeColor(i) {
   let firstType = `${pokemons[i].firstType}`;
   let backgroundColor = typeBackgroundColors[firstType];
@@ -81,6 +100,10 @@ function changeBackgroundColorOfOverlayToTypeColor(i) {
   }
 }
 
+/**
+ * Change Background Color to their First Type after a pokemon is found through searching
+ * @param {number} i - Index of Pokemon in foundPokemonsArray
+ */
 function changeBackgroundColorToTypeColorFromFoundPokemon(i) {
   let firstType = `${foundPokemonsArray[i].firstTypeImgSrc}`;
   let backgroundColor = typeBackgroundColors[firstType];
@@ -89,6 +112,10 @@ function changeBackgroundColorToTypeColorFromFoundPokemon(i) {
   }
 }
 
+/**
+ * Change Background Color to their First Type after a pokemon is found through searching, in Ovelay
+ * @param {number} i - Index of Pokemon in foundPokemonsArray
+ */
 function changeBackgroundColorOfOverlayToTypeColorFromFoundPokemon(i) {
   let firstType = `${foundPokemonsArray[i].firstTypeImgSrc}`;
   let backgroundColor = typeBackgroundColors[firstType];
@@ -97,10 +124,23 @@ function changeBackgroundColorOfOverlayToTypeColorFromFoundPokemon(i) {
   }
 }
 
+/**
+ * Capitalizes the first character of the given string.
+ *
+ * @param {string} s - The input string to capitalize.
+ * @returns {string} The input string with the first character in uppercase.
+ *
+ * @example
+ * capitalize("hello"); // "Hello"
+ * capitalize("world"); // "World"
+ */
 function capitalize(s) {
   return String(s[0]).toUpperCase() + String(s).slice(1);
 }
 
+/**
+ * shows Loading Animation, hides everything else
+ */
 function showLoadingScreen() {
   let loadingSection = document.getElementById("loadingSection");
   loadingSection.classList.remove("d_none");
@@ -111,6 +151,9 @@ function showLoadingScreen() {
   loadButtonSection.style.display = "none";
 }
 
+/**
+ * hides Loading Animation, shows everything else
+ */
 function hideLoadingScreen() {
   let loadingSection = document.getElementById("loadingSection");
   loadingSection.classList.add("d_none");
@@ -121,6 +164,10 @@ function hideLoadingScreen() {
   loadButtonSection.style.display = "flex";
 }
 
+/**
+ * by pressing the Loading Button, changes the l-Variable to change the last Number in the API
+ * clears everything
+ */
 function loadMorePokemon() {
   l = l + 20;
   document.getElementById("pokemonSection").innerHTML = "";
@@ -128,6 +175,11 @@ function loadMorePokemon() {
   renderPokemon();
 }
 
+/**
+ * fetches every wanted Informations of a Pokemon and pushes it into the pokemons-Array
+ * @param {number} j - last Number in the API Link
+ * @returns pokemons-Array
+ */
 async function fetchAPI(j) {
   let response = await fetch(`https://pokeapi.co/api/v2/pokemon/${j+l}/`);
   let responseAsJson = await response.json();
@@ -162,16 +214,28 @@ async function fetchAPI(j) {
   return pokemons;
 }
 
+/**
+ * Hides Scrollbar when Overlay is open
+ * @param {number} i
+ */
 function renderThisPokemonInOverlay(i) {
   document.documentElement.classList.add("hideScrollbar");
   showOverlay(i);
 }
 
+/**
+ * Hides Scrollbar when Overlay is open
+ * @param {number} i 
+ */
 function renderThisFoundPokemonInOverlay(i) {
   document.documentElement.classList.add("hideScrollbar");
   showOverlayForFoundPokemon(i);
 }
 
+/**
+ * Click on right Arrow, increases the Index
+ * @param {number} i - Index of Pokemon in pokemons-Array
+ */
 function renderNextPokemonInOverlay(i) {
   let lastIndex = pokemons.length - 1;
   if (i != lastIndex) {
@@ -182,6 +246,10 @@ function renderNextPokemonInOverlay(i) {
   showOverlay(i);
 }
 
+/**
+ * Click on right Arrow, increases the Index, for found Pokemon through searching
+ * @param {number} i - Index of Pokemon in foundPokemons-Array
+ */
 function renderNextFoundPokemonInOverlay(i) {
   let lastIndex = foundPokemonsArray.length - 1;
   if (i != lastIndex) {
@@ -192,6 +260,10 @@ function renderNextFoundPokemonInOverlay(i) {
   showOverlayForFoundPokemon(i);
 }
 
+/**
+ * Click on left Arrow, decreases the Index
+ * @param {number} i - Index of Pokemon in pokemons-Array
+ */
 function renderBeforePokemonInOverlay(i) {
   let lastIndex = pokemons.length - 1;
   if (i != 0) {
@@ -202,6 +274,10 @@ function renderBeforePokemonInOverlay(i) {
   showOverlay(i);
 }
 
+/**
+ * Click on left Arrow, decreases the Index, for found Pokemon through searching
+ * @param {number} i - Index of Pokemon in foundPokemons-Array
+ */
 function renderBeforeFoundPokemonInOverlay(i) {
   let lastIndex = foundPokemonsArray.length - 1;
   if (i != 0) {
@@ -212,6 +288,10 @@ function renderBeforeFoundPokemonInOverlay(i) {
   showOverlayForFoundPokemon(i);
 }
 
+/**
+ * displays hidden overlay
+ * @param {number} i - Index of Pokemon in pokemons-Array
+ */
 function showOverlay(i) {
   let overlay = document.getElementById("overlay");
   overlay.style.display = "flex";
@@ -219,6 +299,10 @@ function showOverlay(i) {
   changeBackgroundColorOfOverlayToTypeColor(i);
 }
 
+/**
+ * displays hidden overlay, for found Pokemon through searching
+ * @param {number} i - Index of Pokemon in foundPokemons-Array 
+ */
 function showOverlayForFoundPokemon(i) {
   let overlay = document.getElementById("overlay");
   overlay.style.display = "flex";
@@ -226,16 +310,26 @@ function showOverlayForFoundPokemon(i) {
   changeBackgroundColorOfOverlayToTypeColorFromFoundPokemon(i);
 }
 
+/**
+ * closes any Overlay, displays hidden Scrollbar
+ */
 function closeOverlay() {  
   let overlay = document.getElementById("overlay");
   overlay.style.display = "none";
   document.documentElement.classList.remove("hideScrollbar");
 }
 
+/**
+ * Clicking Arrow wont call closeOverlay()
+ * @param {onclick} event 
+ */
 function dontcloseOverlay(event) {  
   event.stopPropagation();
 }
 
+/**
+ * checks if input has three characters
+ */
 function checkIfInputIsAtleastThreeCharactersLong() {
   let input = document.getElementById("site-search");
   if (input.value.length >= 3) {
@@ -246,6 +340,11 @@ function checkIfInputIsAtleastThreeCharactersLong() {
   }
 }
 
+/**
+ * filters all pokemon which includes input, searching for all found Pokemon in pokemons-Array,
+ * pushes it to to foundPokemonsArray, load Button will be hidden
+ * @param {string} input - typed in input in input field
+ */
 function searchForPokemon(input) {
   let searchTerm = capitalize(input.value);
   let foundPokemon = pokemons.filter((pokemon) =>
@@ -289,6 +388,10 @@ function searchForPokemon(input) {
   }
 }
 
+/**
+ * Clears page, renders foundPokemons-Array
+ * @param {arr} foundPokemonsArray - Array with newly pushed found Pokemons
+ */
 function renderFoundPokemons(foundPokemonsArray) {
   let foundPokemonSection = document.getElementById("pokemonSection");
   foundPokemonSection.innerHTML = "";
@@ -300,4 +403,34 @@ function renderFoundPokemons(foundPokemonsArray) {
     }
     changeBackgroundColorToTypeColorFromFoundPokemon(i);
   }
+}
+
+/**
+ * by clicking on About-Section in Overlay, its the only Section which is shown
+ */
+function about(event) {
+  document.getElementById("about").style.display = "block";
+  document.getElementById("baseStats").style.display = "none";
+  document.getElementById("moves").style.display = "none";
+  event.stopPropagation();
+}
+
+/**
+ * by clicking on Base Stats-Section in Overlay, its the only Section which is shown
+ */
+function baseStats(event) {
+  document.getElementById("about").style.display = "none";
+  document.getElementById("baseStats").style.display = "block";
+  document.getElementById("moves").style.display = "none";
+  event.stopPropagation();
+}
+
+/**
+ * by clicking on Moves-Section in Overlay, its the only Section which is shown
+ */
+function moves(event) {
+  document.getElementById("about").style.display = "none";
+  document.getElementById("baseStats").style.display = "none";
+  document.getElementById("moves").style.display = "block";
+  event.stopPropagation();
 }

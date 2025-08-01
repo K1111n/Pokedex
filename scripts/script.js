@@ -296,6 +296,11 @@ function showOverlay(i) {
   let overlay = document.getElementById("overlay");
   overlay.style.display = "flex";
   overlay.innerHTML = overlayTemplate(i);
+  document.getElementById("myBarATT").style.width = `${pokemons[i].attack}` + "%";
+  document.getElementById("myBarDEF").style.width = `${pokemons[i].defense}` + "%";
+  document.getElementById("myBarSP_Att").style.width = `${pokemons[i].sp_attack}` + "%";
+  document.getElementById("myBarSP_Def").style.width = `${pokemons[i].sp_defense}` + "%";
+  document.getElementById("myBarSpeed").style.width = `${pokemons[i].speed}` + "%";
   changeBackgroundColorOfOverlayToTypeColor(i);
 }
 
@@ -435,13 +440,3 @@ function moves(event) {
   event.stopPropagation();
 }
 
-async function fetchPokemonCards() {
-    let response = await fetch("https://api.pokemontcg.io/v2/cards?q=name:Charizard", {
-      headers: {
-        "X-Api-Key": "15f2f5b5-1856-4ecd-98c4-b32d6eb0f40a"
-      }
-    });
-    let responseAsJson = await response.json();
-    let pokemonImg = responseAsJson[100].images.large;
-    console.log(pokemonImg);
-  }

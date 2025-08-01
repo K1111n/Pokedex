@@ -226,7 +226,7 @@ main img {
     color: black;
     text-align: center;
     width: 300px;
-    height: 550px;
+    height: 700px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -382,6 +382,30 @@ footer {
     height: 35%;
     overflow: hidden;
     width: 100%;
+}
+
+.myProgress {
+    width: 50%;
+    background-color: grey;
+    height: 5px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#myBarATT {}
+
+.myBar {
+    background-color: black;
+    height: 5px;
+    width: 20%;
+}
+
+.showProgressBars {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
 }
 
 #button {}

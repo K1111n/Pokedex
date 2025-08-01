@@ -72,17 +72,36 @@ function overlayTemplate(i) {
       </nav>
     </div> 
       <div id="baseStats">
-        <div style="display:flex; justify-content:space-around;">
-          <p>ATT: ${pokemons[i].attack}</p>
-        
-          <p>DEF: ${pokemons[i].defense}</p>
-        </div>
-        <div style="display:flex; justify-content:space-around;">
-          <p>SP-ATT: ${pokemons[i].sp_attack}</p>
-        
-          <p>SP-DEF: ${pokemons[i].sp_defense}</p>
-        </div>
-        <p>SPEED: ${pokemons[i].speed}</p>
+          <div class="showProgressBars">
+            <div><p>ATTACK: ${pokemons[i].attack}</p></div>
+            <div class="myProgress">
+              <div id="myBarATT" class="myBar"></div>
+            </div>
+          </div>
+          <div class="showProgressBars">
+            <div><p>DEFENSE: ${pokemons[i].defense}</p></div>
+            <div class="myProgress">
+              <div id="myBarDEF" class="myBar"></div>
+            </div>
+          </div>
+          <div class="showProgressBars">
+            <div><p>SP-ATT: ${pokemons[i].sp_attack}</p></div>
+            <div class="myProgress">
+              <div id="myBarSP_Att" class="myBar"></div>
+            </div>
+          </div>
+          <div class="showProgressBars">
+            <div><p>SP-DEF: ${pokemons[i].sp_defense}</p></div>
+            <div class="myProgress">
+              <div id="myBarSP_Def" class="myBar"></div>
+            </div>
+          </div>
+          <div class="showProgressBars">
+            <div><p>SPEED: ${pokemons[i].speed}</p></div>
+            <div class="myProgress">
+              <div id="myBarSpeed" class="myBar"></div>
+            </div>
+          </div>
       </div>
       <div id="about" style="display:none;">
         Weight: ${pokemons[i].weight}

@@ -173,7 +173,7 @@ function loadMorePokemon() {
 
 /**
  * fetches every wanted Informations of a Pokemon and pushes it into the pokemons-Array
- * @param {number} j - last Number in the API Link
+ * @param {number} i - last Number in the API Link
  * @returns pokemons-Array
  */
 async function fetchAPI(i) {

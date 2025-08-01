@@ -67,7 +67,7 @@ function overlayTemplate(i) {
         </div>
       </div>
       <img src="${pokemons[i].pokemonImg}" alt="pokemon${i}">
-      <nav class="navBar">
+      <nav class="navBar" style="display:none;">
         <p onclick="about(event)">About</p><p onclick="baseStats(event)">Base Stats</p><p onclick="moves(event)">Moves</p>
       </nav>
     </div> 
@@ -131,27 +131,60 @@ function overlayTemplate(i) {
 function overlayTemplateForFoundPokemon(i) {
   return /*html*/ `
   <div class="pokemonOverlay" id="pokemonOverlay${i}">
-      <h3>#${foundPokemonsArray[i].id} ${foundPokemonsArray[i].name}</h3>
-      <br>
+      <div style="width: 100%;">
+      <div class="firstRowInCard">
+        <div>
+          <h2>${foundPokemonsArray[i].name}</h2>
+        </div>
+        <div style="display:flex; gap:5px; align-items:center">
+          <p style="font-size:16px">HP:</p><h2> ${foundPokemonsArray[i].hp}</h2>
+        </div>
+      </div>
       <img src="${foundPokemonsArray[i].imgSrc}" alt="pokemon${i}">
-      <p>HP: ${foundPokemonsArray[i].hp} 
-        <br>
-        ATT: ${foundPokemonsArray[i].attack} 
-        <br>
-        DEF: ${foundPokemonsArray[i].defense}
-        <br>
-        SP-ATT: ${foundPokemonsArray[i].sp_attack} 
-        <br>
-        SP-DEF: ${foundPokemonsArray[i].sp_defense}
-        <br>
-        SPEED: ${foundPokemonsArray[i].speed}
-        <br>
-        Abilities: ${foundPokemonsArray[i].firstAbility},${foundPokemonsArray[i].secondAbility}
-        <br>
+      <nav class="navBar" style="display:none;">
+        <p onclick="about(event)">About</p><p onclick="baseStats(event)">Base Stats</p><p onclick="moves(event)">Moves</p>
+      </nav>
+    </div> 
+      <div id="baseStats">
+          <div class="showProgressBars">
+            <div><p>ATTACK: ${foundPokemonsArray[i].attack}</p></div>
+            <div class="myProgress">
+              <div id="myBarATTOverlay" class="myBar"></div>
+            </div>
+          </div>
+          <div class="showProgressBars">
+            <div><p>DEFENSE: ${foundPokemonsArray[i].defense}</p></div>
+            <div class="myProgress">
+              <div id="myBarDEFOverlay" class="myBar"></div>
+            </div>
+          </div>
+          <div class="showProgressBars">
+            <div><p>SP-ATT: ${foundPokemonsArray[i].sp_attack}</p></div>
+            <div class="myProgress">
+              <div id="myBarSP_AttOverlay" class="myBar"></div>
+            </div>
+          </div>
+          <div class="showProgressBars">
+            <div><p>SP-DEF: ${foundPokemonsArray[i].sp_defense}</p></div>
+            <div class="myProgress">
+              <div id="myBarSP_DefOverlay" class="myBar"></div>
+            </div>
+          </div>
+          <div class="showProgressBars">
+            <div><p>SPEED: ${foundPokemonsArray[i].speed}</p></div>
+            <div class="myProgress">
+              <div id="myBarSpeedOverlay" class="myBar"></div>
+            </div>
+          </div>
+      </div>
+      <div id="about" style="display:none;">
         Weight: ${foundPokemonsArray[i].weight}
+      </div>
+      <div id="moves" style="display:none;">
+        <p>Abilities: <br>${foundPokemonsArray[i].firstAbility},${foundPokemonsArray[i].secondAbility}</p>
         <br>
-        Moves: ${foundPokemonsArray[i].firstMove},${foundPokemonsArray[i].secondMove}
-      </p>
+        <p>Moves: <br>${foundPokemonsArray[i].firstMove},${foundPokemonsArray[i].secondMove}</p>
+      </div>
         <div class="buttons">
           <img src="data:image/svg+xml;utf8,
             <svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 24 24'>

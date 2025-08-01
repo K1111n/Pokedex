@@ -18,21 +18,21 @@ let foundPokemonsArray = [];
  */
  const typeBackgroundColors = {
     Fire: "red",
-    Normal: "grey",
-    Water: "blue",
+    Normal: "#8a867f",
+    Water: "#44bbff",
     Electric: "#D1C000",
     Grass: "green",
     Ice: "aqua",
     Fighting: "darkred",
     Poison: "purple",
-    Ground: "brown",
+    Ground: "#dccd83ff",
     Flying: "#00BFFF",
     Psychic: "#FF1493",
     Bug: "#808000",
     Rock: "#696969",
     Ghost: "#F8F8FF",
     Dragon: "#00BFFF",
-    Dark: "black",
+    Dark: "#1c0909ff",
     Steel: "#B0C4DE",
     Fairy: "#FF00FF"
   };
@@ -43,10 +43,8 @@ let foundPokemonsArray = [];
    */
 async function renderPokemon() {
   showLoadingScreen();
-  let j = 0;
-  for (i = 0; i < 20; i++) {    
-    j++;
-    await fetchAPI(j);  
+  for (i = 1; i <= 20; i++) {  
+    await fetchAPI(i);  
   }
   for (i = 0; i < pokemons.length; i++) {
     let pokemonSection = document.getElementById("pokemonSection");
@@ -64,11 +62,9 @@ async function renderPokemon() {
  * renders all Pokemon
  */
 function onlyRenderPokemon() {
-  let j = 0;
   let pokemonSection = document.getElementById("pokemonSection");
   pokemonSection.innerHTML = "";
   for (i = 0; i < pokemons.length; i++) {  
-    j++;
     pokemonSection.innerHTML += pokeDivTemplate(i);
     let pokeDiv = document.getElementById(`typeRow${i}`);
     changeBackgroundColorToTypeColor(i);
@@ -180,8 +176,8 @@ function loadMorePokemon() {
  * @param {number} j - last Number in the API Link
  * @returns pokemons-Array
  */
-async function fetchAPI(j) {
-  let response = await fetch(`https://pokeapi.co/api/v2/pokemon/${j+l}/`);
+async function fetchAPI(i) {
+  let response = await fetch(`https://pokeapi.co/api/v2/pokemon/${i+l}/`);
   let responseAsJson = await response.json();
   let pokemonName = capitalize(responseAsJson.forms[0].name);
   let firstTypeValue = capitalize(responseAsJson.types[0].type.name);
@@ -312,6 +308,11 @@ function showOverlayForFoundPokemon(i) {
   let overlay = document.getElementById("overlay");
   overlay.style.display = "flex";
   overlay.innerHTML = overlayTemplateForFoundPokemon(i);
+  document.getElementById("myBarATTOverlay").style.width = `${pokemons[i].attack}` + "%";
+  document.getElementById("myBarDEFOverlay").style.width = `${pokemons[i].defense}` + "%";
+  document.getElementById("myBarSP_AttOverlay").style.width = `${pokemons[i].sp_attack}` + "%";
+  document.getElementById("myBarSP_DefOverlay").style.width = `${pokemons[i].sp_defense}` + "%";
+  document.getElementById("myBarSpeedOverlay").style.width = `${pokemons[i].speed}` + "%";
   changeBackgroundColorOfOverlayToTypeColorFromFoundPokemon(i);
 }
 

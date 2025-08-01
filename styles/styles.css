@@ -355,12 +355,37 @@ footer {
     justify-content: space-around;
 }
 
-.navBar p:hover {
-    cursor: pointer;
-    text-decoration: underline;
+.navBar p {
+    opacity: 0.7;
 }
 
-#baseStats {}
+.navBar p:hover {
+    cursor: pointer;
+    color: gold;
+    filter: saturate(2);
+    text-decoration: none;
+}
+
+#baseStats {
+    height: 35%;
+    overflow: hidden;
+    width: 100%;
+}
+
+#about {
+    height: 35%;
+    overflow: hidden;
+    width: 100%;
+}
+
+#moves {
+    height: 35%;
+    overflow: hidden;
+    width: 100%;
+}
+
+#button {}
+
 
 /*Arrow Section*/
 

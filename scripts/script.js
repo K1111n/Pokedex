@@ -434,3 +434,14 @@ function moves(event) {
   document.getElementById("moves").style.display = "block";
   event.stopPropagation();
 }
+
+async function fetchPokemonCards() {
+    let response = await fetch("https://api.pokemontcg.io/v2/cards?q=name:Charizard", {
+      headers: {
+        "X-Api-Key": "15f2f5b5-1856-4ecd-98c4-b32d6eb0f40a"
+      }
+    });
+    let responseAsJson = await response.json();
+    let pokemonImg = responseAsJson[100].images.large;
+    console.log(pokemonImg);
+  }

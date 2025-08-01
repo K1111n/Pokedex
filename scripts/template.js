@@ -72,14 +72,16 @@ function overlayTemplate(i) {
       </nav>
     </div> 
       <div id="baseStats">
-        <p>ATT: ${pokemons[i].attack}</p>
+        <div style="display:flex; justify-content:space-around;">
+          <p>ATT: ${pokemons[i].attack}</p>
         
-        <p>DEF: ${pokemons[i].defense}</p>
+          <p>DEF: ${pokemons[i].defense}</p>
+        </div>
+        <div style="display:flex; justify-content:space-around;">
+          <p>SP-ATT: ${pokemons[i].sp_attack}</p>
         
-        <p>SP-ATT: ${pokemons[i].sp_attack}</p>
-        
-        <p>SP-DEF: ${pokemons[i].sp_defense}</p>
-        
+          <p>SP-DEF: ${pokemons[i].sp_defense}</p>
+        </div>
         <p>SPEED: ${pokemons[i].speed}</p>
       </div>
       <div id="about" style="display:none;">
@@ -90,7 +92,7 @@ function overlayTemplate(i) {
         <br>
         <p>Moves: <br>${pokemons[i].firstMove},${pokemons[i].secondMove}</p>
       </div>
-      <div class="buttons">
+      <div class="buttons" id="buttons">
           <img src="data:image/svg+xml;utf8,
             <svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 24 24'>
               <circle cx='12' cy='12' r='12' fill='rgba(8,33,41,0.7)'/>

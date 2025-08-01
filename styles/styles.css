@@ -391,9 +391,12 @@ footer {
 }
 
 #baseStats {
-    height: 35%;
+    height: 40%;
     overflow: hidden;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 #about {
@@ -430,6 +433,8 @@ footer {
     justify-content: space-between;
     align-items: center;
     padding: 0 10px;
+    border: solid 1px black;
+    border-radius: 10px;
 }
 
 /*Arrow Section*/

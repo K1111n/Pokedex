@@ -22,16 +22,16 @@ let foundPokemonsArray = [];
     Water: "#44bbff",
     Electric: "#D1C000",
     Grass: "green",
-    Ice: "aqua",
+    Ice: "#6cf7ff",
     Fighting: "darkred",
     Poison: "purple",
     Ground: "#dccd83ff",
     Flying: "#00BFFF",
     Psychic: "#FF1493",
     Bug: "#808000",
-    Rock: "#696969",
-    Ghost: "#F8F8FF",
-    Dragon: "#00BFFF",
+    Rock: "#c6a553",
+    Ghost: "#7777d9",
+    Dragon: "#9176ff",
     Dark: "#1c0909ff",
     Steel: "#B0C4DE",
     Fairy: "#FF00FF"
@@ -183,11 +183,15 @@ async function fetchAPI(i) {
   let firstTypeValue = capitalize(responseAsJson.types[0].type.name);
   let secondTypeValue = null; 
   let secondAbilityValue = null;
+  let secondMoveofPokemon = null;
   if (responseAsJson.types.length == 2) {
     secondTypeValue = capitalize(responseAsJson.types[1].type.name);
   } 
   if (responseAsJson.abilities.length == 2) {
     secondAbilityValue = responseAsJson.abilities[1].ability.name
+  }
+  if (responseAsJson.moves.length == 2) {
+    secondMoveofPokemon = responseAsJson.moves[1].move.name;
   }
   pokemons.push({
     name: pokemonName,
@@ -205,7 +209,7 @@ async function fetchAPI(i) {
     secondAbility: secondAbilityValue,
     weight: responseAsJson.weight,
     firstMove: responseAsJson.moves[0].move.name,
-    secondMove: responseAsJson.moves[1].move.name,
+    secondMove: secondMoveofPokemon,
   });
   return pokemons;
 }

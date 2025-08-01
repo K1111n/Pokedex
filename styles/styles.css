@@ -47,6 +47,7 @@ a {
 
 a:hover {
     filter: saturate(2);
+    color: gold;
 }
 
 #rightHeader {

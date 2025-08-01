@@ -308,11 +308,11 @@ function showOverlayForFoundPokemon(i) {
   let overlay = document.getElementById("overlay");
   overlay.style.display = "flex";
   overlay.innerHTML = overlayTemplateForFoundPokemon(i);
-  document.getElementById("myBarATTOverlay").style.width = `${pokemons[i].attack}` + "%";
-  document.getElementById("myBarDEFOverlay").style.width = `${pokemons[i].defense}` + "%";
-  document.getElementById("myBarSP_AttOverlay").style.width = `${pokemons[i].sp_attack}` + "%";
-  document.getElementById("myBarSP_DefOverlay").style.width = `${pokemons[i].sp_defense}` + "%";
-  document.getElementById("myBarSpeedOverlay").style.width = `${pokemons[i].speed}` + "%";
+  document.getElementById("myBarATTOverlay").style.width = `${foundPokemonsArray[i].attack}` + "%";
+  document.getElementById("myBarDEFOverlay").style.width = `${foundPokemonsArray[i].defense}` + "%";
+  document.getElementById("myBarSP_AttOverlay").style.width = `${foundPokemonsArray[i].sp_attack}` + "%";
+  document.getElementById("myBarSP_DefOverlay").style.width = `${foundPokemonsArray[i].sp_defense}` + "%";
+  document.getElementById("myBarSpeedOverlay").style.width = `${foundPokemonsArray[i].speed}` + "%";
   changeBackgroundColorOfOverlayToTypeColorFromFoundPokemon(i);
 }
 

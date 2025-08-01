@@ -54,7 +54,7 @@ function foundPokeDivTemplateForTwoTypes(i) {
     `
 }
 
-function overlayTemplate(i) {
+function overlayTemplate(i,j,k) {
   return /*html*/ `
   <div class="pokemonOverlay" id="pokemonOverlay${i}">
      <div style="width: 100%;">
@@ -66,7 +66,11 @@ function overlayTemplate(i) {
           <p style="font-size:16px">HP:</p><h2> ${pokemons[i].hp}</h2>
         </div>
       </div>
-      <img src="${pokemons[i].pokemonImg}" alt="pokemon${i}">
+      <div id="evolutionChain">
+        <img src="${pokemons[j].pokemonImg}" alt="pokemon${j}" class="evolvePokemonImg" id="evolveFrom" onclick="renderBeforePokemonInOverlay(${i}); dontcloseOverlay(event);">
+        <img src="${pokemons[i].pokemonImg}" alt="pokemon${i}">
+        <img src="${pokemons[k].pokemonImg}" alt="pokemon${k}" class="evolvePokemonImg" id="evolveTo" onclick="renderNextPokemonInOverlay(${i}); dontcloseOverlay(event);">
+      </div>
       <nav class="navBar" style="display:none;">
         <p onclick="about(event)">About</p><p onclick="baseStats(event)">Base Stats</p><p onclick="moves(event)">Moves</p>
       </nav>

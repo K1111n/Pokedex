@@ -179,11 +179,20 @@ function loadMorePokemon() {
 async function fetchAPI(i) {
   let response = await fetch(`https://pokeapi.co/api/v2/pokemon/${i+l}/`);
   let responseAsJson = await response.json();
+
+  let responseTwo = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${responseAsJson.id}/`);
+  let responseAsJsonTwo = await responseTwo.json();
+
+  let numberForAPIOfNextPokemon = responseAsJson.id + 1;
+  let responseThree = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${numberForAPIOfNextPokemon}/`);
+  let responseAsJsonThree = await responseThree.json();
   let pokemonName = capitalize(responseAsJson.forms[0].name);
   let firstTypeValue = capitalize(responseAsJson.types[0].type.name);
   let secondTypeValue = null; 
   let secondAbilityValue = null;
   let secondMoveofPokemon = null;
+  let evolvesFrom = (responseAsJsonTwo.evolves_from_species != null);
+  let evolvesTo = (responseAsJsonThree.evolves_from_species != null);
   if (responseAsJson.types.length == 2) {
     secondTypeValue = capitalize(responseAsJson.types[1].type.name);
   } 
@@ -210,6 +219,8 @@ async function fetchAPI(i) {
     weight: responseAsJson.weight,
     firstMove: responseAsJson.moves[0].move.name,
     secondMove: secondMoveofPokemon,
+    evolvesFrom: evolvesFrom,
+    evolvesTo: evolvesTo,
   });
   return pokemons;
 }
@@ -294,14 +305,23 @@ function renderBeforeFoundPokemonInOverlay(i) {
  */
 function showOverlay(i) {
   let overlay = document.getElementById("overlay");
+    let j = 1;
+  if (i != 0) {
+    j = i - 1;
+  } 
+    let k = 1;
+  if (i != 0) {
+    k = i + 1;
+  } 
   overlay.style.display = "flex";
-  overlay.innerHTML = overlayTemplate(i);
+  overlay.innerHTML = overlayTemplate(i,j,k);
   document.getElementById("myBarATT").style.width = `${pokemons[i].attack}` + "%";
   document.getElementById("myBarDEF").style.width = `${pokemons[i].defense}` + "%";
   document.getElementById("myBarSP_Att").style.width = `${pokemons[i].sp_attack}` + "%";
   document.getElementById("myBarSP_Def").style.width = `${pokemons[i].sp_defense}` + "%";
   document.getElementById("myBarSpeed").style.width = `${pokemons[i].speed}` + "%";
   changeBackgroundColorOfOverlayToTypeColor(i);
+  hideEvolutions(i);
 }
 
 /**
@@ -445,3 +465,16 @@ function moves(event) {
   event.stopPropagation();
 }
 
+function hideEvolutions(i) {
+  if (pokemons[i].evolvesFrom == false) {
+  document.getElementById("evolveFrom").style.display = "none";
+  document.getElementById("evolutionChain").style.justifyContent = "flex-end";
+  }
+  if (pokemons[i].evolvesTo == false) {
+  document.getElementById("evolveTo").style.display = "none";
+  document.getElementById("evolutionChain").style.justifyContent = "flex-start";
+  }
+  if (pokemons[i].evolvesTo == false && pokemons[i].evolvesFrom == false) {
+  document.getElementById("evolutionChain").style.justifyContent = "center";
+  }
+}

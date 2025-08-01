@@ -5,6 +5,7 @@ html {
     color: #2f728d;
     display: flex;
     justify-content: center;
+    scroll-behavior: smooth;
 }
 
 header {
@@ -236,8 +237,10 @@ main img {
 }
 
 .pokemonDiv:hover {
-    filter: brightness(120%);
     cursor: pointer;
+    filter: brightness(1.1);
+    transform: translate(0px, -5px);
+    transition: transform 0.3s ease;
 }
 
 .typeImgs {

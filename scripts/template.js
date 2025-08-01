@@ -132,7 +132,7 @@ function overlayTemplate(i,j,k) {
   `;
 }
 
-function overlayTemplateForFoundPokemon(i) {
+function overlayTemplateForFoundPokemon(i,j,k) {
   return /*html*/ `
   <div class="pokemonOverlay" id="pokemonOverlay${i}">
       <div style="width: 100%;">
@@ -144,7 +144,10 @@ function overlayTemplateForFoundPokemon(i) {
           <p style="font-size:16px">HP:</p><h2> ${foundPokemonsArray[i].hp}</h2>
         </div>
       </div>
-      <img src="${foundPokemonsArray[i].imgSrc}" alt="pokemon${i}">
+      <div id="evolutionChain">
+        <img src="${foundPokemonsArray[j].imgSrc}" alt="pokemon${j}" class="evolvePokemonImg" id="evolveFrom" onclick="renderBeforeFoundPokemonInOverlay(${i}); dontcloseOverlay(event);">
+        <img src="${foundPokemonsArray[i].imgSrc}" alt="pokemon${i}">
+        <img src="${foundPokemonsArray[k].imgSrc}" alt="pokemon${k}" class="evolvePokemonImg" id="evolveTo" onclick="renderNextFoundPokemonInOverlay(${i}); dontcloseOverlay(event);">      
       <nav class="navBar" style="display:none;">
         <p onclick="about(event)">About</p><p onclick="baseStats(event)">Base Stats</p><p onclick="moves(event)">Moves</p>
       </nav>

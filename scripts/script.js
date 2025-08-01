@@ -305,12 +305,13 @@ function renderBeforeFoundPokemonInOverlay(i) {
  */
 function showOverlay(i) {
   let overlay = document.getElementById("overlay");
-    let j = 1;
+  let lastIndex = pokemons.length - 1;
+  let j = 1;
+  let k = 1;
   if (i != 0) {
     j = i - 1;
   } 
-    let k = 1;
-  if (i != 0) {
+  if (i != lastIndex) {
     k = i + 1;
   } 
   overlay.style.display = "flex";
@@ -330,14 +331,24 @@ function showOverlay(i) {
  */
 function showOverlayForFoundPokemon(i) {
   let overlay = document.getElementById("overlay");
+  let lastIndex = foundPokemonsArray.length - 1;
+  let j = 1;
+  let k = 1;
+  if (i != 0) {
+    j = i - 1;
+  } 
+  if (i != lastIndex) {
+    k = i + 1;
+  } 
   overlay.style.display = "flex";
-  overlay.innerHTML = overlayTemplateForFoundPokemon(i);
+  overlay.innerHTML = overlayTemplateForFoundPokemon(i,j,k);
   document.getElementById("myBarATTOverlay").style.width = `${foundPokemonsArray[i].attack}` + "%";
   document.getElementById("myBarDEFOverlay").style.width = `${foundPokemonsArray[i].defense}` + "%";
   document.getElementById("myBarSP_AttOverlay").style.width = `${foundPokemonsArray[i].sp_attack}` + "%";
   document.getElementById("myBarSP_DefOverlay").style.width = `${foundPokemonsArray[i].sp_defense}` + "%";
   document.getElementById("myBarSpeedOverlay").style.width = `${foundPokemonsArray[i].speed}` + "%";
   changeBackgroundColorOfOverlayToTypeColorFromFoundPokemon(i);
+  hideEvolutionsForFoundPokemons(i);
 }
 
 /**
@@ -407,6 +418,8 @@ function searchForPokemon(input) {
         weight: pokemons[i].weight,
         firstMove: pokemons[i].firstMove,
         secondMove: pokemons[i].secondMove,
+        evolvesFrom: pokemons[i].evolvesFrom,
+        evolvesTo: pokemons[i].evolvesTo,
         });
       }
   }
@@ -475,6 +488,20 @@ function hideEvolutions(i) {
   document.getElementById("evolutionChain").style.justifyContent = "flex-start";
   }
   if (pokemons[i].evolvesTo == false && pokemons[i].evolvesFrom == false) {
+  document.getElementById("evolutionChain").style.justifyContent = "center";
+  }
+}
+
+function hideEvolutionsForFoundPokemons(i) {
+  if (foundPokemonsArray[i].evolvesFrom == false) {
+  document.getElementById("evolveFrom").style.display = "none";
+  document.getElementById("evolutionChain").style.justifyContent = "flex-end";
+  }
+  if (foundPokemonsArray[i].evolvesTo == false) {
+  document.getElementById("evolveTo").style.display = "none";
+  document.getElementById("evolutionChain").style.justifyContent = "flex-start";
+  }
+  if (foundPokemonsArray[i].evolvesTo == false && foundPokemonsArray[i].evolvesFrom == false) {
   document.getElementById("evolutionChain").style.justifyContent = "center";
   }
 }

@@ -228,7 +228,7 @@ main img {
     color: black;
     text-align: center;
     width: 300px;
-    height: 700px;
+    height: 650px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -386,6 +386,12 @@ footer {
     opacity: 1;
 }
 
+#buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
 .navBar {
     width: 100%;
     display: flex;
@@ -405,7 +411,7 @@ footer {
 }
 
 #baseStats {
-    height: 40%;
+    height: 50%;
     overflow: hidden;
     width: 100%;
     display: flex;

@@ -71,10 +71,24 @@ function overlayTemplate(i,j,k) {
         <img src="${pokemons[i].pokemonImg}" alt="pokemon${i}" class="actualPokemonImg">
         <img src="${pokemons[k].pokemonImg}" alt="pokemon${k}" class="evolvePokemonImg" id="evolveTo" onclick="renderNextPokemonInOverlay(${i}); dontcloseOverlay(event);">
       </div>
+      
       <nav class="navBar" style="display:none;">
         <p onclick="about(event)">About</p><p onclick="baseStats(event)">Base Stats</p><p onclick="moves(event)">Moves</p>
       </nav>
     </div> 
+    <div class="buttons" id="buttons">
+          <img src="data:image/svg+xml;utf8,
+            <svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 24 24'>
+              <circle cx='12' cy='12' r='12' fill='rgba(8,33,41,0.7)'/>
+              <polyline points='14 6 8 12 14 18' fill='none' stroke='%234fa1c0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/>
+            </svg>" alt="Pfeil links" class="arrow-img" onclick="renderBeforePokemonInOverlay(${i}); dontcloseOverlay(event);">
+
+          <img src="data:image/svg+xml;utf8,
+            <svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 24 24'>
+              <circle cx='12' cy='12' r='12' fill='rgba(8,33,41,0.7)'/>
+              <polyline points='10 6 16 12 10 18' fill='none' stroke='%234fa1c0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/>
+            </svg>" alt="Pfeil rechts" class="arrow-img" onclick="renderNextPokemonInOverlay(${i}); dontcloseOverlay(event);">
+      </div>
       <div id="baseStats">
           <div class="showProgressBars">
             <div><p>ATTACK: ${pokemons[i].attack}</p></div>
@@ -114,19 +128,6 @@ function overlayTemplate(i,j,k) {
         <p>Abilities: <br>${pokemons[i].firstAbility},${pokemons[i].secondAbility}</p>
         <br>
         <p>Moves: <br>${pokemons[i].firstMove},${pokemons[i].secondMove}</p>
-      </div>
-      <div class="buttons" id="buttons">
-          <img src="data:image/svg+xml;utf8,
-            <svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 24 24'>
-              <circle cx='12' cy='12' r='12' fill='rgba(8,33,41,0.7)'/>
-              <polyline points='14 6 8 12 14 18' fill='none' stroke='%234fa1c0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/>
-            </svg>" alt="Pfeil links" class="arrow-img" onclick="renderBeforePokemonInOverlay(${i}); dontcloseOverlay(event);">
-
-          <img src="data:image/svg+xml;utf8,
-            <svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 24 24'>
-              <circle cx='12' cy='12' r='12' fill='rgba(8,33,41,0.7)'/>
-              <polyline points='10 6 16 12 10 18' fill='none' stroke='%234fa1c0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/>
-            </svg>" alt="Pfeil rechts" class="arrow-img" onclick="renderNextPokemonInOverlay(${i}); dontcloseOverlay(event);">
       </div>
   </div>
   `;

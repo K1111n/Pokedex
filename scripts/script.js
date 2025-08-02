@@ -196,7 +196,7 @@ async function fetchAPI(i) {
  * @param {JSon Array} responseAsJson 
  * @param {JSon Array} responseEvolvesFromAsJson 
  * @param {JSon Array} responseEvolesToAsJson 
- * @returns 
+ * @returns pokemons-Array
  */
 function setAttributesToPushInArray(responseAsJson, responseEvolvesFromAsJson, responseEvolesToAsJson) {
     let pokemonName = capitalize(responseAsJson.forms[0].name);
@@ -326,9 +326,12 @@ function showOverlay(i) {
   } 
   if (i != lastIndex) {
     k = i + 1;
-  } 
+  }   
   overlay.style.display = "flex";
   overlay.innerHTML = overlayTemplate(i,j,k);
+  if (i == lastIndex) {
+    document.getElementById("evolveTo").style.display = "none";
+  }
   document.getElementById("myBarATT").style.width = `${pokemons[i].attack}` + "%";
   document.getElementById("myBarDEF").style.width = `${pokemons[i].defense}` + "%";
   document.getElementById("myBarSP_Att").style.width = `${pokemons[i].sp_attack}` + "%";
@@ -498,7 +501,8 @@ function moves(event) {
  * Positions Pokemon in overlay
  * @param {number} i - index of Pokemon in pokemons
  */
-function hideEvolutions(i) {
+function hideEvolutions(i) {  
+  let lastIndex = pokemons.length - 1;
   if (pokemons[i].evolvesFrom == false) {
   document.getElementById("evolveFrom").style.display = "none";
   document.getElementById("evolutionChain").style.justifyContent = "flex-end";
@@ -507,7 +511,7 @@ function hideEvolutions(i) {
   document.getElementById("evolveTo").style.display = "none";
   document.getElementById("evolutionChain").style.justifyContent = "flex-start";
   }
-  if (pokemons[i].evolvesTo == false && pokemons[i].evolvesFrom == false) {
+  if (pokemons[i].evolvesTo == false && pokemons[i].evolvesFrom == false || i == lastIndex) {
   document.getElementById("evolutionChain").style.justifyContent = "center";
   }
 }

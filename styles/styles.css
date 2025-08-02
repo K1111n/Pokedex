@@ -296,7 +296,6 @@ footer {
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    gap: 30px;
     font-size: 2em;
     max-width: 1920px;
 }
@@ -359,11 +358,12 @@ footer {
     #baseStats {
         font-size: 14px;
     }
-}
 
-@media (min-width: 550px) {
-
-    #rightHeader {}
+    footer {
+        display: flex;
+        flex-direction: column;
+        font-size: 16px;
+    }
 }
 
 /*Overlay Section*/

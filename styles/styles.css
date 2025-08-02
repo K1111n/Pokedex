@@ -30,12 +30,42 @@ header svg {
     gap: 5px;
 }
 
+
+
 input {
+    max-width: 190px;
+    background-color: #f5f5f5;
+    color: #242424;
     padding: 10px;
+    min-height: 40px;
+    border-radius: 4px;
+    outline: none;
+    border: none;
+    line-height: 1.15;
+    box-shadow: 0px 10px 20px -18px;
+}
+
+input:focus {
+    border-bottom: 2px solid #5b5fc7;
+    border-radius: 4px 4px 2px 2px;
+}
+
+input:hover {
+    outline: 1px solid lightgrey;
 }
 
 #searchButton {
     padding: 10px;
+}
+
+#searchButton:hover {
+    transform: translate(-0.05em, -0.05em);
+    box-shadow: 0.15em 0.15em;
+}
+
+#searchButton:active {
+    transform: translate(0.05em, 0.05em);
+    box-shadow: 0.05em 0.05em;
 }
 
 a {
@@ -286,6 +316,13 @@ main img {
 
 .loadButton:hover {
     background-color: gold;
+    transform: translate(-0.05em, -0.05em);
+    box-shadow: 0.15em 0.15em;
+}
+
+.loadButton:active {
+    transform: translate(0.05em, 0.05em);
+    box-shadow: 0.05em 0.05em;
 }
 
 footer {

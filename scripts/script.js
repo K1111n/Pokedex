@@ -478,6 +478,13 @@ function moves(event) {
   event.stopPropagation();
 }
 
+/**
+ * Checks if actual Pokemon has a Pokemon it is evolving from 
+ * Checks if actual Pokemon has a Pokemon it is evolving to
+ * Checks if actual Pokemon has not any Evolution
+ * Positions Pokemon in overlay
+ * @param {number} i - index of Pokemon in pokemons
+ */
 function hideEvolutions(i) {
   if (pokemons[i].evolvesFrom == false) {
   document.getElementById("evolveFrom").style.display = "none";
@@ -492,6 +499,13 @@ function hideEvolutions(i) {
   }
 }
 
+/**
+ * Checks if actual found Pokemon has a Pokemon it is evolving from 
+ * Checks if actual found Pokemon has a Pokemon it is evolving to
+ * Checks if actual found Pokemon has not any Evolution
+ * Positions Pokemon in overlay
+ * @param {number} i - index of Pokemon in foundPokemonsArray
+ */
 function hideEvolutionsForFoundPokemons(i) {
   if (foundPokemonsArray[i].evolvesFrom == false) {
   document.getElementById("evolveFrom").style.display = "none";

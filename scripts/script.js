@@ -364,7 +364,6 @@ function showOverlayForFoundPokemon(i) {
   document.getElementById("myBarSP_DefOverlay").style.width = `${foundPokemonsArray[i].sp_defense}` + "%";
   document.getElementById("myBarSpeedOverlay").style.width = `${foundPokemonsArray[i].speed}` + "%";
   changeBackgroundColorOfOverlayToTypeColorFromFoundPokemon(i);
-  hideEvolutionsForFoundPokemons(i);
 }
 
 /**
@@ -516,23 +515,3 @@ function hideEvolutions(i) {
   }
 }
 
-/**
- * Checks if actual found Pokemon has a Pokemon it is evolving from 
- * Checks if actual found Pokemon has a Pokemon it is evolving to
- * Checks if actual found Pokemon has not any Evolution
- * Positions Pokemon in overlay
- * @param {number} i - index of Pokemon in foundPokemonsArray
- */
-function hideEvolutionsForFoundPokemons(i) {
-  if (foundPokemonsArray[i].evolvesFrom == false) {
-  document.getElementById("evolveFrom").style.display = "none";
-  document.getElementById("evolutionChain").style.justifyContent = "flex-end";
-  }
-  if (foundPokemonsArray[i].evolvesTo == false) {
-  document.getElementById("evolveTo").style.display = "none";
-  document.getElementById("evolutionChain").style.justifyContent = "flex-start";
-  }
-  if (foundPokemonsArray[i].evolvesTo == false && foundPokemonsArray[i].evolvesFrom == false) {
-  document.getElementById("evolutionChain").style.justifyContent = "center";
-  }
-}

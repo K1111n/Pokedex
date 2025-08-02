@@ -179,49 +179,62 @@ function loadMorePokemon() {
 async function fetchAPI(i) {
   let response = await fetch(`https://pokeapi.co/api/v2/pokemon/${i+l}/`);
   let responseAsJson = await response.json();
-
-  let responseTwo = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${responseAsJson.id}/`);
-  let responseAsJsonTwo = await responseTwo.json();
-
+  let responseEvolvesFrom = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${responseAsJson.id}/`);
+  let responseEvolvesFromAsJson = await responseEvolvesFrom.json();
   let numberForAPIOfNextPokemon = responseAsJson.id + 1;
-  let responseThree = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${numberForAPIOfNextPokemon}/`);
-  let responseAsJsonThree = await responseThree.json();
-  let pokemonName = capitalize(responseAsJson.forms[0].name);
-  let firstTypeValue = capitalize(responseAsJson.types[0].type.name);
-  let secondTypeValue = null; 
-  let secondAbilityValue = null;
-  let secondMoveofPokemon = null;
-  let evolvesFrom = (responseAsJsonTwo.evolves_from_species != null);
-  let evolvesTo = (responseAsJsonThree.evolves_from_species != null);
-  if (responseAsJson.types.length == 2) {
-    secondTypeValue = capitalize(responseAsJson.types[1].type.name);
-  } 
-  if (responseAsJson.abilities.length == 2) {
-    secondAbilityValue = responseAsJson.abilities[1].ability.name
-  }
-  if (responseAsJson.moves.length == 2) {
-    secondMoveofPokemon = responseAsJson.moves[1].move.name;
-  }
-  pokemons.push({
-    name: pokemonName,
-    pokemonImg: responseAsJson.sprites.other['official-artwork'].front_default,
-    id: responseAsJson.id,
-    firstType: firstTypeValue, 
-    secondType: secondTypeValue,
-    hp:responseAsJson.stats[0].base_stat,
-    attack: responseAsJson.stats[1].base_stat,
-    defense: responseAsJson.stats[2].base_stat,
-    sp_attack: responseAsJson.stats[3].base_stat,
-    sp_defense: responseAsJson.stats[4].base_stat,
-    speed: responseAsJson.stats[5].base_stat,
-    firstAbility: responseAsJson.abilities[0].ability.name,
-    secondAbility: secondAbilityValue,
-    weight: responseAsJson.weight,
-    firstMove: responseAsJson.moves[0].move.name,
-    secondMove: secondMoveofPokemon,
-    evolvesFrom: evolvesFrom,
-    evolvesTo: evolvesTo,
-  });
+  let responseEvolesTo = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${numberForAPIOfNextPokemon}/`);
+  let responseEvolesToAsJson = await responseEvolesTo.json();
+  let pokemons = setAttributesToPushInArray(responseAsJson, responseEvolvesFromAsJson, responseEvolesToAsJson);  
+  return pokemons;
+}
+
+/**
+ * Checks for second Type
+ * Checks for second Ability
+ * Checks for second Move
+ * Pushes fetched data in pokemons-Array
+ * @param {JSon Array} responseAsJson 
+ * @param {JSon Array} responseEvolvesFromAsJson 
+ * @param {JSon Array} responseEvolesToAsJson 
+ * @returns 
+ */
+function setAttributesToPushInArray(responseAsJson, responseEvolvesFromAsJson, responseEvolesToAsJson) {
+    let pokemonName = capitalize(responseAsJson.forms[0].name);
+    let firstTypeValue = capitalize(responseAsJson.types[0].type.name);
+    let secondTypeValue = null; 
+    let secondAbilityValue = null;
+    let secondMoveofPokemon = null;
+    let evolvesFrom = (responseEvolvesFromAsJson.evolves_from_species != null);
+    let evolvesTo = (responseEvolesToAsJson.evolves_from_species != null);
+    if (responseAsJson.types.length == 2) {
+      secondTypeValue = capitalize(responseAsJson.types[1].type.name);
+    } 
+    if (responseAsJson.abilities.length == 2) {
+      secondAbilityValue = responseAsJson.abilities[1].ability.name
+    }
+    if (responseAsJson.moves.length == 2) {
+      secondMoveofPokemon = responseAsJson.moves[1].move.name;
+    }
+    pokemons.push({
+      name: pokemonName,
+      pokemonImg: responseAsJson.sprites.other['official-artwork'].front_default,
+      id: responseAsJson.id,
+      firstType: firstTypeValue, 
+      secondType: secondTypeValue,
+      hp:responseAsJson.stats[0].base_stat,
+      attack: responseAsJson.stats[1].base_stat,
+      defense: responseAsJson.stats[2].base_stat,
+      sp_attack: responseAsJson.stats[3].base_stat,
+      sp_defense: responseAsJson.stats[4].base_stat,
+      speed: responseAsJson.stats[5].base_stat,
+      firstAbility: responseAsJson.abilities[0].ability.name,
+      secondAbility: secondAbilityValue,
+      weight: responseAsJson.weight,
+      firstMove: responseAsJson.moves[0].move.name,
+      secondMove: secondMoveofPokemon,
+      evolvesFrom: evolvesFrom,
+      evolvesTo: evolvesTo,
+    });
   return pokemons;
 }
 

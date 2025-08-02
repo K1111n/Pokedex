@@ -184,7 +184,7 @@ async function fetchAPI(i) {
   let numberForAPIOfNextPokemon = responseAsJson.id + 1;
   let responseEvolesTo = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${numberForAPIOfNextPokemon}/`);
   let responseEvolesToAsJson = await responseEvolesTo.json();
-  let pokemons = setAttributesToPushInArray(responseAsJson, responseEvolvesFromAsJson, responseEvolesToAsJson);  
+  pokemons = setAttributesToPushInArray(responseAsJson, responseEvolvesFromAsJson, responseEvolesToAsJson);  
   return pokemons;
 }
 
@@ -345,16 +345,15 @@ function showOverlay(i) {
  * displays hidden overlay, for found Pokemon through searching
  * @param {number} i - Index of Pokemon in foundPokemons-Array 
  */
-function showOverlayForFoundPokemon(i) {
-  let overlay = document.getElementById("overlay");
+async function showOverlayForFoundPokemon(i) {
   let lastIndex = foundPokemonsArray.length - 1;
   let j = 1;
   let k = 1;
   if (i != 0) {
-    j = i - 1;
+    j = `${foundPokemonsArray.id}` - 1;
   } 
   if (i != lastIndex) {
-    k = i + 1;
+    k = `${foundPokemonsArray.id}` + 1;
   } 
   overlay.style.display = "flex";
   overlay.innerHTML = overlayTemplateForFoundPokemon(i,j,k);
@@ -364,6 +363,7 @@ function showOverlayForFoundPokemon(i) {
   document.getElementById("myBarSP_DefOverlay").style.width = `${foundPokemonsArray[i].sp_defense}` + "%";
   document.getElementById("myBarSpeedOverlay").style.width = `${foundPokemonsArray[i].speed}` + "%";
   changeBackgroundColorOfOverlayToTypeColorFromFoundPokemon(i);
+  hideEvolutionsForFoundPokemons(i);
 }
 
 /**
@@ -413,7 +413,7 @@ function searchForPokemon(input) {
       if (pokemons[i].secondType != null) {
       secondTypeImgSrcValue = pokemons[i].secondType;      
       } 
-      if (pokemons.secondAbility != null) {
+      if (pokemons[i].secondAbility != null) {
         secondAbilityValue = pokemons.secondAbility;
       }
       foundPokemonsArray.push({
@@ -444,6 +444,7 @@ function searchForPokemon(input) {
   } else {
     document.getElementById("loadButtonDiv").style.display = "flex";
   }
+  return foundPokemonsArray;
 }
 
 /**
@@ -514,4 +515,3 @@ function hideEvolutions(i) {
   document.getElementById("evolutionChain").style.justifyContent = "center";
   }
 }
-

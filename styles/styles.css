@@ -343,7 +343,21 @@ footer {
     }
 
     .pokemonOverlay {
-        width: 280px;
+        width: 250px;
+        height: 600px;
+    }
+
+    .actualPokemonImg {
+        width: 180px;
+        height: 180px;
+    }
+
+    #evolutionChain {
+        justify-content: center;
+    }
+
+    #baseStats {
+        font-size: 14px;
     }
 }
 

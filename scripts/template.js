@@ -68,7 +68,7 @@ function overlayTemplate(i,j,k) {
       </div>
       <div id="evolutionChain">
         <img src="${pokemons[j].pokemonImg}" alt="pokemon${j}" class="evolvePokemonImg" id="evolveFrom" onclick="renderBeforePokemonInOverlay(${i}); dontcloseOverlay(event);">
-        <img src="${pokemons[i].pokemonImg}" alt="pokemon${i}">
+        <img src="${pokemons[i].pokemonImg}" alt="pokemon${i}" class="actualPokemonImg">
         <img src="${pokemons[k].pokemonImg}" alt="pokemon${k}" class="evolvePokemonImg" id="evolveTo" onclick="renderNextPokemonInOverlay(${i}); dontcloseOverlay(event);">
       </div>
       <nav class="navBar" style="display:none;">

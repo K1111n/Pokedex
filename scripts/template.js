@@ -1,7 +1,9 @@
 function pokeDivTemplate(i) {
   return /*html*/ `
         <div class="pokemonDiv" id="pokemonDiv${i}" onclick="renderThisPokemonInOverlay(${i}); dontcloseOverlay(event);">
-            <h3>#${pokemons[i].id} ${pokemons[i].name}</h3>
+            <div style="display:flex; flex-direction: row; justify-content: space-between; width: 100%; font-weight: bold;">
+              <p>#${pokemons[i].id}</p> <p>${pokemons[i].name}</p> <p class="german">${pokemons[i].deutschName}</p>
+            </div>
             <br>
             <img src="${pokemons[i].pokemonImg}" alt="pokemon${i}">
             <div id="typeRow${i}"></div>
@@ -60,7 +62,7 @@ function overlayTemplate(i,j,k) {
      <div style="width: 100%; height: 50%; display:flex; flex-direction: column; justify-content: space-between;">
       <div class="firstRowInCard">
         <div>
-          <h2 class="english">${pokemons[i].name}</h2> <h2 class="german">${pokemons[i].deutschName}</h2>
+          <h2 class="english">${pokemons[i].name}</h2>
         </div>
         <div style="display:flex; gap:5px; align-items:center">
           <p style="font-size:16px">HP:</p><h2> ${pokemons[i].hp}</h2>
@@ -222,17 +224,23 @@ function overlayTemplateForFoundPokemon(i) {
       </div>
 
       <div id="about" style="display:none;">
+        Habitat: ${foundPokemonsArray[i].habitat}
+        <br><br>
         Weight: ${foundPokemonsArray[i].weight}
         <br><br>
         Height: ${foundPokemonsArray[i].height}        
         <br><br>
-        Trivia: <br>
+        Trivia: <br> ${foundPokemonsArray[i].aboutText}
       </div>
       
       <div id="moves" style="display:none; justify-content: space-around;">
-        <p>Abilities:<br><br> ${foundPokemonsArray[i].firstAbility} <br><br> ${foundPokemonsArray[i].secondAbility}</p>
+        <div style="border-right: solid 1px black; width: 100%;">
+          <p>Abilities:<br><br> ${foundPokemonsArray[i].firstAbility} <br><br> ${foundPokemonsArray[i].secondAbility}</p>
+        </div>  
         <br>
-        <p>Moves: <br><br> ${foundPokemonsArray[i].firstMove} <br><br> ${foundPokemonsArray[i].secondMove}</p>
+        <div style="width: 100%;">
+          <p>Moves: <br><br> ${foundPokemonsArray[i].firstMove} <br><br> ${foundPokemonsArray[i].secondMove}</p>
+        </div>
       </div>
   </div>
   `;

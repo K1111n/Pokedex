@@ -440,8 +440,11 @@ function searchForPokemon(input) {
         evolvesFrom: pokemons[i].evolvesFrom,
         evolvesTo: pokemons[i].evolvesTo,
         height: pokemons[i].height,
-        });
-      }
+        habitat: pokemons[i].habitat,
+        deutschName: pokemons[i].deutschName,
+        aboutText: pokemons[i].aboutText,
+      });
+    }
   }
   if (foundPokemon) {
     document.getElementById("loadButtonDiv").style.display = "none";

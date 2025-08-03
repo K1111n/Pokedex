@@ -16,26 +16,27 @@ let foundPokemonsArray = [];
 /**
  * To set the Background Color there is a color set to each type of a Pokemon
  */
- const typeBackgroundColors = {
-    Fire: "red",
-    Normal: "#8a867f",
-    Water: "#44bbff",
-    Electric: "#D1C000",
-    Grass: "green",
-    Ice: "#6cf7ff",
-    Fighting: "darkred",
-    Poison: "purple",
-    Ground: "#dccd83ff",
-    Flying: "#00BFFF",
-    Psychic: "#FF1493",
-    Bug: "#808000",
-    Rock: "#c6a553",
-    Ghost: "#7777d9",
-    Dragon: "#9176ff",
-    Dark: "#1c0909ff",
-    Steel: "#B0C4DE",
-    Fairy: "#FF00FF"
-  };
+const typeBackgroundStyles = {
+  Fire: "linear-gradient(135deg, #ff7e00, #ff1a1a)",
+  Normal: "linear-gradient(135deg, #d3d3d3, #8a867f)",
+  Water: "linear-gradient(135deg, #44bbff, #0077be)",
+  Electric: "linear-gradient(135deg, #fff700, #d1c000)",
+  Grass: "linear-gradient(135deg, #a8e063, #56ab2f)",
+  Ice: "linear-gradient(135deg, #e0ffff, #6cf7ff)",
+  Fighting: "linear-gradient(135deg, #800000, #b22222)",
+  Poison: "linear-gradient(135deg, #800080, #9932cc)",
+  Ground: "linear-gradient(135deg, #c2b280, #dccd83)",
+  Flying: "linear-gradient(135deg, #87cefa, #00bfff)",
+  Psychic: "linear-gradient(135deg, #ff69b4, #ff1493)",
+  Bug: "linear-gradient(135deg, #a0c400, #808000)",
+  Rock: "linear-gradient(135deg, #c6a553, #8b7d6b)",
+  Ghost: "linear-gradient(135deg, #6e4bb6, #4444aa)",
+  Dragon: "linear-gradient(135deg, #6f42c1, #9176ff)",
+  Dark: "linear-gradient(135deg, #2c2c2c, #1c0909)",
+  Steel: "linear-gradient(135deg, #c0c0c0, #708090)",
+  Fairy: "linear-gradient(135deg, #ffb6c1, #ff00ff)"
+};
+
 
   /**
    * shows Loading Animation, fetches 20 Times, renders all already fetched and newly fetched Pokemon,
@@ -78,9 +79,9 @@ function onlyRenderPokemon() {
  */
 function changeBackgroundColorToTypeColor(i) {
   let firstType = `${pokemons[i].firstType}`;
-  let backgroundColor = typeBackgroundColors[firstType];
+  let backgroundColor = typeBackgroundStyles[firstType];
   if(backgroundColor) {
-    document.getElementById(`pokemonDiv${i}`).style.backgroundColor = backgroundColor;
+    document.getElementById(`pokemonDiv${i}`).style.backgroundImage = backgroundColor;
   }
 }
 
@@ -90,9 +91,9 @@ function changeBackgroundColorToTypeColor(i) {
  */
 function changeBackgroundColorOfOverlayToTypeColor(i) {
   let firstType = `${pokemons[i].firstType}`;
-  let backgroundColor = typeBackgroundColors[firstType];
+  let backgroundColor = typeBackgroundStyles[firstType];
   if(backgroundColor) {
-    document.getElementById(`pokemonOverlay${i}`).style.backgroundColor = backgroundColor;
+    document.getElementById(`pokemonOverlay${i}`).style.backgroundImage = backgroundColor;
   }
 }
 
@@ -102,9 +103,9 @@ function changeBackgroundColorOfOverlayToTypeColor(i) {
  */
 function changeBackgroundColorToTypeColorFromFoundPokemon(i) {
   let firstType = `${foundPokemonsArray[i].firstTypeImgSrc}`;
-  let backgroundColor = typeBackgroundColors[firstType];
+  let backgroundColor = typeBackgroundStyles[firstType];
   if(backgroundColor) {
-    document.getElementById(`foundPokemonDiv${i}`).style.backgroundColor = backgroundColor;
+    document.getElementById(`foundPokemonDiv${i}`).style.backgroundImage = backgroundColor;
   }
 }
 
@@ -114,9 +115,9 @@ function changeBackgroundColorToTypeColorFromFoundPokemon(i) {
  */
 function changeBackgroundColorOfOverlayToTypeColorFromFoundPokemon(i) {
   let firstType = `${foundPokemonsArray[i].firstTypeImgSrc}`;
-  let backgroundColor = typeBackgroundColors[firstType];
+  let backgroundColor = typeBackgroundStyles[firstType];
   if(backgroundColor) {
-    document.getElementById(`pokemonOverlay${i}`).style.backgroundColor = backgroundColor;
+    document.getElementById(`pokemonOverlay${i}`).style.backgroundImage = backgroundColor;
   }
 }
 
@@ -234,6 +235,7 @@ function setAttributesToPushInArray(responseAsJson, responseEvolvesFromAsJson, r
       secondMove: secondMoveofPokemon,
       evolvesFrom: evolvesFrom,
       evolvesTo: evolvesTo,
+      height: responseAsJson.height,
     });
   return pokemons;
 }
@@ -356,7 +358,7 @@ async function showOverlayForFoundPokemon(i) {
     k = `${foundPokemonsArray.id}` + 1;
   } 
   overlay.style.display = "flex";
-  overlay.innerHTML = overlayTemplateForFoundPokemon(i,j,k);
+  overlay.innerHTML = overlayTemplateForFoundPokemon(i);
   document.getElementById("myBarATTOverlay").style.width = `${foundPokemonsArray[i].attack}` + "%";
   document.getElementById("myBarDEFOverlay").style.width = `${foundPokemonsArray[i].defense}` + "%";
   document.getElementById("myBarSP_AttOverlay").style.width = `${foundPokemonsArray[i].sp_attack}` + "%";
@@ -435,6 +437,7 @@ function searchForPokemon(input) {
         secondMove: pokemons[i].secondMove,
         evolvesFrom: pokemons[i].evolvesFrom,
         evolvesTo: pokemons[i].evolvesTo,
+        height: pokemons[i].height,
         });
       }
   }
@@ -479,7 +482,7 @@ function about(event) {
  */
 function baseStats(event) {
   document.getElementById("about").style.display = "none";
-  document.getElementById("baseStats").style.display = "block";
+  document.getElementById("baseStats").style.display = "flex";
   document.getElementById("moves").style.display = "none";
   event.stopPropagation();
 }
@@ -490,7 +493,7 @@ function baseStats(event) {
 function moves(event) {
   document.getElementById("about").style.display = "none";
   document.getElementById("baseStats").style.display = "none";
-  document.getElementById("moves").style.display = "block";
+  document.getElementById("moves").style.display = "flex";
   event.stopPropagation();
 }
 
@@ -505,13 +508,8 @@ function hideEvolutions(i) {
   let lastIndex = pokemons.length - 1;
   if (pokemons[i].evolvesFrom == false) {
   document.getElementById("evolveFrom").style.display = "none";
-  document.getElementById("evolutionChain").style.justifyContent = "flex-end";
   }
   if (pokemons[i].evolvesTo == false) {
   document.getElementById("evolveTo").style.display = "none";
-  document.getElementById("evolutionChain").style.justifyContent = "flex-start";
-  }
-  if (pokemons[i].evolvesTo == false && pokemons[i].evolvesFrom == false || i == lastIndex) {
-  document.getElementById("evolutionChain").style.justifyContent = "center";
   }
 }

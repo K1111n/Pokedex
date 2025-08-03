@@ -44,7 +44,7 @@ const typeBackgroundStyles = {
    */
 async function renderPokemon() {
   showLoadingScreen();
-  for (i = 1; i <= 20; i++) {  
+  for (i = 1; i <= 28; i++) {  
     await fetchAPI(i);  
   }
   for (i = 0; i < pokemons.length; i++) {
@@ -166,7 +166,7 @@ function hideLoadingScreen() {
  * clears everything
  */
 function loadMorePokemon() {
-  l = l + 20;
+  l = l + 28;
   document.getElementById("pokemonSection").innerHTML = "";
   document.getElementById("loadButtonDiv").innerHTML = "";
   renderPokemon();

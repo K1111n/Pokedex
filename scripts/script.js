@@ -185,7 +185,10 @@ async function fetchAPI(i) {
   let numberForAPIOfNextPokemon = responseAsJson.id + 1;
   let responseEvolesTo = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${numberForAPIOfNextPokemon}/`);
   let responseEvolesToAsJson = await responseEvolesTo.json();
-  pokemons = setAttributesToPushInArray(responseAsJson, responseEvolvesFromAsJson, responseEvolesToAsJson);  
+  let speciesURL = responseAsJson.species.url;
+  let responseNew = await fetch(speciesURL)
+  let responseNewAsJson = await responseNew.json();
+  pokemons = setAttributesToPushInArray(responseAsJson, responseEvolvesFromAsJson, responseEvolesToAsJson, responseNewAsJson);  
   return pokemons;
 }
 
@@ -199,12 +202,11 @@ async function fetchAPI(i) {
  * @param {JSon Array} responseEvolesToAsJson 
  * @returns pokemons-Array
  */
-function setAttributesToPushInArray(responseAsJson, responseEvolvesFromAsJson, responseEvolesToAsJson) {
+function setAttributesToPushInArray(responseAsJson, responseEvolvesFromAsJson, responseEvolesToAsJson, responseNewAsJson) {
     let pokemonName = capitalize(responseAsJson.forms[0].name);
     let firstTypeValue = capitalize(responseAsJson.types[0].type.name);
     let secondTypeValue = null; 
     let secondAbilityValue = null;
-    let secondMoveofPokemon = null;
     let evolvesFrom = (responseEvolvesFromAsJson.evolves_from_species != null);
     let evolvesTo = (responseEvolesToAsJson.evolves_from_species != null);
     if (responseAsJson.types.length == 2) {
@@ -212,9 +214,6 @@ function setAttributesToPushInArray(responseAsJson, responseEvolvesFromAsJson, r
     } 
     if (responseAsJson.abilities.length == 2) {
       secondAbilityValue = responseAsJson.abilities[1].ability.name
-    }
-    if (responseAsJson.moves.length == 2) {
-      secondMoveofPokemon = responseAsJson.moves[1].move.name;
     }
     pokemons.push({
       name: pokemonName,
@@ -232,10 +231,13 @@ function setAttributesToPushInArray(responseAsJson, responseEvolvesFromAsJson, r
       secondAbility: secondAbilityValue,
       weight: responseAsJson.weight,
       firstMove: responseAsJson.moves[0].move.name,
-      secondMove: secondMoveofPokemon,
+      secondMove: responseAsJson.moves[1].move.name,
       evolvesFrom: evolvesFrom,
       evolvesTo: evolvesTo,
       height: responseAsJson.height,
+      habitat: responseNewAsJson.habitat.name,
+      deutschName: responseNewAsJson.names[5].name,
+      aboutText: responseNewAsJson.flavor_text_entries[i].flavor_text,
     });
   return pokemons;
 }
@@ -471,7 +473,7 @@ function renderFoundPokemons(foundPokemonsArray) {
  * by clicking on About-Section in Overlay, its the only Section which is shown
  */
 function about(event) {
-  document.getElementById("about").style.display = "block";
+  document.getElementById("about").style.display = "flex";
   document.getElementById("baseStats").style.display = "none";
   document.getElementById("moves").style.display = "none";
   event.stopPropagation();

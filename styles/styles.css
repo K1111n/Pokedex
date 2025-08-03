@@ -273,6 +273,10 @@ main img {
     transition: transform 0.3s ease;
 }
 
+.german {
+    display: none;
+}
+
 #evolutionChain {
     display: flex;
     align-items: center;
@@ -464,6 +468,8 @@ footer {
     height: 50%;
     overflow: hidden;
     width: 100%;
+    display: flex;
+    align-items: space-around;
 }
 
 #moves {

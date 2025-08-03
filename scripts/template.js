@@ -60,7 +60,7 @@ function overlayTemplate(i,j,k) {
      <div style="width: 100%; height: 50%; display:flex; flex-direction: column; justify-content: space-between;">
       <div class="firstRowInCard">
         <div>
-          <h2>${pokemons[i].name}</h2>
+          <h2 class="english">${pokemons[i].name}</h2> <h2 class="german">${pokemons[i].deutschName}</h2>
         </div>
         <div style="display:flex; gap:5px; align-items:center">
           <p style="font-size:16px">HP:</p><h2> ${pokemons[i].hp}</h2>
@@ -131,17 +131,21 @@ function overlayTemplate(i,j,k) {
       </div>
 
       <div id="about" style="display:none;">
+        Habitat: ${pokemons[i].habitat}
+        <br><br>
         Weight: ${pokemons[i].weight}
         <br><br>
-        Height: ${pokemons[i].height}
+        Height: ${pokemons[i].height}  
+        <br><br>
+        Trivia: <br> ${pokemons[i].aboutText}
       </div>
 
       <div id="moves" style="display:none; justify-content: space-around;">
-        <div>
+        <div style="border-right: solid 1px black; width: 100%;">
           <p>Abilities: <br><br>${pokemons[i].firstAbility} <br><br> ${pokemons[i].secondAbility}</p>
         </div>
         <br>
-        <div>
+        <div style="width: 100%;">
           <p>Moves: <br><br>${pokemons[i].firstMove} <br><br> ${pokemons[i].secondMove}</p>
         </div>
       </div>
@@ -220,7 +224,9 @@ function overlayTemplateForFoundPokemon(i) {
       <div id="about" style="display:none;">
         Weight: ${foundPokemonsArray[i].weight}
         <br><br>
-        Height: ${foundPokemonsArray[i].height}
+        Height: ${foundPokemonsArray[i].height}        
+        <br><br>
+        Trivia: <br>
       </div>
       
       <div id="moves" style="display:none; justify-content: space-around;">

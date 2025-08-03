@@ -112,8 +112,8 @@ main {
 }
 
 main img {
-    width: 200px;
-    height: 200px;
+    width: 120px;
+    height: 120px;
 }
 
 .d_none {
@@ -244,8 +244,8 @@ main img {
     border-radius: 25px;
     color: white;
     text-align: center;
-    width: 300px;
-    height: 300px;
+    width: 200px;
+    height: 200px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -276,7 +276,7 @@ main img {
 #evolutionChain {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
 }
 
 .evolvePokemonImg {
@@ -344,7 +344,8 @@ footer {
 
 @media (max-width: 700px) {
     .pokemonDiv {
-        width: 50%;
+        width: 200px;
+        height: 200px;
         flex-direction: column;
         align-items: center;
     }
@@ -366,7 +367,13 @@ footer {
 @media (max-width: 550px) {
 
     .pokemonDiv {
-        width: 70%;
+        width: 150px;
+        height: 150px;
+    }
+
+    main img {
+        width: 80px;
+        height: 80px;
     }
 
     #pokemonSection {
@@ -381,15 +388,6 @@ footer {
     .pokemonOverlay {
         width: 250px;
         height: 600px;
-    }
-
-    .actualPokemonImg {
-        width: 180px;
-        height: 180px;
-    }
-
-    #evolutionChain {
-        justify-content: center;
     }
 
     #baseStats {
@@ -423,6 +421,11 @@ footer {
     opacity: 1;
 }
 
+.actualPokemonImg {
+    width: 200px;
+    height: 200px;
+}
+
 .buttons {
     width: 100%;
     display: flex;
@@ -438,6 +441,7 @@ footer {
 
 .navBar p {
     opacity: 0.7;
+    text-decoration: underline;
 }
 
 .navBar p:hover {
@@ -457,13 +461,13 @@ footer {
 }
 
 #about {
-    height: 35%;
+    height: 50%;
     overflow: hidden;
     width: 100%;
 }
 
 #moves {
-    height: 35%;
+    height: 50%;
     overflow: hidden;
     width: 100%;
 }

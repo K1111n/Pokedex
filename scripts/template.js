@@ -57,7 +57,7 @@ function foundPokeDivTemplateForTwoTypes(i) {
 function overlayTemplate(i,j,k) {
   return /*html*/ `
   <div class="pokemonOverlay" id="pokemonOverlay${i}">
-     <div style="width: 100%;">
+     <div style="width: 100%; height: 50%; display:flex; flex-direction: column; justify-content: space-between;">
       <div class="firstRowInCard">
         <div>
           <h2>${pokemons[i].name}</h2>
@@ -66,29 +66,37 @@ function overlayTemplate(i,j,k) {
           <p style="font-size:16px">HP:</p><h2> ${pokemons[i].hp}</h2>
         </div>
       </div>
+
       <div id="evolutionChain">
-        <img src="${pokemons[j].pokemonImg}" alt="pokemon${j}" class="evolvePokemonImg" id="evolveFrom" onclick="renderBeforePokemonInOverlay(${i}); dontcloseOverlay(event);">
-        <img src="${pokemons[i].pokemonImg}" alt="pokemon${i}" class="actualPokemonImg">
-        <img src="${pokemons[k].pokemonImg}" alt="pokemon${k}" class="evolvePokemonImg" id="evolveTo" onclick="renderNextPokemonInOverlay(${i}); dontcloseOverlay(event);">
-      </div>
-      
-      <nav class="navBar" style="display:none;">
-        <p onclick="about(event)">About</p><p onclick="baseStats(event)">Base Stats</p><p onclick="moves(event)">Moves</p>
-      </nav>
-    </div> 
-    <div class="buttons">
+        <div style="display: flex; justify-content: flex-end; flex-direction: column; gap: 10px; height: 100px"> 
+          <img src="${pokemons[j].pokemonImg}" alt="pokemon${j}" class="evolvePokemonImg" id="evolveFrom" onclick="renderBeforePokemonInOverlay(${i}); dontcloseOverlay(event);">
           <img src="data:image/svg+xml;utf8,
             <svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 24 24'>
               <circle cx='12' cy='12' r='12' fill='rgba(8,33,41,0.7)'/>
               <polyline points='14 6 8 12 14 18' fill='none' stroke='%234fa1c0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/>
             </svg>" alt="Pfeil links" class="arrow-img" onclick="renderBeforePokemonInOverlay(${i}); dontcloseOverlay(event);">
+        </div>
 
+        <div>
+          <img src="${pokemons[i].pokemonImg}" alt="pokemon${i}" class="actualPokemonImg">
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; flex-direction: column; gap: 10px; height: 100px">
+          <img src="${pokemons[k].pokemonImg}" alt="pokemon${k}" class="evolvePokemonImg" id="evolveTo" onclick="renderNextPokemonInOverlay(${i}); dontcloseOverlay(event);">
           <img src="data:image/svg+xml;utf8,
             <svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 24 24'>
               <circle cx='12' cy='12' r='12' fill='rgba(8,33,41,0.7)'/>
               <polyline points='10 6 16 12 10 18' fill='none' stroke='%234fa1c0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/>
             </svg>" alt="Pfeil rechts" class="arrow-img" onclick="renderNextPokemonInOverlay(${i}); dontcloseOverlay(event);">
+        </div>
       </div>
+      
+      <nav class="navBar">
+        <p onclick="about(event)">About</p><p onclick="baseStats(event)">Base Stats</p><p onclick="moves(event)">Moves</p>
+      </nav>
+
+    </div> 
+
       <div id="baseStats">
           <div class="showProgressBars">
             <div><p>ATTACK: ${pokemons[i].attack}</p></div>
@@ -121,22 +129,30 @@ function overlayTemplate(i,j,k) {
             </div>
           </div>
       </div>
+
       <div id="about" style="display:none;">
         Weight: ${pokemons[i].weight}
+        <br><br>
+        Height: ${pokemons[i].height}
       </div>
-      <div id="moves" style="display:none;">
-        <p>Abilities: <br>${pokemons[i].firstAbility},${pokemons[i].secondAbility}</p>
+
+      <div id="moves" style="display:none; justify-content: space-around;">
+        <div>
+          <p>Abilities: <br><br>${pokemons[i].firstAbility} <br><br> ${pokemons[i].secondAbility}</p>
+        </div>
         <br>
-        <p>Moves: <br>${pokemons[i].firstMove},${pokemons[i].secondMove}</p>
+        <div>
+          <p>Moves: <br><br>${pokemons[i].firstMove} <br><br> ${pokemons[i].secondMove}</p>
+        </div>
       </div>
   </div>
   `;
 }
 
-function overlayTemplateForFoundPokemon(i,j,k) {
+function overlayTemplateForFoundPokemon(i) {
   return /*html*/ `
   <div class="pokemonOverlay" id="pokemonOverlay${i}">
-      <div style="width: 100%; display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+      <div style="width: 100%;">
       <div class="firstRowInCard">
         <div>
           <h2>${foundPokemonsArray[i].name}</h2>
@@ -145,25 +161,29 @@ function overlayTemplateForFoundPokemon(i,j,k) {
           <p style="font-size:16px">HP:</p><h2> ${foundPokemonsArray[i].hp}</h2>
         </div>
       </div>
+
       <div id="evolutionChain">
-        <img src="${foundPokemonsArray[i].imgSrc}" alt="pokemon${i}">
-      </div>   
-    <div class="buttons">
+        <div style="display: flex; justify-content: flex-end; flex-direction: column; gap: 10px; height: 100px">
           <img src="data:image/svg+xml;utf8,
             <svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 24 24'>
               <circle cx='12' cy='12' r='12' fill='rgba(8,33,41,0.7)'/>
               <polyline points='14 6 8 12 14 18' fill='none' stroke='%234fa1c0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/>
             </svg>" alt="Pfeil links" class="arrow-img" onclick="renderBeforeFoundPokemonInOverlay(${i}); dontcloseOverlay(event);">
-
+        </div>
+        <img src="${foundPokemonsArray[i].imgSrc}" alt="pokemon${i}" class="actualPokemonImg">
+        <div style="display: flex; justify-content: flex-end; flex-direction: column; gap: 10px; height: 100px">
           <img src="data:image/svg+xml;utf8,
             <svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 24 24'>
               <circle cx='12' cy='12' r='12' fill='rgba(8,33,41,0.7)'/>
               <polyline points='10 6 16 12 10 18' fill='none' stroke='%234fa1c0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/>
             </svg>" alt="Pfeil rechts" class="arrow-img" onclick="renderNextFoundPokemonInOverlay(${i}); dontcloseOverlay(event);">
-    </div>
-    <nav class="navBar" style="display:none;">
+        </div>
+      </div>   
+    
+    <nav class="navBar">
       <p onclick="about(event)">About</p><p onclick="baseStats(event)">Base Stats</p><p onclick="moves(event)">Moves</p>
     </nav>    
+
       <div id="baseStats">
           <div class="showProgressBars">
             <div><p>ATTACK: ${foundPokemonsArray[i].attack}</p></div>
@@ -196,13 +216,17 @@ function overlayTemplateForFoundPokemon(i,j,k) {
             </div>
           </div>
       </div>
+
       <div id="about" style="display:none;">
         Weight: ${foundPokemonsArray[i].weight}
+        <br><br>
+        Height: ${foundPokemonsArray[i].height}
       </div>
-      <div id="moves" style="display:none;">
-        <p>Abilities: <br>${foundPokemonsArray[i].firstAbility},${foundPokemonsArray[i].secondAbility}</p>
+      
+      <div id="moves" style="display:none; justify-content: space-around;">
+        <p>Abilities:<br><br> ${foundPokemonsArray[i].firstAbility} <br><br> ${foundPokemonsArray[i].secondAbility}</p>
         <br>
-        <p>Moves: <br>${foundPokemonsArray[i].firstMove},${foundPokemonsArray[i].secondMove}</p>
+        <p>Moves: <br><br> ${foundPokemonsArray[i].firstMove} <br><br> ${foundPokemonsArray[i].secondMove}</p>
       </div>
   </div>
   `;

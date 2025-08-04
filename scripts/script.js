@@ -1,42 +1,3 @@
-/**
- * Array to push all fetched Informations to
- */
-let pokemons = []
-
-/**
- * Variable to later increase the last number in the API Link
- */
-let l = 0;
-
-/**
- * Array to push all found Pokemons to
- */
-let foundPokemonsArray = [];
-
-/**
- * To set the Background Color there is a color set to each type of a Pokemon
- */
-const typeBackgroundStyles = {
-  Fire: "linear-gradient(135deg, #ff7e00, #ff1a1a)",
-  Normal: "linear-gradient(135deg, #d3d3d3, #8a867f)",
-  Water: "linear-gradient(135deg, #44bbff, #0077be)",
-  Electric: "linear-gradient(135deg, #fff700, #d1c000)",
-  Grass: "linear-gradient(135deg, #a8e063, #56ab2f)",
-  Ice: "linear-gradient(135deg, #e0ffff, #6cf7ff)",
-  Fighting: "linear-gradient(135deg, #800000, #b22222)",
-  Poison: "linear-gradient(135deg, #800080, #9932cc)",
-  Ground: "linear-gradient(135deg, #c2b280, #dccd83)",
-  Flying: "linear-gradient(135deg, #87cefa, #00bfff)",
-  Psychic: "linear-gradient(135deg, #ff69b4, #ff1493)",
-  Bug: "linear-gradient(135deg, #a0c400, #808000)",
-  Rock: "linear-gradient(135deg, #c6a553, #8b7d6b)",
-  Ghost: "linear-gradient(135deg, #6e4bb6, #4444aa)",
-  Dragon: "linear-gradient(135deg, #6f42c1, #9176ff)",
-  Dark: "linear-gradient(135deg, #2c2c2c, #1c0909)",
-  Steel: "linear-gradient(135deg, #c0c0c0, #708090)",
-  Fairy: "linear-gradient(135deg, #ffb6c1, #ff00ff)"
-};
-
   /**
    * shows Loading Animation, fetches 20 Times, renders all already fetched and newly fetched Pokemon,
    * changes the Background Color, renders Button for loading more Pokemon, hides Loading Animation
@@ -51,7 +12,7 @@ async function renderPokemon() {
     pokemonSection.innerHTML += pokeDivTemplate(i);
     let pokeDiv = document.getElementById(`typeRow${i}`);
     pokeDiv.innerHTML += pokemonTypesTemplate(i);
-    changeBackgroundColorToTypeColor(i);
+    changeBackgroundColorToTypeColor(i, pokemons, 'firstType', 'pokemonDiv');
   }
   let loadButtonSection = document.getElementById("loadButtonDiv");
   loadButtonSection.innerHTML += loadButtonTemplate();
@@ -67,7 +28,7 @@ function onlyRenderPokemon() {
   for (i = 0; i < pokemons.length; i++) {  
     pokemonSection.innerHTML += pokeDivTemplate(i);
     let pokeDiv = document.getElementById(`typeRow${i}`);
-    changeBackgroundColorToTypeColor(i);
+    changeBackgroundColorToTypeColor(i, pokemons, 'firstType', 'pokemonDiv');
     pokeDiv.innerHTML += pokemonTypesTemplate(i);
   }
 }
@@ -76,47 +37,11 @@ function onlyRenderPokemon() {
  * Change Background Color to their First Type
  * @param {number} i - Index of Pokemon in pokemonsArray
  */
-function changeBackgroundColorToTypeColor(i) {
-  let firstType = `${pokemons[i].firstType}`;
-  let backgroundColor = typeBackgroundStyles[firstType];
+function changeBackgroundColorToTypeColor(i, arr, typeField, targetId) {
+  let typeName = arr[i][typeField];
+  let backgroundColor = typeBackgroundStyles[typeName];
   if(backgroundColor) {
-    document.getElementById(`pokemonDiv${i}`).style.backgroundImage = backgroundColor;
-  }
-}
-
-/**
- * Change Background Color, to their First, Type in Ovelay
- * @param {number} i - Index of Pokemon in pokemonsArray
- */
-function changeBackgroundColorOfOverlayToTypeColor(i) {
-  let firstType = `${pokemons[i].firstType}`;
-  let backgroundColor = typeBackgroundStyles[firstType];
-  if(backgroundColor) {
-    document.getElementById(`pokemonOverlay${i}`).style.backgroundImage = backgroundColor;
-  }
-}
-
-/**
- * Change Background Color to their First Type after a pokemon is found through searching
- * @param {number} i - Index of Pokemon in foundPokemonsArray
- */
-function changeBackgroundColorToTypeColorFromFoundPokemon(i) {
-  let firstType = `${foundPokemonsArray[i].firstTypeImgSrc}`;
-  let backgroundColor = typeBackgroundStyles[firstType];
-  if(backgroundColor) {
-    document.getElementById(`foundPokemonDiv${i}`).style.backgroundImage = backgroundColor;
-  }
-}
-
-/**
- * Change Background Color to their First Type after a pokemon is found through searching, in Ovelay
- * @param {number} i - Index of Pokemon in foundPokemonsArray
- */
-function changeBackgroundColorOfOverlayToTypeColorFromFoundPokemon(i) {
-  let firstType = `${foundPokemonsArray[i].firstTypeImgSrc}`;
-  let backgroundColor = typeBackgroundStyles[firstType];
-  if(backgroundColor) {
-    document.getElementById(`pokemonOverlay${i}`).style.backgroundImage = backgroundColor;
+    document.getElementById(`${targetId}${i}`).style.backgroundImage = backgroundColor;
   }
 }
 
@@ -208,12 +133,16 @@ function setAttributesToPushInArray(responseAsJson, responseEvolvesFromAsJson, r
     let secondAbilityValue = null;
     let evolvesFrom = (responseEvolvesFromAsJson.evolves_from_species != null);
     let evolvesTo = (responseEvolesToAsJson.evolves_from_species != null);
+    let moveSecond = 0;
     if (responseAsJson.types.length == 2) {
       secondTypeValue = capitalize(responseAsJson.types[1].type.name);
     } 
     if (responseAsJson.abilities.length == 2) {
       secondAbilityValue = responseAsJson.abilities[1].ability.name
-    }
+    }    
+    if (responseAsJson.moves.length >= 2) {
+      moveSecond = responseAsJson.moves[1].move.name;
+    } 
     pokemons.push({
       name: pokemonName,
       pokemonSmallImg: responseAsJson.sprites.front_default,
@@ -231,7 +160,7 @@ function setAttributesToPushInArray(responseAsJson, responseEvolvesFromAsJson, r
       secondAbility: secondAbilityValue,
       weight: responseAsJson.weight,
       firstMove: responseAsJson.moves[0].move.name,
-      secondMove: responseAsJson.moves[1].move.name,
+      secondMove: moveSecond,
       evolvesFrom: evolvesFrom,
       evolvesTo: evolvesTo,
       height: responseAsJson.height,
@@ -341,7 +270,7 @@ function showOverlay(i) {
   document.getElementById("myBarSP_Att").style.width = `${pokemons[i].sp_attack}` + "%";
   document.getElementById("myBarSP_Def").style.width = `${pokemons[i].sp_defense}` + "%";
   document.getElementById("myBarSpeed").style.width = `${pokemons[i].speed}` + "%";
-  changeBackgroundColorOfOverlayToTypeColor(i);
+  changeBackgroundColorToTypeColor(i, pokemons, 'firstType', 'pokemonOverlay');
   hideEvolutions(i);
 }
 
@@ -366,7 +295,7 @@ async function showOverlayForFoundPokemon(i) {
   document.getElementById("myBarSP_AttOverlay").style.width = `${foundPokemonsArray[i].sp_attack}` + "%";
   document.getElementById("myBarSP_DefOverlay").style.width = `${foundPokemonsArray[i].sp_defense}` + "%";
   document.getElementById("myBarSpeedOverlay").style.width = `${foundPokemonsArray[i].speed}` + "%";
-  changeBackgroundColorOfOverlayToTypeColorFromFoundPokemon(i);
+  changeBackgroundColorToTypeColor(i, foundPokemonsArray, 'firstTypeImgSrc', 'pokemonOverlay');
 }
 
 /**
@@ -468,7 +397,7 @@ function renderFoundPokemons(foundPokemonsArray) {
     } else {
     foundPokemonSection.innerHTML += foundPokeDivTemplateForTwoTypes(i);
     }
-    changeBackgroundColorToTypeColorFromFoundPokemon(i);
+    changeBackgroundColorToTypeColor(i, foundPokemonsArray, 'firstTypeImgSrc', 'foundPokemonDiv');
   }
 }
 

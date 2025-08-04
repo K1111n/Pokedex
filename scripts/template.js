@@ -14,12 +14,12 @@ function pokeDivTemplate(i) {
 function pokemonTypesTemplate(i) {
   if (pokemons[i].secondType != null) {
     return /*html*/ `
-      <img src="https://play.pokemonshowdown.com/sprites/types/${pokemons[i].firstType}.png" alt="${pokemons[i].firstType}" class="typeImgs">
-      <img src="https://play.pokemonshowdown.com/sprites/types/${pokemons[i].secondType}.png" alt="${pokemons[i].secondType}" class="typeImgs">
+      <img src="/Assets/${pokemons[i].firstType}.png" alt="${pokemons[i].firstType}" class="typeImgs">
+      <img src="/Assets/${pokemons[i].secondType}.png" alt="${pokemons[i].secondType}" class="typeImgs">
       `
   } else {
     return /*html*/ `
-      <img src="https://play.pokemonshowdown.com/sprites/types/${pokemons[i].firstType}.png" alt="${pokemons[i].firstType}" class="typeImgs">
+      <img src="/Assets/${pokemons[i].firstType}.png" alt="${pokemons[i].firstType}" class="typeImgs">
       `}
 }
 
@@ -36,7 +36,7 @@ function foundPokeDivTemplateForOneType(i) {
             <br>
             <img src="${foundPokemonsArray[i].pokemonSmallImg}" alt="pokemon${i}" class="pokemon">
             <div class="typeRow">
-              <img src="https://play.pokemonshowdown.com/sprites/types/${foundPokemonsArray[i].firstTypeImgSrc}.png" alt="${foundPokemonsArray[i].firstTypeImgSrc}" class="typeImgs">
+              <img src="/Assets/${foundPokemonsArray[i].firstTypeImgSrc}.png" alt="${foundPokemonsArray[i].firstTypeImgSrc}" class="typeImgs">
             </div>
     </div>    
   `;
@@ -49,8 +49,8 @@ function foundPokeDivTemplateForTwoTypes(i) {
             <br>
             <img src="${foundPokemonsArray[i].pokemonSmallImg}" alt="pokemon${i}" class="pokemon">
             <div class="typeRow">
-              <img src="https://play.pokemonshowdown.com/sprites/types/${foundPokemonsArray[i].firstTypeImgSrc}.png" alt="${foundPokemonsArray[i].firstTypeImgSrc}" class="typeImgs">
-              <img src="https://play.pokemonshowdown.com/sprites/types/${foundPokemonsArray[i].secondTypeImgSrc}.png" alt="${foundPokemonsArray[i].secondTypeImgSrc}" class="typeImgs">
+              <img src="/Assets/${foundPokemonsArray[i].firstTypeImgSrc}.png" alt="${foundPokemonsArray[i].firstTypeImgSrc}" class="typeImgs">
+              <img src="/Assets/${foundPokemonsArray[i].secondTypeImgSrc}.png" alt="${foundPokemonsArray[i].secondTypeImgSrc}" class="typeImgs">
             </div>
     </div>  
     `

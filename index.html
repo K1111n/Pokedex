@@ -45,11 +45,17 @@
         </svg>
         <a href="https://kajanan-yoganathan.developerakademie.net/Pokedex/">Pokedex</a>
       </div>
+
       <div id="rightHeader">
         <label for="site-search"></label>
-        <input type="search" id="site-search" name="searchBar" onkeyup="checkIfInputIsAtleastThreeCharactersLong()" placeholder="Enter Pokemon"/>
+        <form action="/action_page.php" autocomplete="off">
+          <div class="autocomplete" style="width:300px;">
+            <input type="text" id="site-search" name="searchBar" onkeyup="checkIfInputIsAtleastThreeCharactersLong()" placeholder="Enter Pokemon"/>
+          </div>
+        </form>
         <button id="searchButton"  class="loadButton">Search for Pokemon</button>
       </div>
+
     </header>
     <main id="main">
       <section id="overlay" onclick="closeOverlay()">       
@@ -67,6 +73,7 @@
     </footer>
     
     <script src="scripts/script.js"></script>
+    <script src="scripts/database.js"></script>
     <script src="scripts/template.js"></script>
   </body>
 </html>

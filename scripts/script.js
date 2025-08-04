@@ -257,6 +257,10 @@ function renderFoundPokemons(foundPokemonsArray) {
   }
 }
 
+/**
+ * by clicking on Impressum Button, Impressum will be displayed
+ * by clicking on same Button. Pokedex will be displayed again
+ */
 function impressum() {  
   if (document.getElementById("impressumButton").innerHTML == "Impressum") {
     document.getElementById("impressum").style.display = "flex";

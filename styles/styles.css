@@ -9,7 +9,7 @@ html {
 }
 
 header {
-    height: 170px;
+    height: 120px;
     width: 100%;
     background-color: #082129;
     display: flex;
@@ -95,7 +95,6 @@ header p {
 body {
     margin: 0;
     max-width: 1920px;
-    max-height: 1600px;
     width: 100vw;
     display: flex;
     flex-direction: column;
@@ -111,7 +110,7 @@ main {
     overflow-y: auto;
 }
 
-main img {
+.pokemon {
     width: 120px;
     height: 120px;
 }
@@ -245,7 +244,7 @@ main img {
     border-radius: 25px;
     color: white;
     text-align: center;
-    width: 170px;
+    width: 140px;
     height: 200px;
     display: flex;
     flex-direction: column;
@@ -303,11 +302,17 @@ main img {
     width: auto;
 }
 
+.typeRow img {
+    height: 30px;
+    width: 60px;
+}
+
 #loadButtonDiv {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
+    height: 50px;
     margin-bottom: 10px;
 }
 
@@ -376,7 +381,7 @@ footer {
         height: 150px;
     }
 
-    main img {
+    .pokemon {
         width: 80px;
         height: 80px;
     }
@@ -386,8 +391,9 @@ footer {
         align-items: center;
     }
 
-    .typeImgs {
-        scale: 0.7;
+    .typeRow img {
+        height: 20px;
+        width: 40px;
     }
 
     .pokemonOverlay {
@@ -426,9 +432,9 @@ footer {
     opacity: 1;
 }
 
-.actualPokemonImg {
-    width: 200px;
-    height: 200px;
+#actualPokemonImg {
+    width: 150px;
+    height: 150px;
 }
 
 .buttons {

@@ -37,7 +37,6 @@ const typeBackgroundStyles = {
   Fairy: "linear-gradient(135deg, #ffb6c1, #ff00ff)"
 };
 
-
   /**
    * shows Loading Animation, fetches 20 Times, renders all already fetched and newly fetched Pokemon,
    * changes the Background Color, renders Button for loading more Pokemon, hides Loading Animation
@@ -217,6 +216,7 @@ function setAttributesToPushInArray(responseAsJson, responseEvolvesFromAsJson, r
     }
     pokemons.push({
       name: pokemonName,
+      pokemonSmallImg: responseAsJson.sprites.front_default,
       pokemonImg: responseAsJson.sprites.other['official-artwork'].front_default,
       id: responseAsJson.id,
       firstType: firstTypeValue, 
@@ -367,7 +367,6 @@ async function showOverlayForFoundPokemon(i) {
   document.getElementById("myBarSP_DefOverlay").style.width = `${foundPokemonsArray[i].sp_defense}` + "%";
   document.getElementById("myBarSpeedOverlay").style.width = `${foundPokemonsArray[i].speed}` + "%";
   changeBackgroundColorOfOverlayToTypeColorFromFoundPokemon(i);
-  hideEvolutionsForFoundPokemons(i);
 }
 
 /**
@@ -423,7 +422,8 @@ function searchForPokemon(input) {
       foundPokemonsArray.push({
         id:`${pokemons[i].id}`,
         name: `${pokemons[i].name}`,
-        imgSrc: `${pokemons[i].pokemonImg}`,
+        pokemonSmallImg: pokemons[i].pokemonSmallImg,
+        pokemonImg: pokemons[i].pokemonImg,
         firstTypeImgSrc: `${pokemons[i].firstType}`,
         secondTypeImgSrc: secondTypeImgSrcValue,
         hp: pokemons[i].hp,
@@ -433,7 +433,7 @@ function searchForPokemon(input) {
         sp_defense: pokemons[i].sp_defense,
         speed: pokemons[i].speed,
         firstAbility: pokemons[i].firstAbility,
-        secondAbility: secondAbilityValue,
+        secondAbility: pokemons[i].secondAbilityValue,
         weight: pokemons[i].weight,
         firstMove: pokemons[i].firstMove,
         secondMove: pokemons[i].secondMove,

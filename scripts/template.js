@@ -5,8 +5,8 @@ function pokeDivTemplate(i) {
               <p>#${pokemons[i].id}</p> <p>${pokemons[i].name}</p> <p class="german">${pokemons[i].deutschName}</p>
             </div>
             <br>
-            <img src="${pokemons[i].pokemonImg}" alt="pokemon${i}">
-            <div id="typeRow${i}"></div>
+            <img src="${pokemons[i].pokemonSmallImg}" alt="pokemon${i}" class="pokemon">
+            <div id="typeRow${i}" class="typeRow"></div>
         </div>
     `;
 }
@@ -34,7 +34,7 @@ function foundPokeDivTemplateForOneType(i) {
     <div class="pokemonDiv" id="foundPokemonDiv${i}" onclick="renderThisFoundPokemonInOverlay(${i}); dontcloseOverlay(event);">
             <h3>#${foundPokemonsArray[i].id} ${foundPokemonsArray[i].name}</h3>
             <br>
-            <img src="${foundPokemonsArray[i].imgSrc}" alt="pokemon${i}">
+            <img src="${foundPokemonsArray[i].pokemonSmallImg}" alt="pokemon${i}" class="pokemon">
             <div class="typeRow">
               <img src="https://play.pokemonshowdown.com/sprites/types/${foundPokemonsArray[i].firstTypeImgSrc}.png" alt="${foundPokemonsArray[i].firstTypeImgSrc}" class="typeImgs">
             </div>
@@ -47,7 +47,7 @@ function foundPokeDivTemplateForTwoTypes(i) {
     <div class="pokemonDiv" id="foundPokemonDiv${i}" onclick="renderThisFoundPokemonInOverlay(${i}); dontcloseOverlay(event);">
             <h3>#${foundPokemonsArray[i].id} ${foundPokemonsArray[i].name}</h3>
             <br>
-            <img src="${foundPokemonsArray[i].imgSrc}" alt="pokemon${i}">
+            <img src="${foundPokemonsArray[i].pokemonSmallImg}" alt="pokemon${i}" class="pokemon">
             <div class="typeRow">
               <img src="https://play.pokemonshowdown.com/sprites/types/${foundPokemonsArray[i].firstTypeImgSrc}.png" alt="${foundPokemonsArray[i].firstTypeImgSrc}" class="typeImgs">
               <img src="https://play.pokemonshowdown.com/sprites/types/${foundPokemonsArray[i].secondTypeImgSrc}.png" alt="${foundPokemonsArray[i].secondTypeImgSrc}" class="typeImgs">
@@ -80,7 +80,7 @@ function overlayTemplate(i,j,k) {
         </div>
 
         <div>
-          <img src="${pokemons[i].pokemonImg}" alt="pokemon${i}" class="actualPokemonImg">
+          <img src="${pokemons[i].pokemonImg}" alt="pokemon${i}" id="actualPokemonImg">
         </div>
 
         <div style="display: flex; justify-content: flex-end; flex-direction: column; gap: 10px; height: 100px">
@@ -158,7 +158,8 @@ function overlayTemplate(i,j,k) {
 function overlayTemplateForFoundPokemon(i) {
   return /*html*/ `
   <div class="pokemonOverlay" id="pokemonOverlay${i}">
-      <div style="width: 100%;">
+      <div style="width: 100%; height: 100%; display:flex; flex-direction: column; justify-content: space-between;">
+        <div style="height: 50%; width: 100%; display:flex; flex-direction: column; justify-content: space-between;">
       <div class="firstRowInCard">
         <div>
           <h2>${foundPokemonsArray[i].name}</h2>
@@ -176,7 +177,7 @@ function overlayTemplateForFoundPokemon(i) {
               <polyline points='14 6 8 12 14 18' fill='none' stroke='%234fa1c0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/>
             </svg>" alt="Pfeil links" class="arrow-img" onclick="renderBeforeFoundPokemonInOverlay(${i}); dontcloseOverlay(event);">
         </div>
-        <img src="${foundPokemonsArray[i].imgSrc}" alt="pokemon${i}" class="actualPokemonImg">
+        <img src="${foundPokemonsArray[i].pokemonImg}" alt="pokemon${i}" id="actualPokemonImg">
         <div style="display: flex; justify-content: flex-end; flex-direction: column; gap: 10px; height: 100px">
           <img src="data:image/svg+xml;utf8,
             <svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 24 24'>
@@ -189,7 +190,7 @@ function overlayTemplateForFoundPokemon(i) {
     <nav class="navBar">
       <p onclick="about(event)">About</p><p onclick="baseStats(event)">Base Stats</p><p onclick="moves(event)">Moves</p>
     </nav>    
-
+</div>
       <div id="baseStats">
           <div class="showProgressBars">
             <div><p>ATTACK: ${foundPokemonsArray[i].attack}</p></div>

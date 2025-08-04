@@ -266,6 +266,14 @@ main {
     justify-content: space-between;
     align-items: center;
     padding: 10px;
+    transform: scale(0.9);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.pokemonOverlay.show {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
 }
 
 .pokemonDiv:hover {
@@ -455,8 +463,10 @@ footer {
     left: 0;
     height: 100vh;
     width: 100vw;
+    opacity: 0;
+    transition: opacity 0.3s ease;
     background-color: rgba(0, 0, 0, 0.7);
-    display: none;
+    display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
@@ -465,6 +475,11 @@ footer {
 
 #overlay:hover {
     opacity: 1;
+}
+
+#overlay::after {
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
 #actualPokemonImg {

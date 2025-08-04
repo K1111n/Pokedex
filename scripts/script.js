@@ -250,7 +250,6 @@ function renderBeforeFoundPokemonInOverlay(i) {
  * @param {number} i - Index of Pokemon in pokemons-Array
  */
 function showOverlay(i) {
-  let overlay = document.getElementById("overlay");
   let lastIndex = pokemons.length - 1;
   let j = 1;
   let k = 1;

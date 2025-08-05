@@ -292,25 +292,36 @@ main {
     font-weight: bold;
 }
 
-#pokemonImgDiv {
+.pokemonImgDiv {
     position: relative;
     width: 100%;
     height: 150px;
+    overflow: hidden;
 }
 
-#pokemonImgDiv img {
+.pokemonImgDiv img {
     position: absolute;
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 100px;
-    height: auto;
+    width: 120px;
+    height: 120px;
     pointer-events: none;
 }
 
-.pokemon {
-    width: 120px;
-    height: 120px;
+.pokemon {}
+
+.pokemonGif {
+    display: none;
+    object-fit: contain;
+}
+
+.pokemonImgDiv:hover .pokemon {
+    display: none;
+}
+
+.pokemonImgDiv:hover .pokemonGif {
+    display: block;
 }
 
 .german {

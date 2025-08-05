@@ -5,8 +5,9 @@ function pokeDivTemplate(i) {
               <p>#${pokemons[i].id}</p> <p>${pokemons[i].name}</p> <p class="german">${pokemons[i].deutschName}</p>
             </div>
             <br>
-            <div id="pokemonImgDiv">
+            <div class="pokemonImgDiv">
               <img src="${pokemons[i].pokemonSmallImg}" alt="pokemon${i}" class="pokemon">
+              <img src="${pokemons[i].pokemonGif}" alt="pokemon${i}" class="pokemonGif">
             </div>
             <div id="typeRow${i}" class="typeRow"></div>
         </div>

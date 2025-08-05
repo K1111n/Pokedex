@@ -207,7 +207,8 @@ function searchForPokemon(input) {
       }
       foundPokemonsArray.push({
         id:`${pokemons[i].id}`,
-        name: `${pokemons[i].name}`,
+        name: `${pokemons[i].name}`,        
+        pokemonGif: pokemons[i].pokemonGif,
         pokemonSmallImg: pokemons[i].pokemonSmallImg,
         pokemonImg: pokemons[i].pokemonImg,
         firstTypeImgSrc: `${pokemons[i].firstType}`,

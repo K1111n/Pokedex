@@ -37,7 +37,10 @@ function foundPokeDivTemplateForOneType(i) {
     <div class="pokemonDiv" id="foundPokemonDiv${i}" onclick="renderThisFoundPokemonInOverlay(${i}); dontcloseOverlay(event);">
             <p>#${foundPokemonsArray[i].id} ${foundPokemonsArray[i].name}</p>
             <br>
-            <img src="${foundPokemonsArray[i].pokemonSmallImg}" alt="pokemon${i}" class="pokemon">
+            <div class="pokemonImgDiv">
+              <img src="${foundPokemonsArray[i].pokemonSmallImg}" alt="pokemon${i}" class="pokemon">
+              <img src="${foundPokemonsArray[i].pokemonGif}" alt="pokemon${i}" class="pokemon">
+            </div>
             <div class="typeRow">
               <img src="https://kajanan-yoganathan.developerakademie.net/pokedex/assets/${foundPokemonsArray[i].firstTypeImgSrc}.png" alt="${foundPokemonsArray[i].firstTypeImgSrc}" class="typeImgs">
             </div>
@@ -50,7 +53,10 @@ function foundPokeDivTemplateForTwoTypes(i) {
     <div class="pokemonDiv" id="foundPokemonDiv${i}" onclick="renderThisFoundPokemonInOverlay(${i}); dontcloseOverlay(event);">
             <p>#${foundPokemonsArray[i].id} ${foundPokemonsArray[i].name}</p>
             <br>
-            <img src="${foundPokemonsArray[i].pokemonSmallImg}" alt="pokemon${i}" class="pokemon">
+            <div class="pokemonImgDiv">
+              <img src="${foundPokemonsArray[i].pokemonSmallImg}" alt="pokemon${i}" class="pokemon">
+              <img src="${foundPokemonsArray[i].pokemonGif}" alt="pokemon${i}" class="pokemon">
+            </div>
             <div class="typeRow">
               <img src="https://kajanan-yoganathan.developerakademie.net/pokedex/assets/${foundPokemonsArray[i].firstTypeImgSrc}.png" alt="${foundPokemonsArray[i].firstTypeImgSrc}" class="typeImgs">
               <img src="https://kajanan-yoganathan.developerakademie.net/pokedex/assets/${foundPokemonsArray[i].secondTypeImgSrc}.png" alt="${foundPokemonsArray[i].secondTypeImgSrc}" class="typeImgs">

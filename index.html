@@ -4,14 +4,21 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pokedex</title>
-    <link rel="icon" type="image/x-icon" href="https://kajanan-yoganathan.developerakademie.net/pokedex/assets/pokeball_favicon.png" />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="https://kajanan-yoganathan.developerakademie.net/pokedex/assets/pokeball_favicon.png"
+    />
     <link rel="stylesheet" href="styles/styles.css" />
     <link rel="stylesheet" href="styles/keyframe.css" />
     <link rel="stylesheet" href="styles/mediaRules.css" />
     <link rel="stylesheet" href="styles/overlay.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Viga&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Viga&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body onload="renderPokemon()">
     <header>
@@ -49,51 +56,66 @@
           />
           <circle cx="50" cy="50" r="4" fill="#4fa1c0" />
         </svg>
-        <a href="https://kajanan-yoganathan.developerakademie.net/pokedex/">Pokedex</a>
+        <a href="https://kajanan-yoganathan.developerakademie.net/pokedex/"
+          >Pokedex</a
+        >
       </div>
 
       <div id="rightHeader">
         <form>
           <label for="site-search"></label>
-          <div style="width:300px; display: flex; justify-content: center;">
-            <input type="text" id="site-search" name="searchBar" onkeyup="checkIfInputIsAtleastThreeCharactersLong()" placeholder=" Enter Pokemon"/>
+          <div style="width: 300px; display: flex; justify-content: center">
+            <input
+              type="text"
+              id="site-search"
+              name="searchBar"
+              onkeyup="checkIfInputIsAtleastThreeCharactersLong()"
+              placeholder=" Enter Pokemon"
+            />
           </div>
         </form>
-        <button id="searchButton"  class="loadButton">Search for Pokemon</button>
+        <button id="searchButton" class="loadButton">Search for Pokemon</button>
       </div>
-
     </header>
 
     <main id="main">
-      <section id="overlay" onclick="closeOverlay()">       
-      </section>
+      <section id="overlay" onclick="closeOverlay()"></section>
       <section id="loadingSection" class="d_none">
         <div class="pokeball"></div>
       </section>
       <section id="pokemonSection"></section>
-      <br>
+      <br />
       <section id="loadButtonDiv"></section>
     </main>
 
     <section id="impressum">
-       <h1>Impressum</h1>
+      <h1>Impressum</h1>
 
-        <p>Kajanan Yoganathan<br />
+      <p>
+        Kajanan Yoganathan<br />
         Hugo-K&uuml;ching-Stra&szlig;e 6<br />
-        59067 Hamm</p>
+        59067 Hamm
+      </p>
 
-        <h2>Kontakt</h2>
-        <p>Telefon: &#91;Telefonnummer&#93;<br />
-        E-Mail: kaja_nan@hotmail.de</p>
+      <h2>Kontakt</h2>
+      <p>
+        Telefon: &#91;Telefonnummer&#93;<br />
+        E-Mail: kaja_nan@hotmail.de
+      </p>
 
-        <p>Quelle: <a href="https://www.e-recht24.de" style="font-size: 16px;">https://www.e-recht24.de</a></p>
+      <p>
+        Quelle:
+        <a href="https://www.e-recht24.de" style="font-size: 16px"
+          >https://www.e-recht24.de</a
+        >
+      </p>
     </section>
 
     <footer>
       <h6>Pokedex by Kajanan</h6>
       <button onclick="impressum()" id="impressumButton">Impressum</button>
     </footer>
-    
+
     <script src="scripts/script.js"></script>
     <script src="scripts/database.js"></script>
     <script src="scripts/template.js"></script>

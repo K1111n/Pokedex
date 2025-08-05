@@ -195,42 +195,10 @@ function searchForPokemon(input) {
   let foundPokemon = pokemons.filter((pokemon) =>
   pokemon.name.toLowerCase().includes(searchTerm.toLowerCase()));
   foundPokemonsArray = [];
-  let secondTypeImgSrcValue = null;
-  let secondAbilityValue = null;
   for (i = 0; i < pokemons.length; i++) {   
+    console.log(pokemons[i]);
     if (foundPokemon.some(p => p.name === pokemons[i].name)) {
-      if (pokemons[i].secondType != null) {
-      secondTypeImgSrcValue = pokemons[i].secondType;      
-      } 
-      if (pokemons[i].secondAbility != null) {
-        secondAbilityValue = pokemons.secondAbility;
-      }
-      foundPokemonsArray.push({
-        id:`${pokemons[i].id}`,
-        name: `${pokemons[i].name}`,        
-        pokemonGif: pokemons[i].pokemonGif,
-        pokemonSmallImg: pokemons[i].pokemonSmallImg,
-        pokemonImg: pokemons[i].pokemonImg,
-        firstTypeImgSrc: `${pokemons[i].firstType}`,
-        secondTypeImgSrc: secondTypeImgSrcValue,
-        hp: pokemons[i].hp,
-        attack: pokemons[i].attack,
-        defense: pokemons[i].defense,
-        sp_attack: pokemons[i].sp_attack,
-        sp_defense: pokemons[i].sp_defense,
-        speed: pokemons[i].speed,
-        firstAbility: pokemons[i].firstAbility,
-        secondAbility: pokemons[i].secondAbilityValue,
-        weight: pokemons[i].weight,
-        firstMove: pokemons[i].firstMove,
-        secondMove: pokemons[i].secondMove,
-        evolvesFrom: pokemons[i].evolvesFrom,
-        evolvesTo: pokemons[i].evolvesTo,
-        height: pokemons[i].height,
-        habitat: pokemons[i].habitat,
-        deutschName: pokemons[i].deutschName,
-        aboutText: pokemons[i].aboutText,
-      });
+      foundPokemonsArray.push(pokemons[i],);
     }
   }
   if (foundPokemon) {
@@ -250,12 +218,12 @@ function renderFoundPokemons(foundPokemonsArray) {
   let foundPokemonSection = document.getElementById("pokemonSection");
   foundPokemonSection.innerHTML = "";
   for (i = 0; i < foundPokemonsArray.length; i++) {
-    if (foundPokemonsArray[i].secondTypeImgSrc == null) {
+    if (foundPokemonsArray[i].secondType == null) {
     foundPokemonSection.innerHTML += foundPokeDivTemplateForOneType(i);
     } else {
     foundPokemonSection.innerHTML += foundPokeDivTemplateForTwoTypes(i);
     }
-    changeBackgroundColorToTypeColor(i, foundPokemonsArray, 'firstTypeImgSrc', 'foundPokemonDiv');
+    changeBackgroundColorToTypeColor(i, foundPokemonsArray, 'firstType', 'foundPokemonDiv');
   }
 }
 

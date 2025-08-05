@@ -122,7 +122,7 @@ async function showOverlayForFoundPokemon(i) {
   document.getElementById("myBarSP_AttOverlay").style.width = `${foundPokemonsArray[i].sp_attack}` + "%";
   document.getElementById("myBarSP_DefOverlay").style.width = `${foundPokemonsArray[i].sp_defense}` + "%";
   document.getElementById("myBarSpeedOverlay").style.width = `${foundPokemonsArray[i].speed}` + "%";
-  changeBackgroundColorToTypeColor(i, foundPokemonsArray, 'firstTypeImgSrc', 'pokemonOverlay');
+  changeBackgroundColorToTypeColor(i, foundPokemonsArray, 'firstType', 'pokemonOverlay');
 }
 
 /**

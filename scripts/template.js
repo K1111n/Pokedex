@@ -42,7 +42,7 @@ function foundPokeDivTemplateForOneType(i) {
               <img src="${foundPokemonsArray[i].pokemonGif}" alt="pokemon${i}" class="pokemonGif">
             </div>
             <div class="typeRow">
-              <img src="https://kajanan-yoganathan.developerakademie.net/pokedex/assets/${foundPokemonsArray[i].firstTypeImgSrc}.png" alt="${foundPokemonsArray[i].firstTypeImgSrc}" class="typeImgs">
+              <img src="https://kajanan-yoganathan.developerakademie.net/pokedex/assets/${foundPokemonsArray[i].firstType}.png" alt="${foundPokemonsArray[i].firstType}" class="typeImgs">
             </div>
     </div>    
   `;
@@ -58,8 +58,8 @@ function foundPokeDivTemplateForTwoTypes(i) {
               <img src="${foundPokemonsArray[i].pokemonGif}" alt="pokemon${i}" class="pokemonGif">
             </div>
             <div class="typeRow">
-              <img src="https://kajanan-yoganathan.developerakademie.net/pokedex/assets/${foundPokemonsArray[i].firstTypeImgSrc}.png" alt="${foundPokemonsArray[i].firstTypeImgSrc}" class="typeImgs">
-              <img src="https://kajanan-yoganathan.developerakademie.net/pokedex/assets/${foundPokemonsArray[i].secondTypeImgSrc}.png" alt="${foundPokemonsArray[i].secondTypeImgSrc}" class="typeImgs">
+              <img src="https://kajanan-yoganathan.developerakademie.net/pokedex/assets/${foundPokemonsArray[i].firstType}.png" alt="${foundPokemonsArray[i].firstType}" class="typeImgs">
+              <img src="https://kajanan-yoganathan.developerakademie.net/pokedex/assets/${foundPokemonsArray[i].secondType}.png" alt="${foundPokemonsArray[i].secondType}" class="typeImgs">
             </div>
     </div>  
     `

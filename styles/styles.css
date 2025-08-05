@@ -1,12 +1,20 @@
 html {
     margin: 0;
     height: 100%;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Press Start 2P', monospace;
     background-color: #082129;
     color: #2f728d;
     display: flex;
     justify-content: center;
     scroll-behavior: smooth;
+}
+
+p {
+    font-size: 10px;
+}
+
+h2 {
+    font-size: 1.2em;
 }
 
 header {
@@ -317,6 +325,10 @@ main {
     width: 60px;
 }
 
+li {
+    font-size: 10px;
+}
+
 #loadButtonDiv {
     display: flex;
     justify-content: center;
@@ -415,6 +427,10 @@ footer {
 
     #leftHeader {
         scale: 0.7;
+    }
+
+    h2 {
+        font-size: 1em;
     }
 }
 

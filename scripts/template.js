@@ -32,7 +32,7 @@ function loadButtonTemplate() {
 function foundPokeDivTemplateForOneType(i) {
   return /*html*/ `
     <div class="pokemonDiv" id="foundPokemonDiv${i}" onclick="renderThisFoundPokemonInOverlay(${i}); dontcloseOverlay(event);">
-            <h3>#${foundPokemonsArray[i].id} ${foundPokemonsArray[i].name}</h3>
+            <p>#${foundPokemonsArray[i].id} ${foundPokemonsArray[i].name}</p>
             <br>
             <img src="${foundPokemonsArray[i].pokemonSmallImg}" alt="pokemon${i}" class="pokemon">
             <div class="typeRow">
@@ -45,7 +45,7 @@ function foundPokeDivTemplateForOneType(i) {
 function foundPokeDivTemplateForTwoTypes(i) {
     return /*html*/ `
     <div class="pokemonDiv" id="foundPokemonDiv${i}" onclick="renderThisFoundPokemonInOverlay(${i}); dontcloseOverlay(event);">
-            <h3>#${foundPokemonsArray[i].id} ${foundPokemonsArray[i].name}</h3>
+            <p>#${foundPokemonsArray[i].id} ${foundPokemonsArray[i].name}</p>
             <br>
             <img src="${foundPokemonsArray[i].pokemonSmallImg}" alt="pokemon${i}" class="pokemon">
             <div class="typeRow">
@@ -132,23 +132,24 @@ function overlayTemplate(i,j,k) {
           </div>
       </div>
 
-      <div id="about" style="display:none;">
-        Habitat: ${pokemons[i].habitat}
+      <div id="about" style="display:none; flex-direction: column;">
         <br><br>
-        Weight: ${pokemons[i].weight}
-        <br><br>
-        Height: ${pokemons[i].height}  
-        <br><br>
-        Trivia: <br> ${pokemons[i].aboutText}
+        <p>Habitat: ${pokemons[i].habitat}</p>
+        <br>
+        <p>Weight: ${pokemons[i].weight}</p>
+        <br>
+        <p>Height: ${pokemons[i].height}</p>
+        <br>
+        <p>Trivia: <br> ${pokemons[i].aboutText}</p>
       </div>
 
       <div id="moves" style="display:none; justify-content: space-around;">
         <div style="border-right: solid 1px black; width: 100%;">
-          <p>Abilities: <br><br>${pokemons[i].firstAbility} <br><br> ${pokemons[i].secondAbility}</p>
+          <p>Abilities: <br><br><li>${pokemons[i].firstAbility}</li> <br><br> <li>${pokemons[i].secondAbility}</li></p>
         </div>
         <br>
         <div style="width: 100%;">
-          <p>Moves: <br><br>${pokemons[i].firstMove} <br><br> ${pokemons[i].secondMove}</p>
+          <p>Moves: <br><br><li>${pokemons[i].firstMove}</li> <br><br> <li>${pokemons[i].secondMove}</li></p>
         </div>
       </div>
   </div>
@@ -224,23 +225,24 @@ function overlayTemplateForFoundPokemon(i) {
           </div>
       </div>
 
-      <div id="about" style="display:none;">
-        Habitat: ${foundPokemonsArray[i].habitat}
+      <div id="about" style="display:none; flex-direction: column;">
         <br><br>
-        Weight: ${foundPokemonsArray[i].weight}
-        <br><br>
-        Height: ${foundPokemonsArray[i].height}        
-        <br><br>
-        Trivia: <br> ${foundPokemonsArray[i].aboutText}
+        <p>Habitat: ${foundPokemonsArray[i].habitat}</p>
+        <br>
+        <p>Weight: ${foundPokemonsArray[i].weight}</p>
+        <br>
+        <p>Height: ${foundPokemonsArray[i].height}</p>      
+        <br>
+        <p>Trivia: <br> ${foundPokemonsArray[i].aboutText}</p>
       </div>
       
       <div id="moves" style="display:none; justify-content: space-around;">
         <div style="border-right: solid 1px black; width: 100%;">
-          <p>Abilities:<br><br> ${foundPokemonsArray[i].firstAbility} <br><br> ${foundPokemonsArray[i].secondAbility}</p>
+          <p style="text-decoration: underlined">Abilities:<br><br> <li>${foundPokemonsArray[i].firstAbility}</li> <br><br> <li>${foundPokemonsArray[i].secondAbility}</li></p>
         </div>  
         <br>
         <div style="width: 100%;">
-          <p>Moves: <br><br> ${foundPokemonsArray[i].firstMove} <br><br> ${foundPokemonsArray[i].secondMove}</p>
+          <p style="text-decoration: underlined">Moves: <br><br> <li>${foundPokemonsArray[i].firstMove}</li> <br><br> <li>${foundPokemonsArray[i].secondMove}</li></p>
         </div>
       </div>
   </div>

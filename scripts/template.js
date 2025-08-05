@@ -39,7 +39,7 @@ function foundPokeDivTemplateForOneType(i) {
             <br>
             <div class="pokemonImgDiv">
               <img src="${foundPokemonsArray[i].pokemonSmallImg}" alt="pokemon${i}" class="pokemon">
-              <img src="${foundPokemonsArray[i].pokemonGif}" alt="pokemon${i}" class="pokemon">
+              <img src="${foundPokemonsArray[i].pokemonGif}" alt="pokemon${i}" class="pokemonGif">
             </div>
             <div class="typeRow">
               <img src="https://kajanan-yoganathan.developerakademie.net/pokedex/assets/${foundPokemonsArray[i].firstTypeImgSrc}.png" alt="${foundPokemonsArray[i].firstTypeImgSrc}" class="typeImgs">
@@ -55,7 +55,7 @@ function foundPokeDivTemplateForTwoTypes(i) {
             <br>
             <div class="pokemonImgDiv">
               <img src="${foundPokemonsArray[i].pokemonSmallImg}" alt="pokemon${i}" class="pokemon">
-              <img src="${foundPokemonsArray[i].pokemonGif}" alt="pokemon${i}" class="pokemon">
+              <img src="${foundPokemonsArray[i].pokemonGif}" alt="pokemon${i}" class="pokemonGif">
             </div>
             <div class="typeRow">
               <img src="https://kajanan-yoganathan.developerakademie.net/pokedex/assets/${foundPokemonsArray[i].firstTypeImgSrc}.png" alt="${foundPokemonsArray[i].firstTypeImgSrc}" class="typeImgs">

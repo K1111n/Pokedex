@@ -122,10 +122,6 @@ main {
     display: none;
 }
 
-.hideScrollbar {
-    overflow-y: hidden;
-}
-
 .showOnCentreOfThePage {
     display: flex;
     justify-content: center;
@@ -139,98 +135,6 @@ main {
     position: sticky;
     top: 250px;
 
-}
-
-.pokeball {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    background: linear-gradient(to bottom, #082129 50%, #082129 50%);
-    border: 4px solid #4fa1c0;
-    box-shadow: 0 0 0 4px #4fa1c0;
-    position: relative;
-    animation: shake 1.5s ease-in-out infinite;
-}
-
-.pokeball::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 20px;
-    height: 20px;
-    background: #082129;
-    border: 3px solid #4fa1c0;
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 2;
-    box-shadow: 0 0 0px #4fa1c0;
-    animation: blink 1.5s ease-in-out infinite;
-}
-
-.pokeball::after {
-    content: "";
-    position: absolute;
-    top: 49%;
-    left: 0;
-    width: 100%;
-    height: 4px;
-    background: #4fa1c0;
-    z-index: 1;
-}
-
-@keyframes shake {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    15% {
-        transform: rotate(-15deg);
-    }
-
-    30% {
-        transform: rotate(15deg);
-    }
-
-    45% {
-        transform: rotate(-10deg);
-    }
-
-    60% {
-        transform: rotate(10deg);
-    }
-
-    75% {
-        transform: rotate(-5deg);
-    }
-
-    90% {
-        transform: rotate(5deg);
-    }
-
-    100% {
-        transform: rotate(0deg);
-    }
-}
-
-@keyframes blink {
-
-    0%,
-    100% {
-        box-shadow: 0 0 0px #4fa1c0;
-    }
-
-    15%,
-    45%,
-    75% {
-        box-shadow: 0 0 12px 6px #4fa1c0;
-    }
-
-    30%,
-    60%,
-    90% {
-        box-shadow: 0 0 6px 3px #4fa1c0;
-    }
 }
 
 #pokemonSection {
@@ -254,27 +158,6 @@ main {
     justify-content: space-between;
     align-items: center;
     padding: 10px;
-}
-
-.pokemonOverlay {
-    border-radius: 25px;
-    color: black;
-    text-align: center;
-    width: 300px;
-    height: 650px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    transform: scale(0.9);
-    transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.pokemonOverlay.show {
-    opacity: 1;
-    visibility: visible;
-    transform: scale(1);
 }
 
 .pokemonDiv:hover {
@@ -328,26 +211,6 @@ main {
     display: none;
 }
 
-#evolutionChain {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.evolvePokemonImg {
-    cursor: pointer;
-    background-color: white;
-    width: 30px;
-    height: 30px;
-    border: solid 1px white;
-    border-radius: 50%;
-    padding: 5px;
-}
-
-.evolvePokemonImg:hover {
-    background-color: gold;
-}
-
 .typeImgs {
     height: 30px;
     width: auto;
@@ -356,10 +219,6 @@ main {
 .typeRow img {
     height: 30px;
     width: 60px;
-}
-
-li {
-    font-size: 10px;
 }
 
 #loadButtonDiv {
@@ -438,101 +297,6 @@ footer {
     flex-direction: row;
 }
 
-@media (max-width: 900px) {
-    .pokemonDiv {
-        width: 200px;
-        height: 200px;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    #rightHeader {
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-
-    header {
-        flex-direction: column;
-        justify-content: center;
-        height: 200px;
-    }
-
-    #leftHeader {
-        scale: 0.7;
-    }
-
-    h2 {
-        font-size: 1em;
-    }
-}
-
-@media (max-width: 550px) {
-
-    .pokemonDiv {
-        width: 150px;
-        height: 150px;
-    }
-
-    .pokemon {
-        width: 80px;
-        height: 80px;
-    }
-
-    #pokemonSection {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .typeRow img {
-        height: 20px;
-        width: 40px;
-    }
-
-    .pokemonOverlay {
-        width: 250px;
-        height: 600px;
-    }
-
-    #baseStats {
-        font-size: 14px;
-    }
-
-    footer {
-        display: flex;
-        font-size: 16px;
-        flex-direction: column-reverse;
-        text-align: center;
-        padding-top: 10px;
-    }
-
-    #impressum {
-        padding: 10px;
-        text-align: center;
-    }
-}
-
-/*Overlay Section*/
-
-#overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    width: 100vw;
-    background-color: rgba(0, 0, 0, 0.7);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    z-index: 10;
-}
-
-#actualPokemonImg {
-    width: 150px;
-    height: 150px;
-}
-
 .buttons {
     width: 100%;
     display: flex;
@@ -556,75 +320,4 @@ footer {
     color: gold;
     filter: saturate(2);
     text-decoration: none;
-}
-
-#baseStats {
-    height: 50%;
-    overflow: hidden;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-#about {
-    height: 50%;
-    overflow: hidden;
-    width: 100%;
-    display: flex;
-    align-items: space-around;
-}
-
-#moves {
-    height: 50%;
-    overflow: hidden;
-    width: 100%;
-}
-
-.myProgress {
-    width: 50%;
-    background-color: grey;
-    height: 5px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-
-#myBarATT {}
-
-.myBar {
-    background-color: black;
-    height: 5px;
-    width: 20%;
-}
-
-.showProgressBars {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 10px;
-    border: solid 1px black;
-    border-radius: 10px;
-}
-
-/*Arrow Section*/
-
-.arrow-img {
-    width: 48px;
-    height: 48px;
-    cursor: pointer;
-    z-index: 10;
-}
-
-.arrow-img:hover {
-    filter: saturate(2)
-}
-
-/*Pokemon Card*/
-
-.firstRowInCard {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
 }

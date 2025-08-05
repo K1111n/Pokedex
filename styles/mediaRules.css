@@ -1,0 +1,73 @@
+@media (max-width: 900px) {
+    .pokemonDiv {
+        width: 200px;
+        height: 200px;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #rightHeader {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    header {
+        flex-direction: column;
+        justify-content: center;
+        height: 200px;
+    }
+
+    #leftHeader {
+        scale: 0.7;
+    }
+
+    h2 {
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 550px) {
+
+    .pokemonDiv {
+        width: 150px;
+        height: 150px;
+    }
+
+    .pokemon {
+        width: 80px;
+        height: 80px;
+    }
+
+    #pokemonSection {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .typeRow img {
+        height: 20px;
+        width: 40px;
+    }
+
+    .pokemonOverlay {
+        width: 250px;
+        height: 600px;
+    }
+
+    #baseStats {
+        font-size: 14px;
+    }
+
+    footer {
+        display: flex;
+        font-size: 16px;
+        flex-direction: column-reverse;
+        text-align: center;
+        padding-top: 10px;
+    }
+
+    #impressum {
+        padding: 10px;
+        text-align: center;
+    }
+}

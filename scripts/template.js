@@ -1,11 +1,13 @@
 function pokeDivTemplate(i) {
   return /*html*/ `
         <div class="pokemonDiv" id="pokemonDiv${i}" onclick="renderThisPokemonInOverlay(${i}); dontcloseOverlay(event);">
-            <div style="display:flex; flex-direction: row; justify-content: space-between; width: 100%; font-weight: bold;">
+            <div class="pokemonDivCard">
               <p>#${pokemons[i].id}</p> <p>${pokemons[i].name}</p> <p class="german">${pokemons[i].deutschName}</p>
             </div>
             <br>
-            <img src="${pokemons[i].pokemonSmallImg}" alt="pokemon${i}" class="pokemon">
+            <div id="pokemonImgDiv">
+              <img src="${pokemons[i].pokemonSmallImg}" alt="pokemon${i}" class="pokemon">
+            </div>
             <div id="typeRow${i}" class="typeRow"></div>
         </div>
     `;

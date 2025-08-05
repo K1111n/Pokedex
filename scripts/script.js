@@ -145,6 +145,7 @@ function setAttributesToPushInArray(responseAsJson, responseEvolvesFromAsJson, r
     } 
     pokemons.push({
       name: pokemonName,
+      pokemonGif: responseAsJson.sprites.other.showdown.front_default,
       pokemonSmallImg: responseAsJson.sprites.front_default,
       pokemonImg: responseAsJson.sprites.other['official-artwork'].front_default,
       id: responseAsJson.id,

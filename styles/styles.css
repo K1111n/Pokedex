@@ -501,6 +501,14 @@ footer {
     footer {
         display: flex;
         font-size: 16px;
+        flex-direction: column-reverse;
+        text-align: center;
+        padding-top: 10px;
+    }
+
+    #impressum {
+        padding: 10px;
+        text-align: center;
     }
 }
 

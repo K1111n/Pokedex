@@ -67,7 +67,7 @@ function foundPokeDivTemplateForTwoTypes(i) {
 
 function overlayTemplate(i,j,k) {
   return /*html*/ `
-  <div class="pokemonOverlay" id="pokemonOverlay${i}">
+  <div class="pokemonOverlay" id="pokemonOverlay${i}" onclick="dontcloseOverlay(event)">
      <div style="width: 100%; height: 50%; display:flex; flex-direction: column; justify-content: space-between;">
       <div class="firstRowInCard">
         <div>
@@ -167,7 +167,7 @@ function overlayTemplate(i,j,k) {
 
 function overlayTemplateForFoundPokemon(i) {
   return /*html*/ `
-  <div class="pokemonOverlay" id="pokemonOverlay${i}">
+  <div class="pokemonOverlay" id="pokemonOverlay${i}" onclick="dontcloseOverlay(event)">
       <div style="width: 100%; height: 100%; display:flex; flex-direction: column; justify-content: space-between;">
         <div style="height: 50%; width: 100%; display:flex; flex-direction: column; justify-content: space-between;">
       <div class="firstRowInCard">
